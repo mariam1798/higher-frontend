@@ -1,0 +1,137 @@
+@use "variables" as *;
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin text-style($size, $line-height, $weight) {
+  font-size: $size + rem;
+  line-height: $line-height + rem;
+  font-weight: $weight;
+}
+
+@mixin flex-container($justify: space-between, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin lr-padding($padding-left, $padding-right) {
+  padding-left: $padding-left + rem;
+  padding-right: $padding-right + rem;
+}
+
+@mixin tb-padding($padding-top, $padding-bottom) {
+  padding-top: $padding-top + rem;
+  padding-bottom: $padding-bottom + rem;
+}
+
+@mixin lr-margin($margin-left, $margin-right) {
+  margin-left: $margin-left + rem;
+  margin-right: $margin-right + rem;
+}
+
+@mixin tb-margin($margin-top, $margin-bottom) {
+  margin-top: $margin-top + rem;
+  margin-bottom: $margin-bottom + rem;
+}
+
+@mixin container {
+  padding: 1rem 1rem;
+
+  @include tablet {
+    padding: 0 2rem;
+  }
+
+  @include desktop {
+    padding: 0 8.5rem;
+    margin: 0 auto;
+    max-width: 1280px;
+  }
+}
+
+@mixin custom-button {
+  border-radius: $border-radius;
+  font-size: 0.9rem;
+  width: 100%;
+  height: 2.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include lr-padding(1, 1);
+  cursor: pointer;
+  @include tablet {
+    height: 2.375rem;
+  }
+}
+
+@mixin primary-button {
+  @include custom-button;
+  background-color: $primary-background-color;
+  border: none;
+  color: $primary-text-color;
+
+  &:hover {
+    background-color: $primary-accent-color;
+  }
+}
+
+@mixin secondary-button {
+  @include custom-button;
+  background-color: $primary-accent-color;
+  color: $primary-text-color;
+
+  &:hover {
+    background-color: $primary-background-color;
+  }
+}
+
+@mixin higher-button {
+  border: none;
+  @include custom-button;
+  background-color: $primary-background-color;
+  color: $primary-text-color;
+  border: $border-line;
+
+  &:hover {
+    background-color: $secondary-background-color;
+  }
+}
+@mixin text-field {
+  background-color: $primary-background-color;
+  border-radius: $border-radius;
+  outline: none;
+  @include container;
+  &::placeholder {
+    color: $primary-text-color;
+  }
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    border: $divider-line;
+  }
+  @include tablet {
+    height: 3rem;
+  }
+  @include desktop {
+    margin: 0 0 1rem 0;
+    @include lr-padding(2, 0);
+  }
+}
+
+@mixin form-input-error {
+  border-color: $primary-accent-color;
+  &:focus,
+  &:focus-visible {
+    border-color: $divider-line;
+  }
+  @content;
+}

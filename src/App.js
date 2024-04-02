@@ -4,6 +4,7 @@ import UserPage from "./pages/UserPage";
 import UploadPage from "./pages/UploadPage";
 import JobsPage from "./pages/JobsPage";
 import RegisterPage from "./pages/RegisterPage";
+import "./App.scss";
 
 function App() {
   return (
