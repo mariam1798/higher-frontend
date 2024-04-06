@@ -1,0 +1,32 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.nav {
+  @include container;
+
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+  }
+
+  &__container {
+    @include tablet {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__watermark {
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    @include tablet {
+      width: 25%;
+      height: 2rem;
+      align-self: center;
+      justify-content: flex-start;
+    }
+  }
+}

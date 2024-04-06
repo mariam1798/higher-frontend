@@ -1,0 +1,80 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.search {
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__container {
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: center;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    @include tb-padding(1, 1);
+  }
+
+  &__avatar {
+    @include tablet {
+      display: none;
+    }
+
+    &--tablet {
+      display: none;
+      @include tablet {
+        height: 2rem;
+        display: block;
+      }
+    }
+  }
+
+  &__bar {
+    background-image: url("../../assets/icons/search.svg");
+    height: 2.3rem;
+    background-repeat: no-repeat;
+    background-position: 0.5rem;
+    background-size: 2rem;
+    text-indent: 3rem;
+    background-color: $primary-background-color;
+    border: $border-line;
+    border-radius: $border-radius;
+    width: 100%;
+    color: white;
+    outline: 0;
+
+    &::placeholder {
+      font-family: "Avenir";
+      font-size: 0.8rem;
+
+      @include tablet {
+        font-size: 0.75rem;
+      }
+    }
+    @include tablet {
+      width: 10rem;
+      background-size: 1.2rem;
+    }
+  }
+
+  &__button {
+    @include primary-button;
+    background-image: url("../../assets/icons/upload1.svg");
+    background-repeat: no-repeat;
+    border: $divider-line;
+    background-size: 3rem;
+    padding: 1rem;
+    @include tablet {
+      width: 10rem;
+    }
+  }
+}
