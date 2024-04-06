@@ -97,27 +97,25 @@
 @mixin higher-button {
   border: none;
   @include custom-button;
-  background-color: $primary-background-color;
+  background-color: #3b3b3b;
   color: $primary-text-color;
-  border: $border-line;
 
   &:hover {
-    background-color: $secondary-background-color;
+    border: $divider-line;
+    box-shadow: 0 0px 20px 0px #fff inset;
   }
 }
 @mixin text-field {
   background-color: $primary-background-color;
   border-radius: $border-radius;
-  outline: none;
+  outline: 0;
+  border: $divider-line;
+  color: white;
   @include container;
   &::placeholder {
-    color: $primary-text-color;
+    color: white;
   }
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    border: $divider-line;
-  }
+
   @include tablet {
     height: 3rem;
   }
