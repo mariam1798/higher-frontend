@@ -97,7 +97,7 @@
 @mixin higher-button {
   border: none;
   @include custom-button;
-  background-color: #3b3b3b;
+  background-color: $primary-background-color;
   color: $primary-text-color;
 
   &:hover {
