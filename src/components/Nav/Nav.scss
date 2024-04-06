@@ -3,6 +3,7 @@
 
 .nav {
   @include container;
+  padding-top: 2rem;
 
   @include tablet {
     display: flex;

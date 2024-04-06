@@ -1,0 +1,53 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.login {
+  @include container;
+  color: $primary-background-color;
+  @include tablet {
+    padding: 7rem;
+    display: flex;
+    justify-content: center;
+  }
+  &__container {
+    @include container;
+    background-color: $secondary-background-color;
+    border-radius: 20px;
+    @include tablet {
+      box-shadow: 0 0 8px 8px rgba(152, 232, 205, 0.5);
+      border: solid 2px transparent;
+      width: 22rem;
+    }
+  }
+  &__logo {
+    height: 5rem;
+  }
+  &__title {
+    margin-top: -1.5rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    @include tb-padding(0.5, 0.5);
+  }
+  &__input {
+    @include text-field;
+  }
+  &__button {
+    margin-top: 2rem;
+    @include secondary-button;
+  }
+  &__navigate {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    color: $primary-background-color;
+    @include tablet {
+      padding-bottom: 2rem;
+    }
+  }
+}

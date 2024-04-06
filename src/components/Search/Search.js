@@ -17,7 +17,7 @@ export default function Search() {
         </div>
         <button
           onClick={() => {
-            navigate("/upload");
+            navigate("/user/upload");
           }}
           className="search__button"
         >

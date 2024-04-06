@@ -2,10 +2,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .register {
-  margin: 0;
+  padding-top: 2rem;
+  font-family: "Hagrid";
+  @include tablet {
+    padding-top: 10rem;
+  }
   &__wrapper {
     @include container;
-    height: 50rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,12 +16,16 @@
   }
   &__title {
     margin: 0;
+    &--span {
+      color: $secondary-background-color;
+    }
   }
   &__text {
     text-align: center;
+    line-height: 2rem;
   }
   &__button {
-    @include higher-button;
+    @include primary-button;
     text-transform: uppercase;
     margin-top: 1rem;
   }

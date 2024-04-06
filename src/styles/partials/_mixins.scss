@@ -76,7 +76,7 @@
 @mixin primary-button {
   @include custom-button;
   background-color: $primary-background-color;
-  border: none;
+  border: $border-line;
   color: $primary-text-color;
 
   &:hover {
@@ -86,9 +86,11 @@
 
 @mixin secondary-button {
   @include custom-button;
-  background-color: $primary-accent-color;
-  color: $primary-text-color;
-
+  background-color: $secondary-background-color;
+  color: $primary-background-color;
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: solid 2px transparent;
   &:hover {
     background-color: $primary-background-color;
   }
@@ -107,9 +109,10 @@
 }
 @mixin text-field {
   background-color: $primary-background-color;
-  border-radius: $border-radius;
+  border-radius: 10px;
   outline: 0;
   border: $divider-line;
+  height: 1rem;
   color: white;
   @include container;
   &::placeholder {

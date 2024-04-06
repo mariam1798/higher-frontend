@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./RegisterPage.scss";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
+  const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -19,7 +21,9 @@ export default function RegisterPage() {
   });
   const handleStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
-    console.log(process.env.REACT_APP_API_BASE_URL);
+  };
+  const handleBack = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,7 +36,7 @@ export default function RegisterPage() {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/users/register", {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/users/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -41,28 +45,42 @@ export default function RegisterPage() {
         experience_years: formData.experience_years,
         job_title: formData.job_title,
       });
-      Navigate("/login");
+      navigate("/login");
       setErrorMessage("");
     } catch (error) {
-      e.target.reset();
-      setErrorMessage(error);
+      const message =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "An error occurred. Please try again later.";
+      setErrorMessage(message);
     }
   };
   return (
     <main className="register">
       <div className="register__wrapper">
-        <h2 className="register__title">Welcome to Higher!</h2>
+        <h2 className="register__title">
+          Welcome to <span className="register__title--span"> Higher! </span>
+        </h2>
         <h3 className="register__text">Where Talent Meets Opportunity</h3>
-
-        <button className="register__button">Login</button>
         <form className="regitser__form" onSubmit={handleSubmit}>
           {currentStep === 0 && (
             <button className="register__button" onClick={handleStep}>
               Higher Me
             </button>
           )}
-
           {currentStep === 1 && (
+            <div className="register__card">
+              <Link to="/login">
+                <button className="register__button" onClick={handleStep}>
+                  Login
+                </button>
+              </Link>
+              <button className="register__button" onClick={handleStep}>
+                Register
+              </button>
+            </div>
+          )}
+          {currentStep === 2 && (
             <div className="register__Card">
               <label className="register__label">What's your name?</label>
               <input
@@ -74,9 +92,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 2 && (
+          {currentStep === 3 && (
             <div className="register__Card">
               <label className="register__label">
                 Share your email with us:
@@ -90,9 +113,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 3 && (
+          {currentStep === 4 && (
             <div className="register__Card">
               <label className="register__label">
                 Where are you currently based?{" "}
@@ -106,9 +134,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 4 && (
+          {currentStep === 5 && (
             <div className="register__Card">
               <label className="register__label">
                 What is your professional status?{" "}
@@ -121,9 +154,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 5 && (
+          {currentStep === 6 && (
             <div className="register__Card">
               <label className="register__label">
                 What is your current job title?{" "}
@@ -136,9 +174,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 6 && (
+          {currentStep === 7 && (
             <div className="register__Card">
               <label className="register__label">
                 How many years of experience do you have in your current job
@@ -152,9 +195,14 @@ export default function RegisterPage() {
               <button className="register__button" onClick={handleStep}>
                 Next
               </button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
             </div>
           )}
-          {currentStep === 7 && (
+          {currentStep === 8 && (
             <div className="register__Card">
               <label className="register__label">password</label>
               <input
@@ -164,7 +212,16 @@ export default function RegisterPage() {
               />
             </div>
           )}
-          <button className="register__button">Submit</button>
+          {currentStep === 8 && (
+            <div className="register__card">
+              <button className="register__button">Submit</button>
+              <Link>
+                <button className="register__button" onClick={handleBack}>
+                  Back
+                </button>
+              </Link>
+            </div>
+          )}
           {errorMessage && <p>{errorMessage}</p>}
         </form>
       </div>
