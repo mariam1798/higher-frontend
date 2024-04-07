@@ -62,7 +62,7 @@
   border-radius: $border-radius;
   font-size: 0.9rem;
   width: 100%;
-  height: 2.25rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,12 +75,17 @@
 
 @mixin primary-button {
   @include custom-button;
-  background-color: $primary-background-color;
-  border: $border-line;
-  color: $primary-text-color;
-
+  background-color: $primary-text-color;
+  color: #84358e;
+  border-radius: 10px;
+  border: none;
   &:hover {
-    background-color: $primary-accent-color;
+    background: linear-gradient(
+      89.7deg,
+      hsl(220, 100%, 19%) 2.8%,
+      rgb(132, 53, 142) 97.8%
+    );
+    color: $primary-text-color;
   }
 }
 
@@ -108,12 +113,12 @@
   }
 }
 @mixin text-field {
-  background-color: $primary-background-color;
+  background-color: $primary-text-color;
   border-radius: 10px;
   outline: 0;
-  border: $divider-line;
+  border: none;
   height: 1rem;
-  color: white;
+  color: black;
   @include container;
   &::placeholder {
     color: white;
