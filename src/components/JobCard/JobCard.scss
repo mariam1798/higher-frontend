@@ -2,8 +2,22 @@
 @use "../../styles/partials/mixins" as *;
 
 .job {
-  padding-bottom: 1rem;
-  @include container;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: $divider-line;
+  @include tablet {
+    padding-top: 2rem;
+  }
+  &__list {
+    padding-bottom: 1rem;
+    @include container;
+    @include tablet {
+      width: 60%;
+    }
+  }
   &__card {
     display: flex;
     gap: 1rem;
@@ -11,9 +25,9 @@
     border: $divider-line;
     border-radius: $border-radius;
     margin-top: 1rem;
+
     @include tablet {
-      padding: 0.5rem;
-      width: 48%;
+      padding-left: 0;
     }
     @include desktop {
       width: 100%;
@@ -30,13 +44,9 @@
     border-radius: 50% 50%;
 
     @include tablet {
-      width: 7.5rem;
+      width: 5rem;
+      height: 5rem;
     }
-  }
-
-  &__link {
-    color: $primary-text-color;
-    text-decoration: none;
   }
 
   &__right {
@@ -59,5 +69,16 @@
     @include tablet {
       font-size: 0.9rem;
     }
+  }
+  &__button {
+    color: $primary-accent-color;
+    background-color: $primary-background-color;
+    width: 7rem;
+    border: none;
+    padding: 1rem;
+    background-image: url("../../assets/icons/showMore.svg");
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: 100%;
   }
 }

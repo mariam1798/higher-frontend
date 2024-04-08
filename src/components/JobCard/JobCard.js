@@ -1,7 +1,7 @@
 import React from "react";
 import "./JobCard.scss";
 import upload from "../../assets/icons/upload.svg";
-export default function JobCard({ employer, logo, website, job_title }) {
+export default function JobCard({ employer, logo, job_title }) {
   return (
     <section className="job__card">
       <div className="job__left">
