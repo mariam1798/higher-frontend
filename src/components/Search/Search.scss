@@ -37,41 +37,47 @@
       }
     }
   }
-
+  &__wrap {
+    width: 100%;
+    @include background;
+    padding: 0.2rem;
+    border-radius: $border-radius;
+  }
   &__bar {
     background-image: url("../../assets/icons/search.svg");
     height: 2.3rem;
     background-repeat: no-repeat;
-    background-position: 0.5rem;
-    background-size: 2rem;
-    text-indent: 3rem;
+    background-position: -0.5rem;
+    background-size: 3rem;
+    text-indent: 2.3rem;
     background-color: $primary-background-color;
-    border: $border-line;
+    border: none;
     border-radius: $border-radius;
     width: 100%;
     color: white;
     outline: 0;
 
     &::placeholder {
-      font-family: "Avenir";
       font-size: 0.8rem;
 
       @include tablet {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
       }
     }
     @include tablet {
       width: 10rem;
-      background-size: 1.2rem;
     }
   }
 
   &__button {
     @include primary-button;
-    background-image: url("../../assets/icons/upload1.svg");
+    background-image: url("../../assets/icons/upload.svg");
     background-repeat: no-repeat;
     border: $divider-line;
-    background-size: 3rem;
+    border-radius: 20px;
+    border: none;
+    background-size: 3.1rem;
+    background-position: -5px;
     padding: 1rem;
     @include tablet {
       width: 10rem;

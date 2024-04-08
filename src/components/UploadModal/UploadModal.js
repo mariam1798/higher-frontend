@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import Modal from "react-modal";
+import close from "../../assets/icons/close-24px.svg";
 import "./UploadModal.scss";
 import { Link } from "react-router-dom";
 import higher from "../../assets/icons/higherwhite.svg";
@@ -23,8 +23,8 @@ export default function UploadModal({
       <div className="modal__icon">
         <img
           onClick={handleCloseModal}
-          src=""
-          alt=""
+          src={close}
+          alt="close icon"
           className="modal__close"
         />
       </div>
@@ -58,32 +58,32 @@ export default function UploadModal({
               onChange={handleChange}
             />
           </div>
-          <div className="modal__buttons">
-            <input
-              type="file"
-              onChange={handleChange}
-              name="file"
-              style={{ display: "none" }}
-              id="fileInput"
-            />
-            <label htmlFor="fileInput" className="modal__upload">
-              Upload
-            </label>
-            <button className="modal__button">Submit</button>
-            {message && <p>{message}</p>}
-
-            <Link
-              onClick={handleCloseModal}
-              className="modal__navigate"
-              to="/user"
-            >
-              My profile
-            </Link>
-          </div>
+          <input
+            type="file"
+            onChange={handleChange}
+            name="file"
+            style={{ display: "none" }}
+            id="fileInput"
+          />
+          <label htmlFor="fileInput" className="modal__upload">
+            Upload
+          </label>
+          <button className="modal__button">Submit</button>
+          {message && <p>{message}</p>}
         </form>
-        <button onClick={handleCloseModal} className="modal__button">
-          Cancel
-        </button>
+        <div className="modal__cancel">
+          <Link
+            onClick={handleCloseModal}
+            className="modal__navigate"
+            to="/user"
+          >
+            My profile
+          </Link>
+
+          <button onClick={handleCloseModal} className="modal__exit">
+            Cancel
+          </button>
+        </div>
       </div>
     </Modal>
   );

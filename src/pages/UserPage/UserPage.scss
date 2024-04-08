@@ -1,0 +1,24 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.user {
+  &__name {
+    text-transform: capitalize;
+  }
+  &__wrapper {
+    @include container;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+  &__logout {
+    @include primary-button;
+    @include tablet {
+      width: 20%;
+    }
+  }
+}

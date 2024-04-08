@@ -75,17 +75,12 @@
 
 @mixin primary-button {
   @include custom-button;
-  background-color: $primary-text-color;
-  color: #84358e;
+  background-color: $primary-background-color;
+  color: $primary-text-color;
   border-radius: 10px;
   border: none;
   &:hover {
-    background: linear-gradient(
-      89.7deg,
-      hsl(220, 100%, 19%) 2.8%,
-      rgb(132, 53, 142) 97.8%
-    );
-    color: $primary-text-color;
+    @include background;
   }
 }
 
@@ -98,6 +93,7 @@
   border: solid 2px transparent;
   &:hover {
     background-color: $primary-background-color;
+    color: white;
   }
 }
 
@@ -140,4 +136,11 @@
     border-color: $divider-line;
   }
   @content;
+}
+@mixin background {
+  background: linear-gradient(
+    89.7deg,
+    hsl(220, 100%, 19%) 2.8%,
+    hsl(293, 46%, 38%) 97.8%
+  );
 }

@@ -72,15 +72,19 @@ export default function Search() {
     <section className="search">
       <div className="search__container">
         <div className="search__top">
-          <input
-            className="search__bar"
-            placeholder="Search"
-            name="search"
-          ></input>
+          <div className="search__wrap">
+            <input
+              className="search__bar"
+              placeholder="SEARCH"
+              name="search"
+            ></input>
+          </div>
         </div>
-        <button onClick={handleOpenModal} className="search__button">
-          UPLOAD
-        </button>
+        <div className="search__wrap">
+          <button onClick={handleOpenModal} className="search__button">
+            UPLOAD
+          </button>
+        </div>
         <img
           src={user}
           alt="user image"

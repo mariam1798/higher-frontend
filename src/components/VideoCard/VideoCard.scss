@@ -1,0 +1,47 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.video {
+  padding: 1rem;
+  @include background;
+  @include tablet {
+    padding: 2rem;
+  }
+
+  &__card {
+    padding: 2rem 1.5rem;
+    border: $divider-line;
+    border-radius: 20px;
+    background-color: $primary-background-color;
+    @include tablet {
+      padding: 2rem;
+    }
+  }
+  &__side {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__play {
+    border-radius: 20px;
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+  }
+  &__title {
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
+  &__name {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: $primary-accent-color;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    border: $divider-line;
+    border-radius: $border-radius;
+    margin-top: 1rem;
+    padding-left: 1rem;
+  }
+}
