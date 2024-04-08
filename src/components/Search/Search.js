@@ -4,6 +4,7 @@ import user from "../../assets/icons/user.svg";
 import UploadModal from "../UploadModal/UploadModal";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Search() {
   const navigate = useNavigate();
@@ -85,11 +86,13 @@ export default function Search() {
             UPLOAD
           </button>
         </div>
-        <img
-          src={user}
-          alt="user image"
-          className="search__avatar search__avatar--tablet"
-        />
+        <Link to="/user">
+          <img
+            src={user}
+            alt="user image"
+            className="search__avatar search__avatar--tablet"
+          />
+        </Link>
       </div>
       <UploadModal
         handleChange={handleChange}

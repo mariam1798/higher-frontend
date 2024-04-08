@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import VideosList from "../../components/VideosList/VideosList";
 import "./UserPage.scss";
 
+import { getProfile } from "../../utils/axios";
+
 export default function UserPage() {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const token = localStorage.getItem("authToken");
 
   useEffect(() => {
+    if (!token) {
+      return setFailedAuth(true);
+    }
     const loadData = async () => {
-      const token = localStorage.getItem("authToken");
-      console.log(token);
-
-      if (!token) {
-        return setFailedAuth(true);
-      }
-
       try {
-        // Get the data from the API
-        const { data } = await axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(data);
-        setUser(data);
+        const data = await getProfile(token);
+
+        setUser(data.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setFailedAuth(true);
       }
     };
+
     loadData();
   }, []);
 
@@ -42,7 +33,6 @@ export default function UserPage() {
     setUser(null);
     setFailedAuth(true);
   };
-
   if (failedAuth) {
     return (
       <main className="Profile">
@@ -53,6 +43,7 @@ export default function UserPage() {
       </main>
     );
   }
+
   if (!user) {
     return (
       <main className="user">
@@ -60,6 +51,7 @@ export default function UserPage() {
       </main>
     );
   }
+
   return (
     <main className="user">
       <div className="user__wrapper">

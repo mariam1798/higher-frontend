@@ -35,6 +35,7 @@ export default function RegisterPage() {
       setErrorMessage("You must fill in all the form fields");
       return;
     }
+
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/users/register`, {
         name: formData.name,
@@ -215,6 +216,7 @@ export default function RegisterPage() {
           {currentStep === 8 && (
             <div className="register__card">
               <button className="register__button">Submit</button>
+              {errorMessage && <p>{errorMessage}</p>}
               <Link>
                 <button className="register__button" onClick={handleBack}>
                   Back
@@ -222,7 +224,6 @@ export default function RegisterPage() {
               </Link>
             </div>
           )}
-          {errorMessage && <p>{errorMessage}</p>}
         </form>
       </div>
     </main>
