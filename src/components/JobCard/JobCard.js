@@ -1,21 +1,15 @@
 import React from "react";
-
-export default function JobCard({
-  employer,
-  logo,
-  website,
-  job_title,
-  description,
-}) {
+import "./JobCard.scss";
+import upload from "../../assets/icons/upload.svg";
+export default function JobCard({ employer, logo, website, job_title }) {
   return (
-    <section className="videos__card">
-      <div className="videos__left">
-        <img src={logo} alt={employer} className="videos__image" />
+    <section className="job__card">
+      <div className="job__left">
+        <img src={logo || upload} className="job__image" />
       </div>
-      <div className="videos__right">
-        <h4 className="videos__name">{job_title}</h4>
-        <h4 className="videos__name">{website}</h4>
-        <h4 className="videos__channel">{description}</h4>
+      <div className="job__right">
+        <h4 className="job__name">{job_title}</h4>
+        <h4 className="job__name">{employer}</h4>
       </div>
     </section>
   );

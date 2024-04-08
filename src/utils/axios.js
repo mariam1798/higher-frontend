@@ -13,7 +13,7 @@ const getJobs = (data) => {
     method: "GET",
     url: "https://jsearch.p.rapidapi.com/search",
     params: {
-      query: `${data.job_title}, ${data.experience_years} ${data.location}`,
+      query: `${data.data.job_title}, ${data.data.experience_years} ${data.data.location}`,
       page: "1",
       num_pages: "1",
     },

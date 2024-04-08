@@ -6,6 +6,7 @@ export default function HomePage() {
   const [user, setUser] = useState(null);
   const [jobs, setJobs] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [visibleJobs, setVisibleJobs] = useState(3);
 
   const token = localStorage.getItem("authToken");
 
@@ -27,21 +28,31 @@ export default function HomePage() {
     };
 
     loadData();
-  }, [token]);
+  }, []);
+  if (!jobs) {
+    return <p>Loading..</p>;
+  }
 
   return (
     <>
-      {jobs &&
-        jobs.map((job) => (
-          <JobCard
-            key={job.job_id}
-            employer={job.employer_name}
-            logo={job.employer_logo}
-            website={job.employer_website}
-            job_title={job.job_title}
-            description={job.job_description}
-          />
-        ))}
+      <section className="job">
+        {jobs &&
+          jobs
+            .slice(0, visibleJobs)
+            .map((job) => (
+              <JobCard
+                key={job.job_id}
+                employer={job.employer_name}
+                logo={job.employer_logo}
+                job_title={job.job_title}
+              />
+            ))}
+        {visibleJobs < jobs.length && (
+          <button onClick={() => setVisibleJobs(visibleJobs + 3)}>
+            Load More
+          </button>
+        )}
+      </section>
     </>
   );
 }

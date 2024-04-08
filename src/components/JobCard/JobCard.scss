@@ -1,0 +1,63 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.job {
+  padding-bottom: 1rem;
+  @include container;
+  &__card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: $divider-line;
+    border-radius: $border-radius;
+    margin-top: 1rem;
+    @include tablet {
+      padding: 0.5rem;
+      width: 48%;
+    }
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  &__left {
+    border-radius: 8px;
+  }
+
+  &__image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50% 50%;
+
+    @include tablet {
+      width: 7.5rem;
+    }
+  }
+
+  &__link {
+    color: $primary-text-color;
+    text-decoration: none;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__name {
+    @include text-style(0.8, 1.2, 600);
+    margin: 0;
+    @include tablet {
+      font-size: 0.9rem;
+    }
+  }
+
+  &__channel {
+    @include text-style(0.8, 1.2, 400);
+    margin: 0;
+    @include tablet {
+      font-size: 0.9rem;
+    }
+  }
+}
