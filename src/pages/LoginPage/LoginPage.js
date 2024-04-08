@@ -75,7 +75,7 @@ export default function LoginPage() {
           />
         </div>
         <button className="login__button">Log In</button>
-        <Link className="login__navigate" to="/">
+        <Link className="login__navigate" to="/register">
           Register
         </Link>
         {errorMessage && <div className="login__message">{errorMessage}</div>}

@@ -68,7 +68,7 @@ export default function UserPage() {
           Log out
         </button>
       </div>
-      <VideosList />
+      <VideosList id={user.id} />
     </main>
   );
 }
