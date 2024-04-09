@@ -2,13 +2,19 @@
 @use "../../styles/partials/mixins" as *;
 
 .register {
-  padding-top: 2rem;
   font-family: "Hagrid";
+  @include container;
   @include tablet {
     padding-top: 10rem;
   }
+  &__select {
+    color: black;
+  }
   &__wrapper {
+    @include background;
     @include container;
+    @include tb-padding(5, 5);
+    border-radius: $border-radius;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,13 +22,11 @@
   }
   &__title {
     margin: 0;
-    &--span {
-      color: $secondary-background-color;
-    }
   }
   &__text {
     text-align: center;
     line-height: 2rem;
+    font-size: 1rem;
   }
   &__button {
     @include primary-button;
@@ -32,7 +36,14 @@
 
   &__label {
     display: flex;
-    padding: 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  &__description {
+    @include tb-margin(2, 2);
+    @include container;
+    border: $divider-line;
+    border-radius: $border-radius;
   }
   &__input {
     width: 100%;

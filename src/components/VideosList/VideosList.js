@@ -16,9 +16,11 @@ export default function VideosList({ id }) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getvideos();
   }, []);
+
   if (!videos) {
     return <p>loading</p>;
   }

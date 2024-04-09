@@ -18,7 +18,7 @@ export default function JobsList({ jobs }) {
                 job_title={job.job_title}
               />
             ))}
-        {visibleJobs < jobs.length && (
+        {jobs && visibleJobs < jobs.length && (
           <button
             className="job__button"
             onClick={() => setVisibleJobs(visibleJobs + 3)}

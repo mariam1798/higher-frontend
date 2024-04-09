@@ -6,6 +6,7 @@ import JobsPage from "./pages/JobsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import Nav from "./components/Nav/Nav";
+
 import "./App.scss";
 
 function App() {

@@ -16,9 +16,9 @@ export default function UserPage() {
     }
     const loadData = async () => {
       try {
-        const data = await getProfile(token);
+        const { data } = await getProfile(token);
 
-        setUser(data.data);
+        setUser(data);
       } catch (error) {
         console.error(error);
         setFailedAuth(true);
@@ -29,7 +29,8 @@ export default function UserPage() {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("authToken");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("jobsData");
     setUser(null);
     setFailedAuth(true);
   };
