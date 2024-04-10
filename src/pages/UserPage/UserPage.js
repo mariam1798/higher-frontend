@@ -32,7 +32,7 @@ export default function UserPage() {
 
   useEffect(() => {
     if (user && user.id) {
-      const getvideos = async () => {
+      const fetchVideosForUser = async () => {
         try {
           const { data } = await fetchVideos(user.id);
           setVideos(data);
@@ -40,7 +40,8 @@ export default function UserPage() {
           console.error(error);
         }
       };
-      getvideos();
+
+      fetchVideosForUser();
     }
   }, [user]);
 
@@ -74,7 +75,7 @@ export default function UserPage() {
 
   return (
     <>
-      <Nav />
+      <Nav setVideos={setVideos} />
       <main className="user">
         <div className="user__wrapper">
           <h3 className="user__name">Welcome back, {user.name}!</h3>

@@ -3,14 +3,14 @@ import "./Nav.scss";
 import Search from "../Search/Search";
 import { Link } from "react-router-dom";
 
-export default function Nav() {
+export default function Nav({ setVideos }) {
   return (
     <nav className="nav">
       <div className="nav__container">
         <Link to="/home" className="nav__watermark">
           <img className="nav__logo" src={logo} alt="brainflix logo" />
         </Link>
-        <Search />
+        <Search setVideos={setVideos} />
       </div>
     </nav>
   );

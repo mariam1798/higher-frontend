@@ -1,23 +1,25 @@
-import { getProfile, getJobs } from "../utils/axios";
+import { getProfile, getJobs, getVideos } from "../utils/axios";
 import JobsList from "../components/JobsList/JobsList";
 import React, { useEffect, useState } from "react";
+import VideosList from "../components/VideosList/VideosList";
 
 export default function HomePage() {
   const [_user, setUser] = useState(null);
   const [jobs, setJobs] = useState(undefined);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [videos, setVideos] = useState(null);
 
   const token = localStorage.getItem("authToken");
 
   useEffect(() => {
     if (!token) {
       setFailedAuth(true);
-      setJobs([]); // Assume no jobs if there's no token to avoid undefined state
+      setJobs([]);
       return;
     }
 
     const loadData = async () => {
-      setJobs(undefined); // Indicate loading state
+      setJobs(undefined);
 
       try {
         const storedJobs = localStorage.getItem("jobsData");
@@ -25,41 +27,51 @@ export default function HomePage() {
 
         if (storedJobs) {
           jobData = JSON.parse(storedJobs);
-          setJobs(jobData); // Use cached job data
+          setJobs(jobData);
         } else {
           const profileData = await getProfile(token);
           setUser(profileData.data);
           jobData = await getJobs(profileData.data);
           localStorage.setItem("jobsData", JSON.stringify(jobData.data.data));
-          setJobs(jobData.data.data); // Use freshly loaded job data
+          setJobs(jobData.data.data);
         }
       } catch (error) {
         console.error(error);
         setFailedAuth(true);
-        setJobs([]); // Handle error by setting jobs to an empty array or a relevant error state
+        setJobs([]);
       }
     };
 
     loadData();
   }, [token]);
+  const fetchAllVideos = async () => {
+    const { data } = await getVideos();
+    setVideos(data);
+  };
+
+  useEffect(() => {
+    fetchAllVideos();
+  }, []);
 
   if (failedAuth) {
     return <p>Failed to authenticate. Please log in again.</p>;
   }
 
   if (jobs === undefined) {
-    // Data is still loading or hasn't started loading yet
     return <p>Loading...</p>;
   }
 
   if (!jobs.length) {
-    // Assuming `jobs` is an array and checking if it's empty
     return <p>No jobs found.</p>;
+  }
+  if (!videos) {
+    return <p>Loading......</p>;
   }
   return (
     <>
       <main className="home">
         <JobsList jobs={jobs} />
+        <VideosList videos={videos} />
       </main>
     </>
   );

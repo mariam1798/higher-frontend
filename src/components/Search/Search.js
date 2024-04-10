@@ -5,8 +5,9 @@ import UploadModal from "../UploadModal/UploadModal";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchVideos } from "../../utils/axios";
 
-export default function Search() {
+export default function Search({ setVideos }) {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -54,6 +55,7 @@ export default function Search() {
 
       if (response.status === 200) {
         setMessage("Highered successfully!");
+        setVideos();
       } else {
         setMessage("Upload failed!");
       }

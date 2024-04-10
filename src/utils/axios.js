@@ -28,7 +28,7 @@ const getJobs = (data) => {
 const fetchVideos = (id) => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/${id}/videos`);
 };
-const getvideos = () => {
+const getVideos = () => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/videos`);
 };
-export { fetchVideos, getProfile, getJobs };
+export { fetchVideos, getProfile, getJobs, getVideos };
