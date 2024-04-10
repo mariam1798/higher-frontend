@@ -30,7 +30,7 @@ export default function JobsList({ jobs }) {
             className="job__button"
             onClick={() => setVisibleJobs(visibleJobs + 3)}
           >
-            Load More
+            Show More
           </button>
         )}
       </div>

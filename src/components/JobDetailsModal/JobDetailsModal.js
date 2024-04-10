@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import close from "../../assets/icons/close-24px.svg";
-import higher from "../../assets/icons/higherwhite.svg";
+import higher from "../../assets/icons/logoteal.svg";
 import { Link } from "react-router-dom";
 import "./JobDetailsModal.scss";
 export default function JobDetailsModal({
@@ -36,7 +36,9 @@ export default function JobDetailsModal({
         <img className="details__logo" src={higher} alt="higher" />
 
         <div className="details__wrap">
-          <img src={logo} alt={job_employment} className="details__company" />
+          <div className="details__wrapper">
+            <img src={logo} alt={job_employment} className="details__company" />
+          </div>
           <h3 className="details__title">{job_title}</h3>
           <div className="details__link">
             <p className="details__country">

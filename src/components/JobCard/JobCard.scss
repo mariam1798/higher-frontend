@@ -71,14 +71,15 @@
     }
   }
   &__button {
-    color: $primary-accent-color;
-    background-color: $primary-background-color;
-    width: 7rem;
+    color: $secondary-background-color;
+    border-radius: $border-radius;
+    width: 10rem;
     border: none;
+    margin-top: 1rem;
     padding: 1rem;
     background-image: url("../../assets/icons/showMore.svg");
     background-size: 1rem;
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: 90%;
   }
 }

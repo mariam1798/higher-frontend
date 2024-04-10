@@ -41,13 +41,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -2rem;
+    margin-top: -3rem;
     @include tablet {
       height: 8rem;
     }
   }
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
   &__company {
-    width: 7rem;
+    height: 1.5rem;
+    border-radius: 4px;
   }
   &__link {
     display: flex;
@@ -73,6 +79,7 @@
   }
   &__title {
     text-align: center;
+    margin: 0;
   }
   &__icon {
     width: 100%;
@@ -81,7 +88,7 @@
     align-items: center;
   }
   &__text {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     line-height: 1.1rem;
   }
   &__cancel {
@@ -89,6 +96,10 @@
       display: flex;
       justify-content: flex-end;
     }
+  }
+  &__country {
+    margin: 0;
+    padding: 0.2rem;
   }
 }
 
