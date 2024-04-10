@@ -72,10 +72,9 @@ export default function UserPage() {
   if (!videos) {
     return <p>LOading..</p>;
   }
-
   return (
     <>
-      <Nav setVideos={setVideos} />
+      <Nav setVideos={setVideos} id={user.id} />
       <main className="user">
         <div className="user__wrapper">
           <h3 className="user__name">Welcome back, {user.name}!</h3>
