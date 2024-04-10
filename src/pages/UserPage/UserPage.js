@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import VideosList from "../../components/VideosList/VideosList";
 import "./UserPage.scss";
+import Nav from "../../components/Nav/Nav";
 
-import { getProfile } from "../../utils/axios";
+import { getProfile, fetchVideos } from "../../utils/axios";
 
 export default function UserPage() {
   const [user, setUser] = useState(null);
+  const [videos, setVideos] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
   const token = localStorage.getItem("authToken");
 
@@ -26,7 +28,21 @@ export default function UserPage() {
     };
 
     loadData();
-  }, []);
+  }, [token]);
+
+  useEffect(() => {
+    if (user && user.id) {
+      const getvideos = async () => {
+        try {
+          const { data } = await fetchVideos(user.id);
+          setVideos(data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getvideos();
+    }
+  }, [user]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -52,16 +68,22 @@ export default function UserPage() {
       </main>
     );
   }
+  if (!videos) {
+    return <p>LOading..</p>;
+  }
 
   return (
-    <main className="user">
-      <div className="user__wrapper">
-        <h3 className="user__name">Welcome back, {user.name}!</h3>
-        <button className="user__logout" onClick={handleLogout}>
-          Log out
-        </button>
-      </div>
-      <VideosList id={user.id} />
-    </main>
+    <>
+      <Nav />
+      <main className="user">
+        <div className="user__wrapper">
+          <h3 className="user__name">Welcome back, {user.name}!</h3>
+          <button className="user__logout" onClick={handleLogout}>
+            Log out
+          </button>
+        </div>
+        <VideosList videos={videos} />
+      </main>
+    </>
   );
 }

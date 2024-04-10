@@ -25,5 +25,10 @@ const getJobs = (data) => {
 
   return axios.request(options);
 };
-
-export { getProfile, getJobs };
+const fetchVideos = (id) => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/${id}/videos`);
+};
+const getvideos = () => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/videos`);
+};
+export { fetchVideos, getProfile, getJobs };

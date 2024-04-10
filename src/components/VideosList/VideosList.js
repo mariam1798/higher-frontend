@@ -3,27 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import VideoCard from "../../components/VideoCard/VideoCard";
 
-export default function VideosList({ id }) {
-  const [videos, setVideos] = useState(null);
-  const getvideos = async () => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/users/${id}/videos`
-      );
-      setVideos(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getvideos();
-  }, []);
-
-  if (!videos) {
-    return <p>loading</p>;
-  }
+export default function VideosList({ videos }) {
   return (
     <section className="video">
       {videos &&
