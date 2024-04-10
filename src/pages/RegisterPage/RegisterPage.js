@@ -2,9 +2,12 @@ import React, { useMemo, useState } from "react";
 import "./RegisterPage.scss";
 import Select from "react-select";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import countryList from "react-select-country-list";
+import GlobalNav from "../../components/GlobalNav/GlobalNav";
+import url from "../../assets/video/higher.mp4";
+import Video from "../../components/Video/Video";
 
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -121,197 +124,217 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="register">
-      <div className="register__wrapper">
-        <h2 className="register__title">
-          Welcome to <span className="register__title--span"> Higher! </span>
-        </h2>
-        <h3 className="register__text">Where Talent Meets Opportunity</h3>
-        <form className="regitser__form" onSubmit={handleSubmit}>
-          {currentStep === 0 && (
-            <button className="register__button" onClick={handleStep}>
-              Higher Me
-            </button>
-          )}
-          {currentStep === 1 && (
-            <div className="register__card">
-              <Link to="/login">
+    <>
+      <GlobalNav />
+      <main className="register">
+        <div className="register__wrapper">
+          <h2 className="register__title">
+            Welcome to <span className="register__title--span"> Higher! </span>
+          </h2>
+          <h3 className="register__text">Where Talent Meets Opportunity</h3>
+          <form className="regitser__form" onSubmit={handleSubmit}>
+            {currentStep === 0 && (
+              <button className="register__button" onClick={handleStep}>
+                Higher Me
+              </button>
+            )}
+            {currentStep === 1 && (
+              <div className="register__card register__card--buttons">
                 <button className="register__button" onClick={handleStep}>
-                  Login
+                  Register
                 </button>
-              </Link>
-              <button className="register__button" onClick={handleStep}>
-                Register
-              </button>
-            </div>
-          )}
-          {currentStep === 2 && (
-            <div className="register__Card">
-              <label className="register__label">What's your name?</label>
-              <input
-                className="register__input"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 3 && (
-            <div className="register__Card">
-              <label className="register__label">
-                Share your email with us:
-              </label>
-              <input
-                className="register__input"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 4 && (
-            <div className="register__Card">
-              <label className="register__label">
-                Where are you currently based?{" "}
-              </label>
-              <Select
-                className="register__select"
-                options={options}
-                value={value}
-                onChange={changeHandler}
-                onClick={handleStep}
-              />
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 5 && (
-            <div className="register__Card">
-              <label className="register__label">
-                What is your professional status?{" "}
-              </label>
-              <Select
-                name="professional_status"
-                className="register__select"
-                options={professionalStatusOptions}
-                value={professionalStatusOptions.find(
-                  (option) => option.value === formData.professional_status
-                )}
-                onChange={handleSelect}
-                onClick={handleStep}
-              />
+                <Link to="/login">
+                  <button className="register__button" onClick={handleStep}>
+                    Login
+                  </button>
+                </Link>
+              </div>
+            )}
+            {currentStep === 2 && (
+              <div className="register__Card">
+                <label className="register__label">What's your name?</label>
+                <input
+                  className="register__input"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 3 && (
+              <div className="register__Card">
+                <label className="register__label">
+                  Where are you currently based?
+                </label>
+                <Select
+                  className="register__select"
+                  options={options}
+                  value={value}
+                  onChange={changeHandler}
+                  onClick={handleStep}
+                />
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 4 && (
+              <div className="register__Card">
+                <label className="register__label">
+                  What is your professional status?{" "}
+                </label>
+                <Select
+                  name="professional_status"
+                  className="register__select"
+                  options={professionalStatusOptions}
+                  value={professionalStatusOptions.find(
+                    (option) => option.value === formData.professional_status
+                  )}
+                  onChange={handleSelect}
+                  onClick={handleStep}
+                />
 
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 6 && (
-            <div className="register__Card">
-              <label className="register__label">
-                What is your current job title?
-              </label>
-              <Select
-                className="register__select"
-                options={jobOptions}
-                onChange={handleSelect}
-              />
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 7 && (
-            <div className="register__Card">
-              <label className="register__label">
-                How many years of experience do you have in your current job
-                title?
-              </label>
-              <input
-                className="register__input"
-                name="experience_years"
-                onChange={handleChange}
-              />
-              <button className="register__button" onClick={handleStep}>
-                Next
-              </button>
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-          {currentStep === 8 && (
-            <div className="register__Card">
-              <label className="register__label">password</label>
-              <input
-                className="register__input"
-                name="password"
-                onChange={handleChange}
-              />
-            </div>
-          )}
-          {currentStep === 8 && (
-            <div className="register__card">
-              <button className="register__button">Submit</button>
-              {errorMessage && <p>{errorMessage}</p>}
-              <Link>
-                <button className="register__button" onClick={handleBack}>
-                  Back
-                </button>
-              </Link>
-            </div>
-          )}
-        </form>
-      </div>
-      <section className="register__description">
-        <h3 className="register__text">
-          At Higher, our journey began with a fundamental insight: while
-          character plays a crucial role within a company's team, traditional
-          hiring processes tend to highlight candidates merely as they appear on
-          paper, often overlooking the essence of who they truly are. Our
-          mission is to bridge this gap, ensuring a seamless alignment between
-          an individual's unique qualities and the ethos of a prospective
-          employer. Higher is more than a recruitment platform; it's a conduit
-          for forging meaningful human connections between employees and
-          employers. Our aim is to uncover the perfect match — whether it's the
-          company that complements an individual's aspirations and personality,
-          or the employee who emerges as the missing piece of a team's puzzle.
-        </h3>
-      </section>
-    </main>
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 5 && (
+              <div className="register__Card">
+                <label className="register__label">
+                  What is your current job title?
+                </label>
+                <Select
+                  className="register__select"
+                  options={jobOptions}
+                  onChange={handleSelect}
+                />
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 6 && (
+              <div className="register__Card">
+                <label className="register__label">
+                  How many years of experience do you have in your current role?
+                </label>
+                <input
+                  className="register__input"
+                  name="experience_years"
+                  onChange={handleChange}
+                />
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 7 && (
+              <div className="register__Card">
+                <label className="register__label">
+                  Share your email with us:
+                </label>
+                <input
+                  className="register__input"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  type="email"
+                />
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 8 && (
+              <>
+                <div className="register__Card">
+                  <label className="register__label">password</label>
+                  <input
+                    className="register__input"
+                    name="password"
+                    onChange={handleChange}
+                    type="password"
+                  />
+                </div>
+                <div className="register__card">
+                  <div className="register__buttons">
+                    <Link>
+                      <button className="register__button" onClick={handleBack}>
+                        Back
+                      </button>
+                    </Link>
+                    <button className="register__button">Submit</button>
+                    {errorMessage && <p>{errorMessage}</p>}
+                  </div>
+                </div>
+              </>
+            )}
+          </form>
+        </div>
+        <section className="register__description">
+          <h3 className="register__text">
+            At Higher, our journey began with a fundamental insight: while
+            character plays a crucial role within a company's team, traditional
+            hiring processes tend to highlight candidates merely as they appear
+            on paper, often overlooking the essence of who they truly are. Our
+            mission is to bridge this gap, ensuring a seamless alignment between
+            an individual's unique qualities and the ethos of a prospective
+            employer. Higher is more than a recruitment platform; it's a conduit
+            for forging meaningful human connections between employees and
+            employers. Our aim is to uncover the perfect match — whether it's
+            the company that complements an individual's aspirations and
+            personality, or the employee who emerges as the missing piece of a
+            team's puzzle.
+          </h3>
+        </section>
+        <Video url={url} />
+      </main>
+    </>
   );
 }

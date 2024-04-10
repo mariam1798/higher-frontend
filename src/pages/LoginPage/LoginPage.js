@@ -35,7 +35,7 @@ export default function LoginPage() {
       );
 
       localStorage.setItem("authToken", data.token);
-      navigate("/user");
+      navigate("/home");
     } catch (error) {
       const message =
         error.response && error.response.data && error.response.data.message
@@ -75,7 +75,7 @@ export default function LoginPage() {
           />
         </div>
         <button className="login__button">Log In</button>
-        <Link className="login__navigate" to="/register">
+        <Link className="login__navigate" to="/">
           Register
         </Link>
         {errorMessage && <div className="login__message">{errorMessage}</div>}

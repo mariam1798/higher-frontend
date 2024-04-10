@@ -4,11 +4,14 @@
 .nav {
   @include container;
   padding-bottom: 2rem;
-
+  &--global {
+    padding: 0;
+  }
   @include tablet {
     display: flex;
     flex-direction: row;
     gap: 3rem;
+    padding: 1rem 2rem 0;
   }
 
   &__container {
