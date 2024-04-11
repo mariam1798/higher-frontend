@@ -1,4 +1,4 @@
-import "./Search.scss";
+import "./Upload.scss";
 import { useNavigate } from "react-router-dom";
 import UploadModal from "../UploadModal/UploadModal";
 import axios from "axios";
@@ -74,13 +74,13 @@ export default function Search({ id, setVideos, avatar }) {
     <section className="search">
       <div className="search__container">
         <div className="search__top">
-          <div className="search__wrap">
+          {/* <div className="search__wrap">
             <input
               className="search__bar"
               placeholder="SEARCH"
               name="search"
             ></input>
-          </div>
+          </div> */}
         </div>
         <div className="search__wrap">
           <button onClick={handleOpenModal} className="search__button">

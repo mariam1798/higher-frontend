@@ -1,16 +1,31 @@
 import "./DropDown.scss";
 import { Link } from "react-router-dom";
 import userIcon from "../../assets/icons/user.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../UseContext/UseContext";
 export default function DropDown({ failedAuth, handleLogout }) {
   const [isVisible, setIsVisible] = useState(false);
-  const dropdownClick = () => setIsVisible(!isVisible);
+  const dropdownRef = useRef(null);
   const { authToken, logout } = useAuth();
   const isAuthenticated = !!authToken;
 
+  const dropdownClick = () => setIsVisible(!isVisible);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
-    <section className="dropdown">
+    <section ref={dropdownRef} className="dropdown">
       <img
         onClick={dropdownClick}
         src={userIcon}
@@ -23,9 +38,14 @@ export default function DropDown({ failedAuth, handleLogout }) {
             {isAuthenticated ? (
               <>
                 <Link to="/user" className="dropdown__navigate">
-                  <li className="dropdown__item ">Profile</li>
+                  <li className="dropdown__item dropdown__item--bottom">
+                    Profile
+                  </li>
                 </Link>
-                <li onClick={handleLogout} className="dropdown__item">
+                <li
+                  onClick={handleLogout}
+                  className="dropdown__item dropdown__item--top"
+                >
                   Log Out
                 </li>
               </>
@@ -37,7 +57,9 @@ export default function DropDown({ failedAuth, handleLogout }) {
                   </li>
                 </Link>
                 <Link to="/" className="dropdown__navigate">
-                  <li className="dropdown__item ">Register</li>
+                  <li className="dropdown__item  dropdown__item--top">
+                    Register
+                  </li>
                 </Link>
               </>
             )}

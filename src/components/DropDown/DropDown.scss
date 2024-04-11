@@ -5,9 +5,10 @@
   position: relative;
   &__label {
     border: $divider-line;
-    left: 20.5%;
+    right: 0%;
     top: 4.3rem;
     position: absolute;
+    z-index: 1000;
     background-color: $primary-background-color;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
@@ -29,11 +30,16 @@
     color: white;
     font-size: 0.7rem;
     padding: 1rem;
+    width: 7rem;
     &--bottom {
       border-bottom: $divider-line;
     }
+    &--top {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
     &:hover {
-      border-bottom: pink;
+      @include background;
     }
   }
 }

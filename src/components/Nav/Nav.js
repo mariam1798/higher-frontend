@@ -2,7 +2,7 @@ import logo from "../../assets/icons/high.svg";
 import higher from "../../assets/icons/higher.svg";
 import "./Nav.scss";
 import NavSide from "../NavSide/NavSide";
-import Search from "../Search/Search";
+import Search from "../Upload/Upload";
 import { Link } from "react-router-dom";
 
 export default function Nav({

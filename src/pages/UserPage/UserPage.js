@@ -6,6 +6,7 @@ import Nav from "../../components/Nav/Nav";
 
 import { getProfile, fetchVideos } from "../../utils/axios";
 import UserProfile from "../../components/UserProfile/UserProfile";
+import Upload from "../../components/Upload/Upload";
 
 export default function UserPage() {
   const [user, setUser] = useState(null);
@@ -76,12 +77,12 @@ export default function UserPage() {
   }
   return (
     <>
-      <Nav
-        avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
-        id={user.id}
-        setVideos={setVideos}
-      />
       <main className="user">
+        <Upload
+          avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
+          id={user.id}
+          setVideos={setVideos}
+        />
         <UserProfile
           avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
           user={user}
