@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchVideos } from "../../utils/axios";
-export default function Search({ id, setVideos }) {
+export default function Search({ id, setVideos, avatar }) {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -90,7 +90,7 @@ export default function Search({ id, setVideos }) {
         </div>
         <Link to="/user">
           <img
-            src={user}
+            src={avatar}
             alt="user image"
             className="search__avatar search__avatar--tablet"
           />

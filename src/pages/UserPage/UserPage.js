@@ -5,6 +5,7 @@ import "./UserPage.scss";
 import Nav from "../../components/Nav/Nav";
 
 import { getProfile, fetchVideos } from "../../utils/axios";
+import UserProfile from "../../components/UserProfile/UserProfile";
 
 export default function UserPage() {
   const [user, setUser] = useState(null);
@@ -74,15 +75,19 @@ export default function UserPage() {
   }
   return (
     <>
-      <Nav setVideos={setVideos} id={user.id} />
+      <Nav
+        avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
+        id={user.id}
+      />
       <main className="user">
+        <UserProfile user={user} />
         <div className="user__wrapper">
           <h3 className="user__name">Welcome back, {user.name}!</h3>
           <button className="user__logout" onClick={handleLogout}>
             Log out
           </button>
         </div>
-        <VideosList videos={videos} />
+        <VideosList setVideos={setVideos} videos={videos} />
       </main>
     </>
   );

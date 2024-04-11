@@ -1,4 +1,4 @@
-import { getProfile, getJobs, getVideos } from "../../utils/axios";
+import { getProfile, getJobs, getVideos, editLikes } from "../../utils/axios";
 import JobsList from "../../components/JobsList/JobsList";
 import React, { useEffect, useState } from "react";
 import VideosList from "../../components/VideosList/VideosList";

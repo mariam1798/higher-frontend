@@ -12,6 +12,7 @@ import Video from "../../components/Video/Video";
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -82,7 +83,11 @@ export default function RegisterPage() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "file") {
+      setSelectedFile(e.target.files[0]);
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSelect = (selectedOption) => {
@@ -100,17 +105,22 @@ export default function RegisterPage() {
       setErrorMessage("You must fill in all the form fields");
       return;
     }
-
+    const uploadData = new FormData();
+    uploadData.append("file", selectedFile); // Assuming 'file' is for the avatar
+    uploadData.append("title", formData.title);
+    uploadData.append("description", formData.description);
+    uploadData.append("name", formData.name);
+    uploadData.append("email", formData.email);
+    uploadData.append("password", formData.password);
+    uploadData.append("location", formData.location);
+    uploadData.append("professional_status", formData.professional_status);
+    uploadData.append("experience_years", formData.experience_years);
+    uploadData.append("job_title", formData.job_title);
     try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/users/register`, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        location: formData.location,
-        professional_status: formData.professional_status,
-        experience_years: formData.experience_years,
-        job_title: formData.job_title,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/users/register`,
+        uploadData
+      );
 
       navigate("/login");
       setErrorMessage("");
@@ -270,6 +280,33 @@ export default function RegisterPage() {
             {currentStep === 7 && (
               <div className="register__Card">
                 <label className="register__label">
+                  Would you like to upload an avatar?
+                </label>
+                <input
+                  type="file"
+                  onChange={handleChange}
+                  name="file"
+                  style={{ display: "none" }}
+                  id="fileInput"
+                />
+                <label htmlFor="fileInput" className="modal__upload">
+                  Upload
+                </label>
+                <div className="register__buttons">
+                  <Link>
+                    <button className="register__button" onClick={handleBack}>
+                      Back
+                    </button>
+                  </Link>
+                  <button className="register__button" onClick={handleStep}>
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+            {currentStep === 8 && (
+              <div className="register__Card">
+                <label className="register__label">
                   Share your email with us:
                 </label>
                 <input
@@ -291,7 +328,7 @@ export default function RegisterPage() {
                 </div>
               </div>
             )}
-            {currentStep === 8 && (
+            {currentStep === 9 && (
               <>
                 <div className="register__Card">
                   <label className="register__label">password</label>

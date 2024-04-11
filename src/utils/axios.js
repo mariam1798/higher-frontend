@@ -31,4 +31,9 @@ const fetchVideos = (id) => {
 const getVideos = () => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/videos`);
 };
-export { fetchVideos, getProfile, getJobs, getVideos };
+const editLikes = (id) => {
+  return axios.patch(
+    `${process.env.REACT_APP_API_BASE_URL}/users/videos/${id}`
+  );
+};
+export { editLikes, fetchVideos, getProfile, getJobs, getVideos };
