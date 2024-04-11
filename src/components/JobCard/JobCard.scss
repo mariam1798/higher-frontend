@@ -6,6 +6,9 @@
   font-weight: 300;
   width: 100%;
   border: $divider-line;
+  @include desktop {
+    width: 40%;
+  }
 
   &__wrapper {
     display: flex;
@@ -19,7 +22,7 @@
     text-align: center;
     margin-bottom: 0;
     @include desktop {
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
   }
   &__list {
@@ -30,6 +33,11 @@
       justify-content: center;
       gap: 1rem;
     }
+    @include desktop {
+      flex-direction: column;
+      width: 100%;
+      padding: 2rem;
+    }
   }
   &__card {
     display: flex;
@@ -39,8 +47,11 @@
     border-radius: $border-radius;
     margin-bottom: 1rem;
     @include tablet {
-      width: 30%;
       flex-direction: column;
+      width: 30%;
+    }
+    @include desktop {
+      width: 100%;
     }
   }
 

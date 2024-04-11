@@ -10,6 +10,7 @@
   padding: 1rem;
   font-family: "Arial";
   cursor: pointer;
+  overflow-y: auto;
   color: $primary-text-color;
   background-color: $primary-background-color;
   @include tablet {
@@ -52,6 +53,7 @@
     width: 100%;
   }
   &__company {
+    margin-bottom: 0.3rem;
     height: 1.5rem;
     border-radius: 4px;
   }
@@ -64,6 +66,7 @@
   &__button {
     @include primary-button;
     border: $divider-line;
+    margin-top: 0.3rem;
     @include tablet {
       width: 10rem;
     }
@@ -78,6 +81,7 @@
     }
   }
   &__title {
+    font-size: 0.9rem;
     text-align: center;
     margin: 0;
   }
@@ -88,8 +92,14 @@
     align-items: center;
   }
   &__text {
-    font-size: 0.75rem;
-    line-height: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    @include tablet {
+      line-height: 1.5rem;
+    }
+    @include desktop {
+      font-size: 0.9rem;
+    }
   }
   &__cancel {
     @include tablet {
@@ -100,6 +110,9 @@
   &__country {
     margin: 0;
     padding: 0.2rem;
+  }
+  &__close {
+    width: 1.5rem;
   }
 }
 

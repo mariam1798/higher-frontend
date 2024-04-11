@@ -1,9 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
-import close from "../../assets/icons/close-24px.svg";
+import close from "../../assets/icons/close.svg";
 import higher from "../../assets/icons/logoteal.svg";
 import { Link } from "react-router-dom";
 import "./JobDetailsModal.scss";
+import BulletPoints from "../BulletPoints/BulletPoints";
+
 export default function JobDetailsModal({
   modalIsOpen,
   handleCloseModal,
@@ -50,7 +52,7 @@ export default function JobDetailsModal({
           </div>
         </div>
         <div className="details__description">
-          <p className="details__text">{job_description}</p>
+          <BulletPoints className="details__text" text={job_description} />
         </div>
         <div className="details__cancel">
           <button onClick={handleCloseModal} className="details__button">

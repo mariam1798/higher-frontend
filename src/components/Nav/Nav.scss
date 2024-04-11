@@ -2,10 +2,9 @@
 @use "../../styles/partials/mixins" as *;
 
 .nav {
-  @include container;
   border: $divider-line;
   border-bottom: none;
-  padding-bottom: 2rem;
+  padding: 2rem;
   &--global {
     padding: 0;
   }

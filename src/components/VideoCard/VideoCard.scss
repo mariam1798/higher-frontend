@@ -3,22 +3,32 @@
 .video {
   padding: 1rem;
   background-color: $primary-background-color;
-
-  height: 100vh;
   @include tablet {
     padding: 2rem;
   }
+  @include desktop {
+    border: $divider-line;
+    border-left: none;
+    width: 100%;
+  }
 
+  &__wrapper {
+    position: relative;
+  }
   &__card {
     padding: 2rem 1.5rem;
     border: $divider-line;
     border-radius: 20px;
     @include background;
-    position: relative;
 
     margin-bottom: 1rem;
     @include tablet {
       padding: 2rem;
+    }
+    @include desktop {
+      max-width: 50rem;
+      margin: 0 auto;
+      margin-bottom: 2rem;
     }
   }
   &__side {
@@ -30,6 +40,9 @@
     position: absolute;
     top: 40%;
     left: 30%;
+    @include tablet {
+      left: 40%;
+    }
   }
 
   &__play {

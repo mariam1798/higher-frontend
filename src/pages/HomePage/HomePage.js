@@ -1,8 +1,9 @@
-import { getProfile, getJobs, getVideos } from "../utils/axios";
-import JobsList from "../components/JobsList/JobsList";
+import { getProfile, getJobs, getVideos } from "../../utils/axios";
+import JobsList from "../../components/JobsList/JobsList";
 import React, { useEffect, useState } from "react";
-import VideosList from "../components/VideosList/VideosList";
-import Nav from "../components/Nav/Nav";
+import VideosList from "../../components/VideosList/VideosList";
+import Nav from "../../components/Nav/Nav";
+import "./HomePage.scss";
 
 export default function HomePage() {
   const [_user, setUser] = useState(null);

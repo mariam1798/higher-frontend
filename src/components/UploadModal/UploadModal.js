@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import close from "../../assets/icons/close-24px.svg";
+import close from "../../assets/icons/close.svg";
 import "./UploadModal.scss";
 import { Link } from "react-router-dom";
 import higher from "../../assets/icons/higherwhite.svg";
@@ -72,6 +72,9 @@ export default function UploadModal({
           {message && <p>{message}</p>}
         </form>
         <div className="modal__cancel">
+          <button onClick={handleCloseModal} className="modal__exit">
+            Cancel
+          </button>
           <Link
             onClick={handleCloseModal}
             className="modal__navigate"
@@ -79,10 +82,6 @@ export default function UploadModal({
           >
             My profile
           </Link>
-
-          <button onClick={handleCloseModal} className="modal__exit">
-            Cancel
-          </button>
         </div>
       </div>
     </Modal>
