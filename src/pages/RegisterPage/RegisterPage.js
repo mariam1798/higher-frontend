@@ -26,42 +26,42 @@ export default function RegisterPage() {
   const professionalStatusOptions = [
     { value: "Unemployed", label: "Unemployed" },
     { value: "student", label: "Student" },
-    { value: "entry_level", label: "Entry Level" },
+    { value: "entry level", label: "Entry Level" },
     { value: "experienced", label: "Experienced" },
     { value: "manager", label: "Manager" },
     { value: "executive", label: "Executive" },
   ];
 
   const jobOptions = [
-    { value: "software_development", label: "Software Development" },
+    { value: "software development", label: "Software Development" },
     { value: "nursing", label: "Nursing" },
     { value: "marketing", label: "Marketing" },
-    { value: "sales_representation", label: "Sales Representation" },
-    { value: "customer_assistance", label: "Customer Assistance" },
-    { value: "data_analysis", label: "Data Analysis" },
-    { value: "it_support", label: "IT Support" },
-    { value: "hr_management", label: "HR Management" },
-    { value: "account_management", label: "Account Management" },
-    { value: "project_management", label: "Project Management" },
+    { value: "sales representation", label: "Sales Representation" },
+    { value: "customer assistance", label: "Customer Assistance" },
+    { value: "data analysis", label: "Data Analysis" },
+    { value: "it support", label: "IT Support" },
+    { value: "hr management", label: "HR Management" },
+    { value: "account management", label: "Account Management" },
+    { value: "project management", label: "Project Management" },
     { value: "teaching", label: "Teaching" },
-    { value: "mechanical_engineering", label: "Mechanical Engineering" },
-    { value: "administrative_assistance", label: "Administrative Assistance" },
-    { value: "construction_work", label: "Construction Work" },
-    { value: "graphic_design", label: "Graphic Design" },
+    { value: "mechanical engineering", label: "Mechanical Engineering" },
+    { value: "administrative assistance", label: "Administrative Assistance" },
+    { value: "construction work", label: "Construction Work" },
+    { value: "graphic design", label: "Graphic Design" },
     { value: "pharmacist", label: "Pharmacist" },
-    { value: "civil_engineering", label: "Civil Engineering" },
-    { value: "electrical_engineering", label: "Electrical Engineering" },
-    { value: "social_media_managing", label: "Social Media Managing" },
-    { value: "physical_therapy", label: "Physical Therapy" },
-    { value: "occupational_therapy", label: "Occupational Therapy" },
+    { value: "civil engineering", label: "Civil Engineering" },
+    { value: "electrical engineering", label: "Electrical Engineering" },
+    { value: "social media managing", label: "Social Media Managing" },
+    { value: "physical therapy", label: "Physical Therapy" },
+    { value: "occupational therapy", label: "Occupational Therapy" },
     { value: "dentistry", label: "Dentistry" },
     { value: "psychology", label: "Psychology" },
     { value: "cybersecurity", label: "Cybersecurity" },
-    { value: "logistics_coordination", label: "Logistics Coordination" },
-    { value: "environmental_study", label: "Environmental Study" },
+    { value: "logistics coordination", label: "Logistics Coordination" },
+    { value: "environmental study", label: "Environmental Study" },
     { value: "chef", label: "Chef" },
-    { value: "real_estate_selling", label: "Real Estate Selling" },
-    { value: "medical_doctor", label: "Medical Doctor" },
+    { value: "real estate selling", label: "Real Estate Selling" },
+    { value: "medical doctor", label: "Medical Doctor" },
     { value: "law", label: "Law" },
   ];
 
@@ -94,10 +94,14 @@ export default function RegisterPage() {
     setFormData({
       ...formData,
       professional_status: selectedOption.value,
+    });
+  };
+  const handleJob = (selectedOption) => {
+    setFormData({
+      ...formData,
       job_title: selectedOption.value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -106,7 +110,7 @@ export default function RegisterPage() {
       return;
     }
     const uploadData = new FormData();
-    uploadData.append("file", selectedFile); // Assuming 'file' is for the avatar
+    uploadData.append("file", selectedFile);
     uploadData.append("title", formData.title);
     uploadData.append("description", formData.description);
     uploadData.append("name", formData.name);
@@ -241,7 +245,7 @@ export default function RegisterPage() {
                 <Select
                   className="register__select"
                   options={jobOptions}
-                  onChange={handleSelect}
+                  onChange={handleJob}
                 />
                 <div className="register__buttons">
                   <Link>

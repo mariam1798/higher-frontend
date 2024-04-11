@@ -1,0 +1,26 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border: $divider-line;
+  border-radius: $border-radius;
+  &__icon {
+    width: 7rem;
+    border-radius: 50% 50%;
+  }
+  &__details {
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    text-transform: capitalize;
+  }
+  &__text {
+    text-transform: capitalize;
+    font-size: 0.7rem;
+  }
+}
