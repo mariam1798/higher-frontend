@@ -2,10 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .dropdown {
+  position: relative;
   &__label {
     border: $divider-line;
-    left: 72.5%;
-    top: 15.5%;
+    left: 20.5%;
+    top: 4.3rem;
     position: absolute;
     background-color: $primary-background-color;
     border-bottom-left-radius: $border-radius;

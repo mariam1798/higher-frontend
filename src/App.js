@@ -6,6 +6,7 @@ import UploadPage from "./pages/UploadPage";
 import JobsPage from "./pages/JobsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import { AuthProvider } from "./components/UseContext/UseContext";
 
 import "./App.scss";
 import { useState } from "react";
@@ -15,7 +16,7 @@ import Nav from "./components/Nav/Nav";
 function App() {
   const [failedAuth, setFailedAuth] = useState(false);
   const [user, setUser] = useState(null);
-  const token = localStorage.getItem("authToken");
+  const [token, setToken] = useState(localStorage.getItem("authToken"));
 
   useEffect(() => {
     if (!token) {
@@ -24,8 +25,8 @@ function App() {
     const loadData = async () => {
       try {
         const { data } = await getProfile(token);
-
         setUser(data);
+        setFailedAuth(false);
       } catch (error) {
         console.error(error);
         setFailedAuth(true);
@@ -38,24 +39,28 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("jobsData");
+    setToken(null);
     setUser(null);
     setFailedAuth(true);
+    window.location.reload();
   };
   return (
     <BrowserRouter>
-      <Nav failedAuth={failedAuth} handleLogout={handleLogout} />
-      <div className="container">
-        <div className="content-wrap">
-          <Routes>
-            <Route path="/" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="user/upload" element={<UploadPage />} />
-            <Route path="/jobs" element={<JobsPage />} />
-          </Routes>
+      <AuthProvider>
+        <Nav failedAuth={failedAuth} handleLogout={handleLogout} />
+        <div className="container">
+          <div className="content-wrap">
+            <Routes>
+              <Route path="/" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/user" element={<UserPage />} />
+              <Route path="user/upload" element={<UploadPage />} />
+              <Route path="/jobs" element={<JobsPage />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

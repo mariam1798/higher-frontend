@@ -2,10 +2,12 @@ import "./DropDown.scss";
 import { Link } from "react-router-dom";
 import userIcon from "../../assets/icons/user.svg";
 import { useState } from "react";
-
+import { useAuth } from "../UseContext/UseContext";
 export default function DropDown({ failedAuth, handleLogout }) {
   const [isVisible, setIsVisible] = useState(false);
   const dropdownClick = () => setIsVisible(!isVisible);
+  const { authToken, logout } = useAuth();
+  const isAuthenticated = !!authToken;
 
   return (
     <section className="dropdown">
@@ -18,7 +20,16 @@ export default function DropDown({ failedAuth, handleLogout }) {
       {isVisible && (
         <section className="dropdown__label">
           <ul className="dropdown__list">
-            {failedAuth ? (
+            {isAuthenticated ? (
+              <>
+                <Link to="/user" className="dropdown__navigate">
+                  <li className="dropdown__item ">Profile</li>
+                </Link>
+                <li onClick={handleLogout} className="dropdown__item">
+                  Log Out
+                </li>
+              </>
+            ) : (
               <>
                 <Link to="/login" className="dropdown__navigate">
                   <li className="dropdown__item dropdown__item--bottom">
@@ -28,15 +39,6 @@ export default function DropDown({ failedAuth, handleLogout }) {
                 <Link to="/" className="dropdown__navigate">
                   <li className="dropdown__item ">Register</li>
                 </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/user" className="dropdown__navigate">
-                  <li className="dropdown__item ">Profile</li>
-                </Link>
-                <li onClick={handleLogout} className="dropdown__item">
-                  Log Out
-                </li>
               </>
             )}
           </ul>

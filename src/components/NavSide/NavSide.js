@@ -5,6 +5,7 @@ import home from "../../assets/icons/home.svg";
 import job from "../../assets/icons/work.svg";
 
 export default function NavSide({ failedAuth, handleLogout }) {
+  console.log(handleLogout);
   return (
     <section className="side">
       <div className="side__container">

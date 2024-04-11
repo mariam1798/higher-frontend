@@ -3,8 +3,10 @@ import higher from "../../assets/icons/logoblack.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginPage.scss";
+import { useAuth } from "../../components/UseContext/UseContext";
 
 export default function LoginPage() {
+  const { login } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -34,7 +36,7 @@ export default function LoginPage() {
         }
       );
 
-      localStorage.setItem("authToken", data.token);
+      login(data.token);
       navigate("/home");
     } catch (error) {
       const message =
