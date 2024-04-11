@@ -11,6 +11,7 @@ export default function UserPage() {
   const [user, setUser] = useState(null);
   const [videos, setVideos] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [likes, setLikes] = useState(false);
   const token = localStorage.getItem("authToken");
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function UserPage() {
 
       fetchVideosForUser();
     }
-  }, [user]);
+  }, [user, likes]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -78,16 +79,20 @@ export default function UserPage() {
       <Nav
         avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
         id={user.id}
+        setVideos={setVideos}
       />
       <main className="user">
-        <UserProfile user={user} />
+        <UserProfile
+          avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
+          user={user}
+        />
         <div className="user__wrapper">
           <h3 className="user__name">Welcome back, {user.name}!</h3>
           <button className="user__logout" onClick={handleLogout}>
             Log out
           </button>
         </div>
-        <VideosList setVideos={setVideos} videos={videos} />
+        <VideosList setLikes={setLikes} setVideos={setVideos} videos={videos} />
       </main>
     </>
   );

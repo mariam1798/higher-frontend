@@ -1,6 +1,5 @@
 import "./Search.scss";
 import { useNavigate } from "react-router-dom";
-import user from "../../assets/icons/user.svg";
 import UploadModal from "../UploadModal/UploadModal";
 import axios from "axios";
 import { useState } from "react";
