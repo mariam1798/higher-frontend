@@ -1,0 +1,38 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.dropdown {
+  &__label {
+    border: $divider-line;
+    left: 72.5%;
+    top: 15.5%;
+    position: absolute;
+    background-color: $primary-background-color;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+  &__avatar {
+    width: 4.5rem;
+  }
+  &__list {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  &__navigate {
+    text-decoration: none;
+  }
+  &__item {
+    list-style-type: none;
+    color: white;
+    font-size: 0.7rem;
+    padding: 1rem;
+    &--bottom {
+      border-bottom: $divider-line;
+    }
+    &:hover {
+      border-bottom: pink;
+    }
+  }
+}

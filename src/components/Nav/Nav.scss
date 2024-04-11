@@ -2,12 +2,9 @@
 @use "../../styles/partials/mixins" as *;
 
 .nav {
+  margin: 1rem;
+  @include tb-padding(1, 1);
   border: $divider-line;
-  border-bottom: none;
-  padding: 2rem;
-  &--global {
-    padding: 0;
-  }
   @include tablet {
     display: flex;
     flex-direction: row;
@@ -16,14 +13,16 @@
   }
 
   &__container {
-    @include tablet {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__logo {
-    height: 7rem;
+    height: 2.5rem;
+    @include tablet {
+      margin-bottom: 0.5rem;
+    }
   }
   &__watermark {
     display: flex;

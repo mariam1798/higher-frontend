@@ -71,7 +71,6 @@ export default function HomePage() {
   }
   return (
     <>
-      <Nav />
       <main className="home">
         <JobsList jobs={jobs} />
         <VideosList videos={videos} />

@@ -1,0 +1,42 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.side {
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @include tablet {
+      gap: 1.5rem;
+
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 1rem;
+  }
+  &__logo {
+    width: 5rem;
+  }
+
+  &__navigate {
+    text-decoration: none;
+    color: white;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+}
