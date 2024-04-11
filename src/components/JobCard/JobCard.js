@@ -17,7 +17,7 @@ export default function JobCard({
         />
       </div>
       <div className="job__right">
-        <h4 className="job__name">{job_title}</h4>
+        <h4 className="job__employ">{job_title}</h4>
         <h4 className="job__name">{employer}</h4>
       </div>
     </section>

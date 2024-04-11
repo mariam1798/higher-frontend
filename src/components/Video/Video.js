@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import playIcon from "../../assets/icons/play.svg";
 
 export default function Video({ url }) {
   const [play, setPlay] = useState(false);
@@ -13,9 +14,12 @@ export default function Video({ url }) {
     }
   };
   return (
-    <video className="video__play" loop onClick={onVideoPress} ref={videoRef}>
-      <source src={url} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div onClick={onVideoPress} className="video__wrapper">
+      <video className="video__play" loop ref={videoRef}>
+        <source src={url} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {!play && <img src={playIcon} alt="play" className="video__icon" />}
+    </div>
   );
 }

@@ -11,28 +11,30 @@ export default function JobsList({ jobs }) {
   const handleCloseModal = () => setModalIsOpen(false);
   return (
     <section className="job">
-      <div className="job__list">
-        <h3 className="job__title">Job Suggestions</h3>
-        {jobs &&
-          jobs
-            .slice(0, visibleJobs)
-            .map((job) => (
-              <JobCard
-                handleOpenModal={handleOpenModal}
-                key={job.job_id}
-                employer={job.employer_name}
-                logo={job.employer_logo}
-                job_title={job.job_title}
-              />
-            ))}
-        {jobs && visibleJobs < jobs.length && (
-          <button
-            className="job__button"
-            onClick={() => setVisibleJobs(visibleJobs + 3)}
-          >
-            Show More
-          </button>
-        )}
+      <h3 className="job__title">Job Suggestions</h3>
+      <div className="job__wrapper">
+        <div className="job__list">
+          {jobs &&
+            jobs
+              .slice(0, visibleJobs)
+              .map((job) => (
+                <JobCard
+                  handleOpenModal={handleOpenModal}
+                  key={job.job_id}
+                  employer={job.employer_name}
+                  logo={job.employer_logo}
+                  job_title={job.job_title}
+                />
+              ))}
+          {jobs && visibleJobs < jobs.length && (
+            <button
+              className="job__button"
+              onClick={() => setVisibleJobs(visibleJobs + 3)}
+            >
+              Show More
+            </button>
+          )}
+        </div>
       </div>
       {jobs &&
         jobs

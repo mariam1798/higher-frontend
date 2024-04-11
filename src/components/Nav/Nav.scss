@@ -3,6 +3,8 @@
 
 .nav {
   @include container;
+  border: $divider-line;
+  border-bottom: none;
   padding-bottom: 2rem;
   &--global {
     padding: 0;
