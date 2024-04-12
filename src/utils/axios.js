@@ -48,8 +48,8 @@ const fetchVideos = (id) => {
 const getVideos = () => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/videos`);
 };
-const editLikes = (id) => {
-  return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/videos/${id}`);
+const editLikes = (videoId) => {
+  return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/videos/${videoId}`);
 };
 const handleRegister = (uploadData) => {
   return axios.post(
@@ -75,6 +75,9 @@ const postVideos = (uploadData, authToken) => {
     }
   );
 };
+// const getUser = (userId) => {
+//   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}`);
+// };
 export {
   editLikes,
   fetchVideos,

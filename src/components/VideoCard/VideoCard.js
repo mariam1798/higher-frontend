@@ -7,23 +7,23 @@ import { useAuth } from "../UseContext/UseContext";
 export default function VideoCard({
   fetchAllVideos,
   likes,
-  id,
+  videoId,
   url,
   channel,
   title,
   userId,
 }) {
   const { user } = useAuth();
-  const isLoggedInUser = userId === user.id;
-
-  const updateVideo = async (id) => {
+  const isLoggedInUser = userId === user?.id;
+  const updateVideo = async (videoId) => {
+    console.log("Updating likes for video ID:", videoId);
     if (isLoggedInUser) {
       return;
     }
 
     try {
-      await editLikes(id);
-      fetchAllVideos();
+      await editLikes(videoId);
+      await fetchAllVideos();
     } catch (error) {
       console.error("Error updating video:", error);
     }
@@ -39,7 +39,7 @@ export default function VideoCard({
           <div className="video__increment">
             <h3 className="video__number">{likes}</h3>
             <img
-              onClick={() => updateVideo(id)}
+              onClick={() => updateVideo(videoId)}
               src={likeIcon}
               alt=""
               className={`video__like ${

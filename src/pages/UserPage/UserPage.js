@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import VideosList from "../../components/VideosList/VideosList";
 import "./UserPage.scss";
 import UserProfile from "../../components/UserProfile/UserProfile";
@@ -23,6 +23,10 @@ export default function UserPage() {
       fetchVideosForUser();
     }
   }, [user]);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   if (failedAuth) {
     return (

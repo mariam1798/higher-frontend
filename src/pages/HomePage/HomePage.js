@@ -7,50 +7,49 @@ import { useAuth } from "../../components/UseContext/UseContext";
 
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
-  const [videos, setVideos] = useState(null);
+  const [homeVideos, setHomeVideos] = useState(null);
+  const { authToken, setFailedAuth, failedAuth, setUser } = useAuth();
 
-  const token = localStorage.getItem("authToken");
-  const { setFailedAuth, failedAuth, setUser } = useAuth();
+  const fetchAllVideos = async () => {
+    try {
+      const { data } = await getVideos();
+      setHomeVideos(data);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+      setHomeVideos([]);
+    }
+  };
 
+  // Fetch jobs data
   useEffect(() => {
-    if (!token) {
+    if (!authToken) {
       setFailedAuth(true);
       setJobs([]);
       return;
     }
 
     const loadData = async () => {
-      setJobs(undefined);
-
       try {
         const storedJobs = localStorage.getItem("jobsData");
-        let jobData;
-
         if (storedJobs) {
-          jobData = JSON.parse(storedJobs);
-          setJobs(jobData);
+          setJobs(JSON.parse(storedJobs));
         } else {
-          const profileData = await getProfile(token);
-          setUser(profileData.data);
-          jobData = await getJobs(profileData.data);
+          const profileData = await getProfile(authToken);
+          const jobData = await getJobs(profileData.data);
           localStorage.setItem("jobsData", JSON.stringify(jobData.data.data));
           setJobs(jobData.data.data);
         }
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching jobs:", error);
         setFailedAuth(true);
         setJobs([]);
       }
     };
 
     loadData();
-  }, [token]);
+  }, [authToken]);
 
-  const fetchAllVideos = async () => {
-    const { data } = await getVideos();
-    setVideos(data);
-  };
-
+  // Fetch videos data
   useEffect(() => {
     fetchAllVideos();
   }, []);
@@ -59,21 +58,23 @@ export default function HomePage() {
     return <p>Failed to authenticate. Please log in again.</p>;
   }
 
-  if (jobs === undefined) {
-    return <p>Loading...</p>;
-  }
-
-  if (!jobs.length) {
-    return <p>No jobs found.</p>;
-  }
-  if (!videos) {
-    return <p>Loading......</p>;
-  }
   return (
     <>
       <main className="home">
-        <JobsList jobs={jobs} />
-        <VideosList fetchAllVideos={fetchAllVideos} videos={videos} />
+        {jobs === undefined ? (
+          <p>Loading jobs...</p>
+        ) : jobs.length === 0 ? (
+          ""
+        ) : (
+          <JobsList jobs={jobs} />
+        )}
+        {homeVideos === null ? (
+          <p>Loading videos...</p>
+        ) : homeVideos.length === 0 ? (
+          <p>No videos found.</p>
+        ) : (
+          <VideosList fetchAllVideos={fetchAllVideos} videos={homeVideos} />
+        )}
       </main>
     </>
   );
