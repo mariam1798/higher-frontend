@@ -1,25 +1,34 @@
 import "./VideoCard.scss";
 import likeIcon from "../../assets/icons/like.svg";
-import { editLikes, fetchVideos } from "../../utils/axios";
+import { editLikes } from "../../utils/axios";
 import Video from "../Video/Video";
+import { useAuth } from "../UseContext/UseContext";
 
 export default function VideoCard({
+  fetchAllVideos,
   likes,
   id,
   url,
   channel,
   title,
-  setVideos,
-  setLikes,
+  userId,
 }) {
+  const { user } = useAuth();
+  const isLoggedInUser = userId === user.id;
+
   const updateVideo = async (id) => {
+    if (isLoggedInUser) {
+      return;
+    }
+
     try {
       await editLikes(id);
-      setLikes(true);
+      fetchAllVideos();
     } catch (error) {
       console.error("Error updating video:", error);
     }
   };
+
   return (
     <>
       <section className="video__card">
@@ -33,7 +42,9 @@ export default function VideoCard({
               onClick={() => updateVideo(id)}
               src={likeIcon}
               alt=""
-              className="video__like"
+              className={`video__like ${
+                isLoggedInUser ? "video__like--disabled" : ""
+              }`}
             />
           </div>
         </div>

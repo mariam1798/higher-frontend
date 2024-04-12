@@ -51,9 +51,9 @@ export default function JobDetailsModal({
             </Link>
           </div>
         </div>
-        <div className="details__description">
-          <BulletPoints className="details__text" text={job_description} />
-        </div>
+
+        <BulletPoints text={job_description} />
+
         <div className="details__cancel">
           <button onClick={handleCloseModal} className="details__button">
             Cancel

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import userIcon from "../../assets/icons/user.svg";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../UseContext/UseContext";
-export default function DropDown({ failedAuth, handleLogout }) {
+
+export default function DropDown() {
   const [isVisible, setIsVisible] = useState(false);
   const dropdownRef = useRef(null);
-  const { authToken, logout } = useAuth();
+  const { authToken, handleLogout } = useAuth();
   const isAuthenticated = !!authToken;
 
   const dropdownClick = () => setIsVisible(!isVisible);

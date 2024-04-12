@@ -7,9 +7,11 @@ export default function BulletPoints({ text }) {
     .filter((point) => point.trim() !== "");
 
   return (
-    <ul>
+    <ul className="details__description">
       {points.map((point, index) => (
-        <li key={index}>{point.trim()}</li>
+        <li className="details__text" key={index}>
+          {point.trim()}
+        </li>
       ))}
     </ul>
   );

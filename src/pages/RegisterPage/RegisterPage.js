@@ -1,13 +1,12 @@
 import React, { useMemo, useState } from "react";
 import "./RegisterPage.scss";
 import Select from "react-select";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import countryList from "react-select-country-list";
-import GlobalNav from "../../components/GlobalNav/GlobalNav";
 import url from "../../assets/video/higher.mp4";
 import Video from "../../components/Video/Video";
+import { handleRegister } from "../../utils/axios";
 
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -121,10 +120,7 @@ export default function RegisterPage() {
     uploadData.append("experience_years", formData.experience_years);
     uploadData.append("job_title", formData.job_title);
     try {
-      await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/users/register`,
-        uploadData
-      );
+      await handleRegister(uploadData);
 
       navigate("/login");
       setErrorMessage("");
@@ -139,7 +135,6 @@ export default function RegisterPage() {
 
   return (
     <>
-      <GlobalNav />
       <main className="register">
         <div className="register__wrapper">
           <h2 className="register__title">

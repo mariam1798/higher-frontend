@@ -5,13 +5,22 @@
   @include tablet {
     display: flex;
     flex-direction: row;
+    border: $divider-line;
+    border-radius: $border-radius;
+    padding: 2rem;
   }
-
+  &__span {
+    color: $primary-accent-color;
+  }
+  &__name {
+    text-transform: capitalize;
+    text-align: center;
+    line-height: 2rem;
+  }
   &__container {
     @include tablet {
       display: flex;
-      flex-direction: row;
-      gap: 1.5rem;
+      flex-direction: column;
       align-items: center;
     }
   }
@@ -24,24 +33,13 @@
     @include tb-padding(1, 1);
   }
 
-  &__avatar {
-    @include tablet {
-      display: none;
-    }
-
-    &--tablet {
-      display: none;
-      @include tablet {
-        height: 2rem;
-        display: block;
-      }
-    }
-  }
   &__wrap {
     width: 100%;
     @include background;
     padding: 0.2rem;
     border-radius: $border-radius;
+    @include tablet {
+    }
   }
   &__bar {
     background-image: url("../../assets/icons/search.svg");
@@ -79,8 +77,5 @@
     background-size: 3.1rem;
     background-position: -5px;
     padding: 1rem;
-    @include tablet {
-      width: 10rem;
-    }
   }
 }

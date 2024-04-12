@@ -1,15 +1,16 @@
 import "./Upload.scss";
 import { useNavigate } from "react-router-dom";
 import UploadModal from "../UploadModal/UploadModal";
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchVideos } from "../../utils/axios";
-export default function Search({ id, setVideos, avatar }) {
+import { fetchVideos, postVideos } from "../../utils/axios";
+import { useAuth } from "../UseContext/UseContext";
+
+export default function Search({ user, id, setVideos }) {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-
+  const { authToken } = useAuth();
   const handleOpenModal = () => setModalIsOpen(true);
 
   const handleCloseModal = () => setModalIsOpen(false);
@@ -38,18 +39,9 @@ export default function Search({ id, setVideos, avatar }) {
     uploadData.append("file", selectedFile);
     uploadData.append("title", formData.title);
     uploadData.append("description", formData.description);
-    const token = localStorage.getItem("authToken");
+
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/users/videos`,
-        uploadData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await postVideos(uploadData, authToken);
 
       if (response.status === 200) {
         setMessage("Highered successfully!");
@@ -73,27 +65,15 @@ export default function Search({ id, setVideos, avatar }) {
   return (
     <section className="search">
       <div className="search__container">
-        <div className="search__top">
-          {/* <div className="search__wrap">
-            <input
-              className="search__bar"
-              placeholder="SEARCH"
-              name="search"
-            ></input>
-          </div> */}
-        </div>
         <div className="search__wrap">
           <button onClick={handleOpenModal} className="search__button">
             UPLOAD
           </button>
         </div>
-        <Link to="/user">
-          <img
-            src={avatar}
-            alt="user image"
-            className="search__avatar search__avatar--tablet"
-          />
-        </Link>
+        <Link to="/user"></Link>
+        <h3 className="search__name">
+          Welcome back, <span className="search__span"> {user.name}! </span>
+        </h3>
       </div>
       <UploadModal
         handleChange={handleChange}

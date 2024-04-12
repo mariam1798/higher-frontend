@@ -4,8 +4,7 @@ import DropDown from "../DropDown/DropDown";
 import home from "../../assets/icons/home.svg";
 import job from "../../assets/icons/work.svg";
 
-export default function NavSide({ failedAuth, handleLogout }) {
-  console.log(handleLogout);
+export default function NavSide() {
   return (
     <section className="side">
       <div className="side__container">
@@ -18,7 +17,7 @@ export default function NavSide({ failedAuth, handleLogout }) {
           </Link>
         </div>
 
-        <DropDown failedAuth={failedAuth} handleLogout={handleLogout} />
+        <DropDown />
       </div>
     </section>
   );

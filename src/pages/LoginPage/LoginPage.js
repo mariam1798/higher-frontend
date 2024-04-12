@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import higher from "../../assets/icons/logoblack.svg";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./LoginPage.scss";
 import { useAuth } from "../../components/UseContext/UseContext";
+import { postLogin } from "../../utils/axios";
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { handleLogin } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -14,7 +14,6 @@ export default function LoginPage() {
   });
   const navigate = useNavigate();
 
-  // When any input changes, update the correct field in state
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -28,15 +27,9 @@ export default function LoginPage() {
     }
 
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/users/login`,
-        {
-          email: formData.email,
-          password: formData.password,
-        }
-      );
+      const { data } = await postLogin(formData);
 
-      login(data.token);
+      handleLogin(data.token);
       navigate("/home");
     } catch (error) {
       const message =

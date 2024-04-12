@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { getProfile } from "./utils/axios";
 import HomePage from "./pages/HomePage/HomePage";
 import UserPage from "./pages/UserPage/UserPage";
 import UploadPage from "./pages/UploadPage";
@@ -9,45 +8,14 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { AuthProvider } from "./components/UseContext/UseContext";
 
 import "./App.scss";
-import { useState } from "react";
-import { useEffect } from "react";
+
 import Nav from "./components/Nav/Nav";
 
 function App() {
-  const [failedAuth, setFailedAuth] = useState(false);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("authToken"));
-
-  useEffect(() => {
-    if (!token) {
-      return setFailedAuth(true);
-    }
-    const loadData = async () => {
-      try {
-        const { data } = await getProfile(token);
-        setUser(data);
-        setFailedAuth(false);
-      } catch (error) {
-        console.error(error);
-        setFailedAuth(true);
-      }
-    };
-
-    loadData();
-  }, [token]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("jobsData");
-    setToken(null);
-    setUser(null);
-    setFailedAuth(true);
-    window.location.reload();
-  };
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Nav failedAuth={failedAuth} handleLogout={handleLogout} />
+        <Nav />
         <div className="container">
           <div className="content-wrap">
             <Routes>

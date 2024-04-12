@@ -1,17 +1,16 @@
-import { getProfile, getJobs, getVideos, editLikes } from "../../utils/axios";
+import { getProfile, getJobs, getVideos } from "../../utils/axios";
 import JobsList from "../../components/JobsList/JobsList";
 import React, { useEffect, useState } from "react";
 import VideosList from "../../components/VideosList/VideosList";
-import Nav from "../../components/Nav/Nav";
 import "./HomePage.scss";
+import { useAuth } from "../../components/UseContext/UseContext";
 
 export default function HomePage() {
-  const [_user, setUser] = useState(null);
   const [jobs, setJobs] = useState(undefined);
-  const [failedAuth, setFailedAuth] = useState(false);
   const [videos, setVideos] = useState(null);
 
   const token = localStorage.getItem("authToken");
+  const { setFailedAuth, failedAuth, setUser } = useAuth();
 
   useEffect(() => {
     if (!token) {
@@ -46,6 +45,7 @@ export default function HomePage() {
 
     loadData();
   }, [token]);
+
   const fetchAllVideos = async () => {
     const { data } = await getVideos();
     setVideos(data);
@@ -73,7 +73,7 @@ export default function HomePage() {
     <>
       <main className="home">
         <JobsList jobs={jobs} />
-        <VideosList videos={videos} />
+        <VideosList fetchAllVideos={fetchAllVideos} videos={videos} />
       </main>
     </>
   );

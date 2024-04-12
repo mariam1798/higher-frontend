@@ -1,15 +1,18 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
 .video {
-  padding: 1rem;
   background-color: $primary-background-color;
-  @include tablet {
-    padding: 2rem;
-  }
+  margin-top: 1rem;
+
   @include desktop {
     border: $divider-line;
     border-left: none;
     width: 100%;
+    padding-top: 2rem;
+    margin-top: 0;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
   }
 
   &__wrapper {
@@ -49,6 +52,9 @@
   }
   &__like {
     width: 3rem;
+    &--disabled {
+      cursor: not-allowed;
+    }
   }
   &__number {
     font-family: Arial, Helvetica, sans-serif;

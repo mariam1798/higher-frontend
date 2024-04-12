@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import VideoCard from "../../components/VideoCard/VideoCard";
 
-export default function VideosList({ setVideos, videos, setLikes }) {
+export default function VideosList({ fetchAllVideos, setVideos, videos }) {
   return (
     <section className="video">
       {videos &&
@@ -14,7 +14,8 @@ export default function VideosList({ setVideos, videos, setLikes }) {
             id={video.id}
             likes={video.likes}
             setVideos={setVideos}
-            setLikes={setLikes}
+            fetchAllVideos={fetchAllVideos}
+            userId={video.user_id}
           />
         ))}
     </section>

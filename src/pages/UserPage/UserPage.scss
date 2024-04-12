@@ -2,8 +2,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .user {
-  &__name {
-    text-transform: capitalize;
+  @include desktop {
+    display: flex;
   }
   &__wrapper {
     @include container;
@@ -13,6 +13,21 @@
     align-items: center;
     @include tablet {
       flex-direction: row;
+    }
+  }
+  &__container {
+    margin-bottom: 1rem;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+    }
+    @include desktop {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 1rem;
+      border: $divider-line;
     }
   }
   &__logout {

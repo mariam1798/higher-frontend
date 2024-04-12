@@ -2,13 +2,16 @@
 @use "../../styles/partials/mixins" as *;
 
 .nav {
+  background-color: #1a1919;
   margin: 1rem;
+  border-radius: $border-radius;
   @include tb-padding(1, 1);
   border: $divider-line;
   @include tablet {
     display: flex;
     flex-direction: row;
     gap: 3rem;
+    margin: 2rem;
     padding: 1rem 2rem 0;
   }
 

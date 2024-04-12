@@ -2,16 +2,9 @@ import logo from "../../assets/icons/high.svg";
 import higher from "../../assets/icons/higher.svg";
 import "./Nav.scss";
 import NavSide from "../NavSide/NavSide";
-import Search from "../Upload/Upload";
 import { Link } from "react-router-dom";
 
-export default function Nav({
-  failedAuth,
-  handleLogout,
-  setVideos,
-  id,
-  avatar,
-}) {
+export default function Nav({ failedAuth, handleLogout }) {
   return (
     <nav className="nav">
       <div className="nav__container">
@@ -24,7 +17,6 @@ export default function Nav({
           />
         </Link>
         <NavSide failedAuth={failedAuth} handleLogout={handleLogout} />
-        {/* <Search avatar={avatar} setVideos={setVideos} id={id} /> */}
       </div>
     </nav>
   );
