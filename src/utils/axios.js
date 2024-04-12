@@ -18,7 +18,7 @@ const getJobs = (data) => {
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "d408c1a267msh1753d6712635f0bp1f5161jsn94d87a53c5c3",
+      "X-RapidAPI-Key": "8f3af3d0ecmsh4195f394ab84783p15c6d8jsnfe8a676696de",
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
@@ -35,16 +35,11 @@ const getSearchedJobs = async (searchQuery) => {
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "your_rapidapi_key_here",
+      "X-RapidAPI-Key": "8f3af3d0ecmsh4195f394ab84783p15c6d8jsnfe8a676696de",
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
-  try {
-    const response = await axios.request(options);
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error fetching jobs:", error);
-  }
+  return axios.request(options);
 };
 
 const fetchVideos = (id) => {
@@ -57,8 +52,8 @@ const editLikes = (id) => {
   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/videos/${id}`);
 };
 const handleRegister = (uploadData) => {
-  return (
-    axios.post(`${process.env.REACT_APP_API_BASE_URL}/users/register`),
+  return axios.post(
+    `${process.env.REACT_APP_API_BASE_URL}/users/register`,
     uploadData
   );
 };

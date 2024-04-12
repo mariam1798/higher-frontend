@@ -121,7 +121,6 @@ export default function RegisterPage() {
     uploadData.append("job_title", formData.job_title);
     try {
       await handleRegister(uploadData);
-
       navigate("/login");
       setErrorMessage("");
     } catch (error) {
