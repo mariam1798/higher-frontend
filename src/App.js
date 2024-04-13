@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import UserPage from "./pages/UserPage/UserPage";
-import UploadPage from "./pages/UploadPage";
 import JobsPage from "./pages/JobsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -10,6 +9,7 @@ import { AuthProvider } from "./components/UseContext/UseContext";
 import "./App.scss";
 
 import Nav from "./components/Nav/Nav";
+import UsersPage from "./pages/UsersPage/UsersPage";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/user" element={<UserPage />} />
-              <Route path="user/upload" element={<UploadPage />} />
+              <Route path="user/:userId" element={<UsersPage />} />
               <Route path="/jobs" element={<JobsPage />} />
             </Routes>
           </div>

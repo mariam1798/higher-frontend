@@ -20,7 +20,6 @@ export default function HomePage() {
     }
   };
 
-  // Fetch jobs data
   useEffect(() => {
     if (!authToken) {
       setFailedAuth(true);

@@ -75,9 +75,13 @@ const postVideos = (uploadData, authToken) => {
     }
   );
 };
-// const getUser = (userId) => {
-//   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}`);
-// };
+const getUser = (userId) => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}`);
+};
+const getUsers = () => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users`);
+};
+
 export {
   editLikes,
   fetchVideos,
@@ -88,4 +92,6 @@ export {
   postLogin,
   postVideos,
   getSearchedJobs,
+  getUser,
+  getUsers,
 };
