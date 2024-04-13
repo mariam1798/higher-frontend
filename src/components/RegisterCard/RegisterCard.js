@@ -14,6 +14,7 @@ export default function RegisterCard({
   options,
   validate,
   errorMessage,
+  formErrors,
 }) {
   const variants = {
     hidden: { opacity: 0 },
@@ -31,25 +32,38 @@ export default function RegisterCard({
     >
       <label className="register__label">{step.label}</label>
       {step.inputType === "input" && (
-        <input
-          className={`register__input ${
-            validate && !validate() ? "register__input--invalid" : ""
-          }`}
-          name={step.name}
-          type={step.type || "text"}
-          value={formData[step.name]}
-          onChange={handleChange}
-        />
+        <>
+          <input
+            className={`register__input ${
+              validate && !validate() ? "register__input--invalid" : ""
+            }`}
+            name={step.name}
+            type={step.type || "text"}
+            value={formData[step.name]}
+            onChange={handleChange}
+          />
+          {formErrors[step.name] && (
+            <p className="register__error">{formErrors[step.name]}</p>
+          )}
+        </>
       )}
       {step.inputType === "select" && (
-        <Select
-          className="register__select"
-          options={step.options}
-          value={step.options.find(
-            (option) => option.value === formData[step.name]
+        <>
+          <Select
+            className="register__select"
+            options={step.options}
+            value={step.options.find(
+              (option) => option.value === formData[step.name]
+            )}
+            onChange={(selectedOption) =>
+              handleSelect(selectedOption, step.name)
+            }
+            required
+          />
+          {formErrors[step.name] && (
+            <p className="register__error">{formErrors[step.name]}</p>
           )}
-          onChange={(selectedOption) => handleSelect(selectedOption, step.name)}
-        />
+        </>
       )}
 
       {step.inputType === "file" && (
@@ -60,10 +74,14 @@ export default function RegisterCard({
             name="file"
             style={{ display: "none" }}
             id="fileInput"
+            required
           />
           <label htmlFor="fileInput" className="modal__upload">
             Upload
           </label>
+          {formErrors[step.name] && (
+            <p className="register__error">{formErrors[step.name]}</p>
+          )}
         </>
       )}
 
@@ -76,7 +94,7 @@ export default function RegisterCard({
           <Button text="Next" handle={handleStep} />
         )}
       </div>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p className="register__error">{errorMessage}</p>}
     </motion.div>
   );
 }

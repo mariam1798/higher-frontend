@@ -14,6 +14,16 @@
       }
     }
   }
+  &__error {
+    background-color: $primary-text-color;
+    color: $primary-accent-color;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    border-radius: $border-radius;
+    @include tablet {
+      padding: 1rem;
+    }
+  }
   &__select {
     color: black;
     font-size: 0.8rem;

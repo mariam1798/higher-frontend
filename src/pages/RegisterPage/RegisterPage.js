@@ -14,6 +14,7 @@ export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
 
   const options = useMemo(() => countryList().getData(), []);
   const isEmailValid = () => {
@@ -149,13 +150,23 @@ export default function RegisterPage() {
     setValue(value);
     setFormData({ ...formData, location: value.label });
   };
+  const validateField = (name, value) => {
+    let errors = { ...formErrors };
+
+    if (name === "email" && !value.includes("@")) {
+      errors[name] = "Invalid email address.";
+    } else if (!value.trim()) {
+      errors[name] = "Please fill in this field.";
+    } else {
+      delete errors[name];
+    }
+
+    setFormErrors(errors);
+  };
 
   const handleStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
-    if (currentStep === 8 && !isEmailValid()) {
-      setErrorMessage("Email is not valid");
-      return;
-    }
+
     setCurrentStep(currentStep + 1);
     setErrorMessage("");
   };
@@ -165,10 +176,12 @@ export default function RegisterPage() {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     if (e.target.name === "file") {
       setSelectedFile(e.target.files[0]);
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData({ ...formData, [name]: value });
+      validateField(name, value);
     }
   };
 
@@ -181,7 +194,11 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const hasErrors = Object.values(formErrors).some((error) => error);
+    if (hasErrors || Object.values(formData).some((value) => !value.trim())) {
+      setErrorMessage("Please correct the errors before submitting.");
+      return;
+    }
     if (!formData.name || !formData.email || !formData.password) {
       setErrorMessage("You must fill in all the form fields");
       return;
@@ -262,8 +279,8 @@ export default function RegisterPage() {
                     handleStep={handleStep}
                     handleBack={handleBack}
                     options={step.options || []}
-                    validate={step.validate}
                     errorMessage={errorMessage}
+                    formErrors={formErrors}
                   />
                 )
             )}
