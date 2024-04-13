@@ -20,6 +20,7 @@ export default function VideosList({ fetchAllVideos, setVideos, videos }) {
             setVideos={setVideos}
             fetchAllVideos={fetchAllVideos}
             userId={video.user_id}
+            index={video.id}
           />
         ))}
     </section>

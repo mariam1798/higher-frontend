@@ -2,7 +2,6 @@
 @use "../../styles/partials/mixins" as *;
 
 .register {
-  font-family: "Hagrid";
   @include container;
   @include tablet {
     padding-top: 2rem;
@@ -19,15 +18,18 @@
     color: black;
     font-size: 0.8rem;
   }
+
   &__wrapper {
-    @include background;
-    @include container;
-    @include tb-padding(5, 5);
-    border-radius: $border-radius;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @include background;
+    @include container;
+    position: relative;
+    @include tb-padding(5, 5);
+    border-radius: $border-radius;
+
     @include tablet {
       height: 20rem;
     }
@@ -37,6 +39,25 @@
   }
   &__title {
     margin: 0;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+    @include tablet {
+      width: 40%;
+    }
+    &--span {
+      color: $primary-background-color;
+      padding-left: 0.6rem;
+      text-transform: capitalize;
+      position: absolute;
+      font-size: 1.5rem;
+      bottom: 73%;
+      @include tablet {
+        bottom: 63%;
+        font-size: 1.8rem;
+      }
+    }
   }
   &__text {
     text-align: center;

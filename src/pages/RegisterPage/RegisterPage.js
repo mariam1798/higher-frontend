@@ -1,17 +1,51 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./RegisterPage.scss";
-import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import countryList from "react-select-country-list";
 import url from "../../assets/video/higher.mp4";
 import Video from "../../components/Video/Video";
 import { handleRegister } from "../../utils/axios";
+import { motion, AnimatePresence } from "framer-motion";
+import Button from "../../components/Button/Button";
+import RegisterCard from "../../components/RegisterCard/RegisterCard";
 
 export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const options = useMemo(() => countryList().getData(), []);
+  const isEmailValid = () => {
+    return formData.email.includes("@") && formData.email.endsWith(".com");
+  };
+  const texts = [
+    "más alto",
+    "plus haut",
+    "höher",
+    "più alto",
+    "mais alto",
+    "выше",
+    "更高",
+    "より高い",
+    "더 높은",
+    "أعلى",
+    "ऊंचा",
+    "hoger",
+    "högre",
+    "wyższy",
+    "daha yüksek",
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,15 +97,53 @@ export default function RegisterPage() {
     { value: "medical doctor", label: "Medical Doctor" },
     { value: "law", label: "Law" },
   ];
-
+  const stepsConfig = [
+    { label: "What's your name?", inputType: "input", name: "name" },
+    {
+      label: "Where are you currently based?",
+      inputType: "select",
+      name: "location",
+      options: options,
+    },
+    {
+      label: "What is your professional status?",
+      inputType: "select",
+      name: "professional_status",
+      options: professionalStatusOptions,
+    },
+    {
+      label: "What is your current job title?",
+      inputType: "select",
+      name: "job_title",
+      options: jobOptions,
+    },
+    {
+      label: "How many years of experience do you have in your current role?",
+      inputType: "input",
+      name: "experience_years",
+    },
+    {
+      label: "Would you like to upload an avatar?",
+      inputType: "file",
+      name: "avatar",
+    },
+    {
+      label: "Share your email with us:",
+      inputType: "input",
+      name: "email",
+      type: "email",
+      validate: isEmailValid,
+    },
+    {
+      label: "password",
+      inputType: "input",
+      name: "password",
+      type: "password",
+    },
+  ];
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-  const options = useMemo(() => countryList().getData(), []);
   const [email, setEmail] = useState("");
-
-  const isEmailValid = () => {
-    return formData.email.includes("@") && formData.email.endsWith(".com");
-  };
 
   const changeHandler = (value) => {
     setValue(value);
@@ -100,18 +172,13 @@ export default function RegisterPage() {
     }
   };
 
-  const handleSelect = (selectedOption) => {
+  const handleSelect = (selectedOption, fieldName) => {
     setFormData({
       ...formData,
-      professional_status: selectedOption.value,
+      [fieldName]: selectedOption.value,
     });
   };
-  const handleJob = (selectedOption) => {
-    setFormData({
-      ...formData,
-      job_title: selectedOption.value,
-    });
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -143,235 +210,72 @@ export default function RegisterPage() {
       setErrorMessage(message);
     }
   };
-
+  const variants = {
+    hidden: { opacity: 0 }, // Start from invisible
+    visible: { opacity: 1 },
+  };
   return (
     <>
       <main className="register">
         <div className="register__wrapper">
-          <h2 className="register__title">
-            Welcome to <span className="register__title--span"> Higher! </span>
-          </h2>
-          <h3 className="register__text">Where Talent Meets Opportunity</h3>
-          <form className="regitser__form" onSubmit={handleSubmit}>
-            {currentStep === 0 && (
-              <button className="register__button" onClick={handleStep}>
-                Higher Me
-              </button>
-            )}
-            {currentStep === 1 && (
-              <div className="register__card register__card--buttons">
-                <Link to="/login">
-                  <button className="register__button" onClick={handleStep}>
-                    Login
-                  </button>
-                </Link>
-                <button className="register__button" onClick={handleStep}>
-                  Register
-                </button>
-              </div>
-            )}
-            {currentStep === 2 && (
-              <div className="register__Card">
-                <label className="register__label">What's your name?</label>
-                <input
-                  className="register__input"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 3 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  Where are you currently based?
-                </label>
-                <Select
-                  className="register__select"
-                  options={options}
-                  value={value}
-                  onChange={changeHandler}
-                  onClick={handleStep}
-                />
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 4 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  What is your professional status?{" "}
-                </label>
-                <Select
-                  name="professional_status"
-                  className="register__select"
-                  options={professionalStatusOptions}
-                  value={professionalStatusOptions.find(
-                    (option) => option.value === formData.professional_status
-                  )}
-                  onChange={handleSelect}
-                  onClick={handleStep}
-                />
-
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 5 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  What is your current job title?
-                </label>
-                <Select
-                  className="register__select"
-                  options={jobOptions}
-                  onChange={handleJob}
-                />
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 6 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  How many years of experience do you have in your current role?
-                </label>
-                <input
-                  className="register__input"
-                  name="experience_years"
-                  onChange={handleChange}
-                />
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 7 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  Would you like to upload an avatar?
-                </label>
-                <input
-                  type="file"
-                  onChange={handleChange}
-                  name="file"
-                  style={{ display: "none" }}
-                  id="fileInput"
-                />
-                <label htmlFor="fileInput" className="modal__upload">
-                  Upload
-                </label>
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button className="register__button" onClick={handleStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-            {currentStep === 8 && (
-              <div className="register__Card">
-                <label className="register__label">
-                  Share your email with us:
-                </label>
-                <input
-                  className={`register__input ${
-                    !isEmailValid() ? "register__input--invalid" : ""
-                  }`}
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  type="email"
-                />
-                <div className="register__buttons">
-                  <Link>
-                    <button className="register__button" onClick={handleBack}>
-                      Back
-                    </button>
-                  </Link>
-                  <button
-                    className="register__button"
-                    onClick={handleStep}
-                    disabled={!isEmailValid}
+          {currentStep === 0 && (
+            <>
+              <h2 className="register__title">
+                Welcome to
+                <AnimatePresence>
+                  <motion.span
+                    className="register__title--span"
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    transition={{ duration: 0.5 }}
                   >
-                    Next
-                  </button>
-                </div>
-                {errorMessage && <p>{errorMessage}</p>}
-              </div>
-            )}
-            {currentStep === 9 && (
-              <>
-                <div className="register__Card">
-                  <label className="register__label">password</label>
-                  <input
-                    className="register__input"
-                    name="password"
-                    onChange={handleChange}
-                    type="password"
+                    {texts[index]}
+                  </motion.span>
+                </AnimatePresence>
+              </h2>
+              <h3 className="register__text">Where Talent Meets Opportunity</h3>
+              <Button text="Higher Me" handle={handleStep} />
+            </>
+          )}
+          {currentStep === 1 && (
+            <div className="register__card register__card--buttons">
+              <Link to="/login">
+                <Button text="Log In" />
+              </Link>
+              <button className="register__button" onClick={handleStep}>
+                Register
+              </button>
+            </div>
+          )}
+          <form className="regitser__form" onSubmit={handleSubmit}>
+            {stepsConfig.map(
+              (step, index) =>
+                currentStep === index + 2 && (
+                  <RegisterCard
+                    key={index}
+                    step={step}
+                    formData={formData}
+                    handleChange={handleChange}
+                    handleSelect={handleSelect}
+                    handleStep={handleStep}
+                    handleBack={handleBack}
+                    options={step.options || []}
+                    validate={step.validate}
+                    errorMessage={errorMessage}
                   />
-                </div>
-                <div className="register__card">
-                  <div className="register__buttons">
-                    <Link>
-                      <button className="register__button" onClick={handleBack}>
-                        Back
-                      </button>
-                    </Link>
-                    <button className="register__button">Submit</button>
-                    {errorMessage && <p>{errorMessage}</p>}
-                  </div>
-                </div>
-              </>
+                )
             )}
           </form>
         </div>
-        <section className="register__description">
+        <motion.section
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: false }}
+          className="register__description"
+        >
           <h3 className="register__text">
             At Higher, our journey began with a fundamental insight: while
             character plays a crucial role within a company's team, traditional
@@ -386,8 +290,16 @@ export default function RegisterPage() {
             personality, or the employee who emerges as the missing piece of a
             team's puzzle.
           </h3>
-        </section>
-        <Video url={url} />
+        </motion.section>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          className="register__video"
+        >
+          <Video url={url} />
+        </motion.div>
       </main>
     </>
   );
