@@ -67,6 +67,11 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
+  const [email, setEmail] = useState("");
+
+  const isEmailValid = () => {
+    return formData.email.includes("@") && formData.email.endsWith(".com");
+  };
 
   const changeHandler = (value) => {
     setValue(value);
@@ -75,6 +80,12 @@ export default function RegisterPage() {
 
   const handleStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
+    if (currentStep === 8 && !isEmailValid()) {
+      setErrorMessage("Email is not valid");
+      return;
+    }
+    setCurrentStep(currentStep + 1);
+    setErrorMessage("");
   };
 
   const handleBack = () => {
@@ -108,6 +119,7 @@ export default function RegisterPage() {
       setErrorMessage("You must fill in all the form fields");
       return;
     }
+
     const uploadData = new FormData();
     uploadData.append("file", selectedFile);
     uploadData.append("title", formData.title);
@@ -148,14 +160,14 @@ export default function RegisterPage() {
             )}
             {currentStep === 1 && (
               <div className="register__card register__card--buttons">
-                <button className="register__button" onClick={handleStep}>
-                  Register
-                </button>
                 <Link to="/login">
                   <button className="register__button" onClick={handleStep}>
                     Login
                   </button>
                 </Link>
+                <button className="register__button" onClick={handleStep}>
+                  Register
+                </button>
               </div>
             )}
             {currentStep === 2 && (
@@ -308,7 +320,9 @@ export default function RegisterPage() {
                   Share your email with us:
                 </label>
                 <input
-                  className="register__input"
+                  className={`register__input ${
+                    !isEmailValid() ? "register__input--invalid" : ""
+                  }`}
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -320,10 +334,15 @@ export default function RegisterPage() {
                       Back
                     </button>
                   </Link>
-                  <button className="register__button" onClick={handleStep}>
+                  <button
+                    className="register__button"
+                    onClick={handleStep}
+                    disabled={!isEmailValid}
+                  >
                     Next
                   </button>
                 </div>
+                {errorMessage && <p>{errorMessage}</p>}
               </div>
             )}
             {currentStep === 9 && (
