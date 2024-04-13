@@ -5,19 +5,25 @@
   @include container;
   color: $primary-background-color;
   font-family: "Hagrid";
+  display: flex;
+  justify-content: center;
+  width: 100%;
   @include tablet {
     padding: 7rem;
-    display: flex;
-    justify-content: center;
   }
   &__container {
+    width: 20rem;
     padding: 1rem;
     background-color: $secondary-background-color;
     border-radius: 20px;
+
     @include tablet {
       box-shadow: 0 0 8px 8px rgba(140, 82, 255, 0.5);
       border: solid 2px transparent;
       width: 22rem;
+    }
+    @include desktop {
+      width: 30rem;
     }
   }
   &__logo {

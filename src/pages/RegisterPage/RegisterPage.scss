@@ -34,12 +34,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    @include background;
+    background-image: url("../../assets/images/hero.svg");
+    background-position: 70%;
     @include container;
     position: relative;
     @include tb-padding(5, 5);
     border-radius: $border-radius;
-
+    height: 40rem;
     @include tablet {
       height: 20rem;
     }
@@ -50,22 +51,23 @@
   &__title {
     margin: 0;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     text-align: left;
     font-size: 1.2rem;
     @include tablet {
-      width: 40%;
+      width: 45%;
+      font-size: 1.8rem;
     }
     &--span {
-      color: $primary-background-color;
+      color: $primary-text-color;
       padding-left: 0.6rem;
       text-transform: capitalize;
       position: absolute;
-      font-size: 1.5rem;
-      bottom: 73%;
+      font-size: 1.7rem;
+      bottom: 57%;
       @include tablet {
-        bottom: 63%;
-        font-size: 1.8rem;
+        top: 22%;
+        font-size: 2rem;
       }
     }
   }
@@ -73,6 +75,10 @@
     text-align: center;
     line-height: 2rem;
     font-size: 1rem;
+    @include tablet {
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+    }
   }
   &__button {
     @include primary-button;
@@ -97,7 +103,7 @@
     border: $divider-line;
     border-radius: $border-radius;
     @include tablet {
-      margin-bottom: 3rem;
+      margin-bottom: 10rem;
     }
   }
   &__input {

@@ -290,7 +290,7 @@ export default function RegisterPage() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: false, amount: 0.5 }}
           className="register__description"
         >
           <h3 className="register__text">
@@ -310,7 +310,7 @@ export default function RegisterPage() {
         </motion.section>
         <motion.div
           initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0, y: -100, scale: 1.1 }}
           transition={{ duration: 1 }}
           viewport={{ once: false, amount: 0.5 }}
           className="register__video"

@@ -2,7 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .nav {
-  background-color: #1a1a1a;
+  background-color: $secondary-bg-color;
   @include tb-padding(1, 1);
   @include tablet {
     display: flex;
@@ -21,7 +21,7 @@
     }
   }
   &__logo {
-    width: 4.5rem;
+    width: 5rem;
     @include tablet {
       display: none;
     }
@@ -29,7 +29,8 @@
       display: none;
       @include tablet {
         display: flex;
-        width: 10rem;
+        width: 12rem;
+        margin-bottom: 1rem;
       }
     }
   }

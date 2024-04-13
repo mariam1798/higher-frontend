@@ -22,7 +22,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      setErrorMessage("You must provide a username and a password");
+      setErrorMessage("You must provide an your Email and password");
       return;
     }
 
