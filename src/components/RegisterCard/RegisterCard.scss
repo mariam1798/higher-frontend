@@ -1,0 +1,70 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.form {
+  &--buttons {
+    @include tablet {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+
+  &__button {
+    @include primary-button;
+    text-transform: uppercase;
+    margin-top: 1rem;
+
+    @include tablet {
+      width: 8rem;
+    }
+  }
+
+  &__label {
+    display: flex;
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+    justify-content: center;
+    width: 15rem;
+    text-align: center;
+  }
+  &__error {
+    background-color: $primary-text-color;
+    color: $secondary-background-color;
+    font-weight: 600;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: $border-radius;
+    @include tablet {
+      padding: 1rem;
+    }
+  }
+
+  &__select {
+    color: black;
+    font-size: 0.8rem;
+  }
+
+  &__input {
+    width: 100%;
+    @include text-field;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
+  &__upload {
+    @include tablet {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.jobs {
+  background-color: $secondary-bg-color;
+  font-weight: 300;
+  width: 100%;
+
+  @include desktop {
+    width: 40%;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @include tablet {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+  &__title {
+    padding-top: 1rem;
+    text-align: center;
+    margin-bottom: 0;
+
+    @include desktop {
+      font-size: 1.7rem;
+    }
+  }
+  &__list {
+    padding: 1rem;
+
+    @include tablet {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      flex-wrap: wrap;
+    }
+    @include desktop {
+      flex-direction: column;
+      width: 100%;
+      padding: 2rem;
+    }
+  }
+  &__button {
+    color: $secondary-background-color;
+    background-color: $secondary-bg-color;
+    @include box-shadow;
+    width: 10rem;
+    border-radius: 4px;
+    border: none;
+    border-bottom: 4px;
+    padding: 1rem;
+    background-image: url("../../assets/icons/plus.svg");
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    background-position: 90%;
+    text-align: left;
+  }
+  &__display {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}

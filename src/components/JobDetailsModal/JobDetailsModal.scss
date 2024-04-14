@@ -15,6 +15,7 @@
   color: $primary-text-color;
   background-color: $primary-background-color;
   outline: none;
+
   @include tablet {
     border-radius: 10px;
     border: none;
@@ -28,23 +29,27 @@
       left: 20%;
     }
   }
+
   &__card {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
+
     @include desktop {
       flex-direction: row;
       justify-content: space-evenly;
     }
   }
+
   &__info {
     @include desktop {
       width: 60%;
       padding: 1rem;
     }
   }
+
   &__wrap {
     border: $divider-line;
     border-radius: $border-radius;
@@ -53,6 +58,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   &__logo {
     height: 5rem;
     display: flex;
@@ -63,6 +69,7 @@
       height: 8rem;
     }
   }
+
   &__wrapper {
     display: flex;
     justify-content: flex-start;
@@ -81,6 +88,7 @@
       width: 9rem;
     }
   }
+
   &__link {
     display: flex;
     flex-direction: column;
@@ -90,6 +98,7 @@
       width: 15%;
     }
   }
+
   &__button {
     @include primary-button;
     border: $divider-line;
@@ -98,6 +107,7 @@
       width: 10rem;
     }
   }
+
   &__navigate {
     width: 10rem;
     text-decoration: none;
@@ -124,14 +134,17 @@
       justify-content: flex-end;
     }
   }
+
   &__country {
     text-align: center;
     padding-top: 1rem;
     margin: 0;
   }
+
   &__close {
     width: 1.5rem;
   }
+
   &__upload {
     @include tablet {
       width: 100%;

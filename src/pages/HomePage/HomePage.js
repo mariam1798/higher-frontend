@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import VideosList from "../../components/VideosList/VideosList";
 import "./HomePage.scss";
 import { useAuth } from "../../components/UseContext/UseContext";
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../Motion/Loader/Loader";
 
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
@@ -49,7 +49,6 @@ export default function HomePage() {
     loadData();
   }, [authToken]);
 
-  // Fetch videos data
   useEffect(() => {
     fetchAllVideos();
   }, []);

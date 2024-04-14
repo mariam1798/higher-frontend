@@ -1,7 +1,8 @@
 import React from "react";
-import Button from "../Button/Button";
+import Button from "../../Motion/Button/Button";
 import Select from "react-select";
 import { motion } from "framer-motion";
+import "./RegisterCard.scss";
 
 export default function RegisterCard({
   step,
@@ -11,8 +12,6 @@ export default function RegisterCard({
   handleSubmit,
   handleStep,
   handleBack,
-  options,
-  validate,
   errorMessage,
   formErrors,
 }) {
@@ -22,7 +21,8 @@ export default function RegisterCard({
   };
 
   return (
-    <motion.div
+    <motion.section
+      className="form__content"
       key="step1"
       variants={variants}
       initial="hidden"
@@ -30,27 +30,25 @@ export default function RegisterCard({
       exit="hidden"
       transition={{ duration: 2.5 }}
     >
-      <label className="register__label">{step.label}</label>
+      <label className="form__label">{step.label}</label>
       {step.inputType === "input" && (
         <>
           <input
-            className={`register__input ${
-              validate && !validate() ? "register__input--invalid" : ""
-            }`}
+            className="form__input"
             name={step.name}
             type={step.type || "text"}
             value={formData[step.name]}
             onChange={handleChange}
           />
           {formErrors[step.name] && (
-            <p className="register__error">{formErrors[step.name]}</p>
+            <p className="form__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
       {step.inputType === "select" && (
         <>
           <Select
-            className="register__select"
+            className="form__select"
             options={step.options}
             value={step.options.find(
               (option) => option.value === formData[step.name]
@@ -61,7 +59,7 @@ export default function RegisterCard({
             required
           />
           {formErrors[step.name] && (
-            <p className="register__error">{formErrors[step.name]}</p>
+            <p className="form__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
@@ -76,16 +74,18 @@ export default function RegisterCard({
             id="fileInput"
             required
           />
-          <label htmlFor="fileInput" className="modal__upload">
-            Upload
-          </label>
+          <div className="form__upload">
+            <label htmlFor="fileInput" className="modal__upload">
+              Upload
+            </label>
+          </div>
           {formErrors[step.name] && (
-            <p className="register__error">{formErrors[step.name]}</p>
+            <p className="form__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
 
-      <div className="register__buttons">
+      <div className="form__buttons">
         <Button text="Back" handle={handleBack} />
 
         {step.type === "password" ? (
@@ -94,7 +94,7 @@ export default function RegisterCard({
           <Button text="Next" handle={handleStep} />
         )}
       </div>
-      {errorMessage && <p className="register__error">{errorMessage}</p>}
-    </motion.div>
+      {errorMessage && <p className="form__error">{errorMessage}</p>}
+    </motion.section>
   );
 }

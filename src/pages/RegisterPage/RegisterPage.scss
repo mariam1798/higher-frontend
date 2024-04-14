@@ -6,28 +6,6 @@
   @include tablet {
     padding-top: 2rem;
   }
-  &__card {
-    &--buttons {
-      @include tablet {
-        display: flex;
-        gap: 1rem;
-      }
-    }
-  }
-  &__error {
-    background-color: $primary-text-color;
-    color: $primary-accent-color;
-    padding: 0.5rem;
-    font-size: 0.7rem;
-    border-radius: $border-radius;
-    @include tablet {
-      padding: 1rem;
-    }
-  }
-  &__select {
-    color: black;
-    font-size: 0.8rem;
-  }
 
   &__wrapper {
     display: flex;
@@ -80,23 +58,7 @@
       line-height: 2.5rem;
     }
   }
-  &__button {
-    @include primary-button;
-    text-transform: uppercase;
-    margin-top: 1rem;
-    @include tablet {
-      width: 8rem;
-    }
-  }
 
-  &__label {
-    display: flex;
-    padding-bottom: 1rem;
-    font-size: 0.9rem;
-    justify-content: center;
-    width: 15rem;
-    text-align: center;
-  }
   &__description {
     @include tb-margin(2, 2);
     @include container;
@@ -104,18 +66,6 @@
     border-radius: $border-radius;
     @include tablet {
       margin-bottom: 10rem;
-    }
-  }
-  &__input {
-    width: 100%;
-    @include text-field;
-  }
-  &__buttons {
-    display: flex;
-    flex-direction: column;
-    @include tablet {
-      flex-direction: row;
-      gap: 1rem;
     }
   }
 }

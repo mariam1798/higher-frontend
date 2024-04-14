@@ -24,6 +24,7 @@ export default function JobDetailsModal({
       handleCloseModal();
     }, 3000);
   };
+
   const modalVariants = {
     hidden: {
       opacity: 0,
@@ -40,6 +41,7 @@ export default function JobDetailsModal({
       },
     },
   };
+
   return (
     <AnimatePresence>
       <Modal
@@ -98,7 +100,6 @@ export default function JobDetailsModal({
               </div>
             </div>
             <BulletPoints text={job_description} />
-
             <div className="details__cancel">
               <UploadButton type="details__upload" notify={notify} />
               <button onClick={handleCloseModal} className="details__button">

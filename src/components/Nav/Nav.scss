@@ -20,6 +20,20 @@
       justify-content: space-between;
     }
   }
+
+  &__watermark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+      width: 25%;
+      height: 2rem;
+      align-self: center;
+      justify-content: flex-start;
+    }
+  }
+
   &__logo {
     width: 5rem;
     @include tablet {
@@ -32,18 +46,6 @@
         width: 12rem;
         margin-bottom: 1rem;
       }
-    }
-  }
-  &__watermark {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @include tablet {
-      width: 25%;
-      height: 2rem;
-      align-self: center;
-      justify-content: flex-start;
     }
   }
 }

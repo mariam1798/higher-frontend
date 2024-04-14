@@ -83,7 +83,6 @@
     @include background;
   }
   @include tablet {
-    border: $divider-line;
     width: 8rem;
   }
 }
@@ -118,11 +117,8 @@
   outline: 0;
   border: none;
   height: 1rem;
-  color: black;
+  color: $secondary-background-color;
   @include container;
-  &::placeholder {
-    color: white;
-  }
 
   @include tablet {
     height: 3rem;
@@ -133,14 +129,6 @@
   }
 }
 
-@mixin form-input-error {
-  border-color: $primary-accent-color;
-  &:focus,
-  &:focus-visible {
-    border-color: $divider-line;
-  }
-  @content;
-}
 @mixin background {
   background-image: linear-gradient(
     70deg,

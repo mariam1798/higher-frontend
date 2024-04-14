@@ -1,20 +1,20 @@
 import { useState } from "react";
 import JobCard from "../JobCard/JobCard";
 import JobDetailsModal from "../JobDetailsModal/JobDetailsModal";
+import "./JobList.scss";
 
 export default function JobsList({ jobs }) {
   const [visibleJobs, setVisibleJobs] = useState(4);
   const [modalIsOpen, setModalIsOpen] = useState(null);
 
   const handleOpenModal = (jobId) => setModalIsOpen(jobId);
-
   const handleCloseModal = () => setModalIsOpen(false);
 
   return (
-    <section className="job">
-      <h3 className="job__title">Job Suggestions</h3>
-      <div className="job__wrapper">
-        <div className="job__list">
+    <section className="jobs">
+      <h3 className="jobs__title">Jobs Suggestions</h3>
+      <div className="jobs__wrapper">
+        <div className="jobs__list">
           {jobs &&
             jobs
               .slice(0, visibleJobs)
@@ -28,10 +28,10 @@ export default function JobsList({ jobs }) {
                 />
               ))}
         </div>
-        <div className="job__display">
+        <div className="jobs__display">
           {jobs && visibleJobs < jobs.length && (
             <button
-              className="job__button"
+              className="jobs__button"
               onClick={() => setVisibleJobs(visibleJobs + 3)}
             >
               Show More

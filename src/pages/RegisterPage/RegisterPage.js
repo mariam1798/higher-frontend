@@ -7,7 +7,7 @@ import url from "../../assets/video/higher.mp4";
 import Video from "../../components/Video/Video";
 import { handleRegister } from "../../utils/axios";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../../components/Button/Button";
+import Button from "../../Motion/Button/Button";
 import RegisterCard from "../../components/RegisterCard/RegisterCard";
 
 export default function RegisterPage() {
@@ -15,12 +15,13 @@ export default function RegisterPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [formErrors, setFormErrors] = useState({});
+  const [index, setIndex] = useState(0);
 
+  const navigate = useNavigate();
   const options = useMemo(() => countryList().getData(), []);
-  const isEmailValid = () => {
-    return formData.email.includes("@") && formData.email.endsWith(".com");
-  };
+
   const texts = [
+    "Higher",
     "más alto",
     "plus haut",
     "höher",
@@ -37,7 +38,6 @@ export default function RegisterPage() {
     "wyższy",
     "daha yüksek",
   ];
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,6 +98,7 @@ export default function RegisterPage() {
     { value: "medical doctor", label: "Medical Doctor" },
     { value: "law", label: "Law" },
   ];
+
   const stepsConfig = [
     { label: "What's your name?", inputType: "input", name: "name" },
     {
@@ -133,23 +134,26 @@ export default function RegisterPage() {
       inputType: "input",
       name: "email",
       type: "email",
-      validate: isEmailValid,
     },
     {
-      label: "password",
+      label: "Password:",
       inputType: "input",
       name: "password",
       type: "password",
     },
   ];
-  const navigate = useNavigate();
-  const [value, setValue] = useState("");
-  const [email, setEmail] = useState("");
 
-  const changeHandler = (value) => {
-    setValue(value);
-    setFormData({ ...formData, location: value.label });
+  const handleStep = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+
+    setCurrentStep(currentStep + 1);
+    setErrorMessage("");
   };
+
+  const handleBack = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
+  };
+
   const validateField = (name, value) => {
     let errors = { ...formErrors };
 
@@ -162,17 +166,6 @@ export default function RegisterPage() {
     }
 
     setFormErrors(errors);
-  };
-
-  const handleStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-
-    setCurrentStep(currentStep + 1);
-    setErrorMessage("");
-  };
-
-  const handleBack = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
   };
 
   const handleChange = (e) => {
@@ -196,10 +189,6 @@ export default function RegisterPage() {
     e.preventDefault();
     const hasErrors = Object.values(formErrors).some((error) => error);
     if (hasErrors || Object.values(formData).some((value) => !value.trim())) {
-      setErrorMessage("Please correct the errors before submitting.");
-      return;
-    }
-    if (!formData.name || !formData.email || !formData.password) {
       setErrorMessage("You must fill in all the form fields");
       return;
     }
@@ -227,8 +216,9 @@ export default function RegisterPage() {
       setErrorMessage(message);
     }
   };
+
   const variants = {
-    hidden: { opacity: 0 }, // Start from invisible
+    hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
   return (
@@ -257,16 +247,16 @@ export default function RegisterPage() {
             </>
           )}
           {currentStep === 1 && (
-            <div className="register__card register__card--buttons">
+            <div className="form form--buttons">
               <Link to="/login">
                 <Button text="Log In" />
               </Link>
-              <button className="register__button" onClick={handleStep}>
+              <button className="form__button" onClick={handleStep}>
                 Register
               </button>
             </div>
           )}
-          <form className="regitser__form" onSubmit={handleSubmit}>
+          <form className="register__form" onSubmit={handleSubmit}>
             {stepsConfig.map(
               (step, index) =>
                 currentStep === index + 2 && (

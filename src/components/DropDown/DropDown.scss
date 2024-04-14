@@ -3,6 +3,7 @@
 
 .dropdown {
   position: relative;
+
   &__label {
     border: $divider-line;
     right: 0%;
@@ -13,31 +14,38 @@
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
   }
+
   &__avatar {
     width: 5rem;
   }
+
   &__list {
     width: 100%;
     text-align: center;
     padding: 0;
     margin: 0;
   }
+
   &__navigate {
     text-decoration: none;
   }
+
   &__item {
     list-style-type: none;
-    color: white;
+    color: $primary-text-color;
     font-size: 0.7rem;
     padding: 1rem;
     width: 7rem;
+
     &--bottom {
       border-bottom: $divider-line;
     }
+
     &--top {
       border-bottom-left-radius: $border-radius;
       border-bottom-right-radius: $border-radius;
     }
+
     &:hover {
       @include background;
     }

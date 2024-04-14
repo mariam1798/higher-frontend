@@ -1,6 +1,6 @@
 import React from "react";
 import "./Search.scss";
-import Button from "../Button/Button";
+import Button from "../../Motion/Button/Button";
 
 export default function Search({
   handleInputChange,

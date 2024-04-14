@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { getSearchedJobs } from "../utils/axios";
-import JobsList from "../components/JobsList/JobsList";
-import Search from "../components/Search/Search";
+import { getSearchedJobs } from "../../utils/axios";
+import JobsList from "../../components/JobsList/JobsList";
+import Search from "../../components/Search/Search";
+import "./JobsPage.scss";
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState([]);
@@ -23,13 +24,13 @@ export default function JobsPage() {
     }
   };
   return (
-    <section className="jobs">
+    <section className="job">
       <Search
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
         searchContent={searchContent}
       />
-      <div className="jobs__container">
+      <div className="job__container">
         <JobsList jobs={jobs} />
       </div>
     </section>

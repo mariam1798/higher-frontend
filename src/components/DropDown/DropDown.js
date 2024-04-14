@@ -4,12 +4,30 @@ import userIcon from "../../assets/icons/user.svg";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../UseContext/UseContext";
 import ImageMotion from "../../Motion/ImageMotion";
+import { motion } from "framer-motion";
 
 export default function DropDown() {
   const [isVisible, setIsVisible] = useState(false);
   const dropdownRef = useRef(null);
   const { authToken, handleLogout } = useAuth();
   const isAuthenticated = !!authToken;
+
+  const listItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
 
   const dropdownClick = () => setIsVisible(!isVisible);
 
@@ -26,6 +44,7 @@ export default function DropDown() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <section ref={dropdownRef} className="dropdown">
       <ImageMotion
@@ -39,28 +58,46 @@ export default function DropDown() {
             {isAuthenticated ? (
               <>
                 <Link to="/user" className="dropdown__navigate">
-                  <li className="dropdown__item dropdown__item--bottom">
+                  <motion.li
+                    className="dropdown__item dropdown__item--bottom"
+                    variants={listItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
                     Profile
-                  </li>
+                  </motion.li>
                 </Link>
-                <li
-                  onClick={handleLogout}
+                <motion.li
                   className="dropdown__item dropdown__item--top"
+                  variants={listItemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  onClick={handleLogout}
                 >
                   Log Out
-                </li>
+                </motion.li>
               </>
             ) : (
               <>
                 <Link to="/login" className="dropdown__navigate">
-                  <li className="dropdown__item dropdown__item--bottom">
+                  <motion.li
+                    variants={listItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="dropdown__item dropdown__item--bottom"
+                  >
                     Log In
-                  </li>
+                  </motion.li>
                 </Link>
                 <Link to="/" className="dropdown__navigate">
-                  <li className="dropdown__item  dropdown__item--top">
+                  <motion.li
+                    variants={listItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="dropdown__item  dropdown__item--top"
+                  >
                     Register
-                  </li>
+                  </motion.li>
                 </Link>
               </>
             )}
