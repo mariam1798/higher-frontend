@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import VideosList from "../../components/VideosList/VideosList";
 import "./UserPage.scss";
 import UserProfile from "../../components/UserProfile/UserProfile";

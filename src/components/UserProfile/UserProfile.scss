@@ -13,6 +13,7 @@
   width: 100%;
   @include tablet {
     width: 18rem;
+    margin-bottom: 1rem;
   }
 
   &__icon {

@@ -17,7 +17,6 @@ export default function JobsPage() {
 
     try {
       const { data } = await getSearchedJobs(searchContent);
-      console.log(data.data);
       setJobs(data.data);
     } catch (error) {
       console.error("Error fetching jobs:", error);

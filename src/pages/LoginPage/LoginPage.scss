@@ -14,7 +14,7 @@
     width: 20rem;
     padding: 1rem;
     background-color: $secondary-background-color;
-    border-radius: 20px;
+    border-radius: $border-radius;
 
     @include tablet {
       box-shadow: 0 0 8px 8px rgba(140, 82, 255, 0.5);

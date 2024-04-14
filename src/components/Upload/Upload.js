@@ -21,7 +21,6 @@ export default function Search({ user, id, setVideos }) {
   };
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
   const { authToken } = useAuth();
   const handleOpenModal = () => setModalIsOpen(true);
 
@@ -44,8 +43,7 @@ export default function Search({ user, id, setVideos }) {
     event.preventDefault();
 
     if (!formData.title || !formData.description || !selectedFile) {
-      setMessage("You must fill in all the form fields");
-      notify("You must fill in all the form fields");
+      notify("You must fill in all the form fields ⛔️");
       return;
     }
     const uploadData = new FormData();
@@ -57,13 +55,10 @@ export default function Search({ user, id, setVideos }) {
       const response = await postVideos(uploadData, authToken);
 
       if (response.status === 200) {
-        setMessage("Highered successfully!");
-        notify("Highered successfully!");
+        notify("Highered successfully! ⬆️💜");
         const { data } = await fetchVideos(id);
         setVideos(data);
-      } else {
-        setMessage("Upload failed!");
-        notify("Upload failed!");
+        notify("Upload failed❗️");
       }
 
       setTimeout(() => {
@@ -73,8 +68,7 @@ export default function Search({ user, id, setVideos }) {
       event.target.reset();
     } catch (error) {
       console.error("Error:", error);
-      alert("Upload error!");
-      notify("Upload error!");
+      notify("Upload error!❌");
     }
   };
 

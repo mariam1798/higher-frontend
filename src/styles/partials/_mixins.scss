@@ -93,21 +93,10 @@
   border: solid 2px transparent;
   &:hover {
     background-color: $primary-background-color;
-    color: white;
+    color: $primary-text-color;
   }
 }
 
-@mixin higher-button {
-  border: none;
-  @include custom-button;
-  background-color: $primary-background-color;
-  color: $primary-text-color;
-
-  &:hover {
-    border: $divider-line;
-    box-shadow: 0 0px 20px 0px #fff inset;
-  }
-}
 @mixin text-field {
   background-color: $primary-text-color;
   border-radius: 10px;

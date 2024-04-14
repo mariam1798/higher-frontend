@@ -18,9 +18,7 @@
   }
 
   &__nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-container(space-between, center);
   }
 
   &__title {
@@ -28,6 +26,7 @@
   }
   &__logo {
     width: 5rem;
+    cursor: pointer;
   }
 
   &__navigate {

@@ -8,17 +8,16 @@
   }
 
   &__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-container(center, center);
     flex-direction: column;
     background-image: url("../../assets/images/hero.svg");
     background-position: 70%;
     @include container;
-    position: relative;
     @include tb-padding(5, 5);
+    position: relative;
     border-radius: $border-radius;
     height: 40rem;
+
     @include tablet {
       height: 20rem;
     }
@@ -26,6 +25,7 @@
       margin-bottom: 2rem;
     }
   }
+
   &__title {
     margin: 0;
     overflow: hidden;
@@ -36,6 +36,7 @@
       width: 45%;
       font-size: 1.8rem;
     }
+
     &--span {
       color: $primary-text-color;
       padding-left: 0.6rem;
@@ -49,6 +50,7 @@
       }
     }
   }
+
   &__text {
     text-align: center;
     line-height: 2rem;
@@ -60,7 +62,7 @@
   }
 
   &__description {
-    @include tb-margin(2, 2);
+    @include tb-margin(2, 10);
     @include container;
     border: $divider-line;
     border-radius: $border-radius;

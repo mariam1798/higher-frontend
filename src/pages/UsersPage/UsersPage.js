@@ -8,30 +8,17 @@ import UserProfile from "../../components/UserProfile/UserProfile";
 import "./UsersPage.scss";
 
 export default function UsersPage() {
-  const [users, setUsers] = useState(null);
   const [profileUser, setProfileUser] = useState([]);
   const { setVideos, videos } = useAuth();
 
   const { userId } = useParams();
-
-  const fetchUsers = async () => {
-    try {
-      const { data } = await getUsers();
-      setUsers(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   const fetchUser = async (userId) => {
     try {
       const { data } = await getUser(userId);
       setProfileUser(data);
     } catch (error) {
-      console.log("error displaying user", error);
+      console.error("error displaying user", error);
       setProfileUser([]);
     }
   };

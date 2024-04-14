@@ -56,11 +56,7 @@ export default function VideoCard({
               transition={{ duration: 0.2, ease: "easeInOut" }}
               className="video__profile"
             >
-              <img
-                src={avatar}
-                alt="profile picture"
-                className="video__avatar"
-              />
+              <img src={avatar} alt={channel} className="video__avatar" />
               <h2 onClick={handleChannelClick} className="video__name">
                 {channel}
               </h2>

@@ -22,9 +22,8 @@
   }
 
   &__watermark {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-container(center, center);
+    cursor: pointer;
 
     @include tablet {
       width: 25%;
@@ -41,6 +40,7 @@
     }
     &--tablet {
       display: none;
+
       @include tablet {
         display: flex;
         width: 12rem;

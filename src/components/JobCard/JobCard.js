@@ -13,7 +13,7 @@ export default function JobCard({
   return (
     <section onClick={handleOpenModal} className="card">
       <div className="card__left">
-        <img src={logo || upload} className="card__image" />
+        <img src={logo || upload} alt="company logo" className="card__image" />
       </div>
       <div className="card__right">
         <h4 className="card__employ">{job_title}</h4>
@@ -21,6 +21,7 @@ export default function JobCard({
       </div>
       <ImageMotion
         handleClick={handleOpenModal}
+        alt="open modal"
         src={plus}
         className="card__open"
       />
