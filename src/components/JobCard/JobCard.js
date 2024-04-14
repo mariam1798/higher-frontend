@@ -9,7 +9,7 @@ export default function JobCard({
   handleOpenModal,
 }) {
   return (
-    <section className="job__card">
+    <section onClick={handleOpenModal} className="job__card">
       <div className="job__left">
         <img src={logo || upload} className="job__image" />
       </div>

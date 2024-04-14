@@ -3,12 +3,29 @@ import JobCard from "../JobCard/JobCard";
 import JobDetailsModal from "../JobDetailsModal/JobDetailsModal";
 
 export default function JobsList({ jobs }) {
-  const [visibleJobs, setVisibleJobs] = useState(3);
+  const [visibleJobs, setVisibleJobs] = useState(4);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleOpenModal = () => setModalIsOpen(true);
 
   const handleCloseModal = () => setModalIsOpen(false);
+  const modalVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.75, // Starts slightly smaller
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+  };
+
   return (
     <section className="job">
       <h3 className="job__title">Job Suggestions</h3>
@@ -26,6 +43,8 @@ export default function JobsList({ jobs }) {
                   job_title={job.job_title}
                 />
               ))}
+        </div>
+        <div className="job__display">
           {jobs && visibleJobs < jobs.length && (
             <button
               className="job__button"

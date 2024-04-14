@@ -41,21 +41,7 @@ export default function VideoCard({
 
   return (
     <>
-      <motion.section
-        initial={{
-          opacity: 0,
-          x: index % 2 === 0 ? 50 : -50,
-        }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          transition: {
-            duration: 1,
-          },
-        }}
-        viewport={{ once: true }}
-        className="video__card"
-      >
+      <section className="video__card">
         <Video url={url} />
         <div className="video__text">
           <h2 className="video__title">{title}</h2>
@@ -74,7 +60,7 @@ export default function VideoCard({
             />
           </div>
         </div>
-      </motion.section>
+      </section>
     </>
   );
 }
