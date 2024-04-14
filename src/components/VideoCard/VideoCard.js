@@ -15,7 +15,15 @@ export default function VideoCard({
   title,
   userId,
   index,
+  description,
+  timestamp,
+  avatar,
 }) {
+  const date = new Date(timestamp).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   const { user } = useAuth();
   const navigate = useNavigate();
   const handleChannelClick = () => {
@@ -23,7 +31,6 @@ export default function VideoCard({
       navigate(`/user/${userId}`);
     }
   };
-
   const isLoggedInUser = userId === user?.id;
   const updateVideo = async (videoId) => {
     console.log("Updating likes for video ID:", videoId);
@@ -44,20 +51,35 @@ export default function VideoCard({
       <section className="video__card">
         <Video url={url} />
         <div className="video__text">
-          <h2 className="video__title">{title}</h2>
-          <h2 onClick={handleChannelClick} className="video__name">
-            {channel}
-          </h2>
-          <div className="video__increment">
-            <h3 className="video__number">{likes}</h3>
-            <img
-              onClick={() => updateVideo(videoId)}
-              src={likeIcon}
-              alt=""
-              className={`video__like ${
-                isLoggedInUser ? "video__like--disabled" : ""
-              }`}
-            />
+          <div className="video__top">
+            <div className="video__profile">
+              <img
+                src={avatar}
+                alt="profile picture"
+                className="video__avatar"
+              />
+              <h2 onClick={handleChannelClick} className="video__name">
+                {channel}
+              </h2>
+            </div>
+            <div className="video__increment">
+              <img
+                onClick={() => updateVideo(videoId)}
+                src={likeIcon}
+                alt=""
+                className={`video__like ${
+                  isLoggedInUser ? "video__like--disabled" : ""
+                }`}
+              />
+              <h3 className="video__number">{likes}</h3>
+            </div>
+          </div>
+          <div className="video__info">
+            <h2 className="video__title">{title}</h2>
+            <h3 className="video__description">{description}</h3>
+          </div>
+          <div className="video__timestamp">
+            <h3 className="video__date">{date}</h3>
           </div>
         </div>
       </section>

@@ -4,7 +4,6 @@
 .video {
   background-color: $primary-background-color;
   margin-top: 1rem;
-
   @include desktop {
     border: $divider-line;
     border-left: none;
@@ -18,13 +17,16 @@
   &__wrapper {
     position: relative;
   }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
   &__card {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
     border: $divider-line;
-    border-radius: 20px;
-    @include background;
-
+    border-radius: 4px;
     margin-bottom: 1rem;
+    background-color: $secondary-bg-color;
     @include tablet {
       padding: 2rem;
     }
@@ -57,17 +59,29 @@
     }
   }
   &__number {
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem;
+    color: #cac4d0;
   }
   &__play {
-    border-radius: 20px;
+    border-radius: 4px;
     width: 100%;
     height: 35rem;
     object-fit: cover;
+    @include box-shadow;
   }
   &__title {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     text-transform: capitalize;
+  }
+  &__description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: $secondary-background-color;
+    padding: 1rem 0.2rem;
+    border-radius: 4px;
+    text-transform: capitalize;
+    @include box-shadow;
   }
   &__name {
     font-size: 1.2rem;
@@ -79,8 +93,26 @@
     flex-direction: column;
     background-color: $primary-background-color;
     border: $divider-line;
-    border-radius: $border-radius;
+    border-radius: 4px;
     margin-top: 1rem;
-    padding-left: 1rem;
+    @include lr-padding(1, 1);
+    @include box-shadow;
+  }
+  &__timestamp {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__date {
+    font-size: 0.7rem;
+    font-weight: 400;
+    padding-right: 1rem;
+    color: #cac4d0;
+  }
+  &__avatar {
+    width: 3rem;
+  }
+  &__profile {
+    display: flex;
   }
 }
