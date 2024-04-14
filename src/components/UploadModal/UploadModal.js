@@ -3,13 +3,15 @@ import close from "../../assets/icons/close.svg";
 import "./UploadModal.scss";
 import { Link } from "react-router-dom";
 import higher from "../../assets/icons/higherwhite.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UploadModal({
   modalIsOpen,
   handleCloseModal,
   handleChange,
   handleSubmit,
-  message,
+  notify,
 }) {
   return (
     <Modal
@@ -68,8 +70,10 @@ export default function UploadModal({
           <label htmlFor="fileInput" className="modal__upload">
             Upload
           </label>
-          <button className="modal__button">Submit</button>
-          {message && <p>{message}</p>}
+          <button onClick={notify} className="modal__button">
+            Submit
+          </button>
+          <ToastContainer />
         </form>
         <div className="modal__cancel">
           <button onClick={handleCloseModal} className="modal__exit">

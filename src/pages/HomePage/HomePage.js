@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import VideosList from "../../components/VideosList/VideosList";
 import "./HomePage.scss";
 import { useAuth } from "../../components/UseContext/UseContext";
+import Loader from "../../components/Loader/Loader";
 
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
@@ -61,16 +62,16 @@ export default function HomePage() {
     <>
       <main className="home">
         {jobs === undefined ? (
-          <p>Loading jobs...</p>
+          <Loader />
         ) : jobs.length === 0 ? (
           ""
         ) : (
           <JobsList jobs={jobs} />
         )}
         {homeVideos === null ? (
-          <p>Loading videos...</p>
+          <Loader />
         ) : homeVideos.length === 0 ? (
-          <p>No videos found.</p>
+          <Loader />
         ) : (
           <VideosList fetchAllVideos={fetchAllVideos} videos={homeVideos} />
         )}
