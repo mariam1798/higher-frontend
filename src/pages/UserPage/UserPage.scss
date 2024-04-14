@@ -19,7 +19,8 @@
     margin-bottom: 1rem;
     @include tablet {
       display: flex;
-      justify-content: space-between;
+      gap: 3rem;
+      justify-content: center;
       align-items: center;
       padding: 2rem;
     }

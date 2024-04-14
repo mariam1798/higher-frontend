@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getSearchedJobs } from "../utils/axios";
 import JobsList from "../components/JobsList/JobsList";
+import Search from "../components/Search/Search";
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState([]);
@@ -22,22 +23,15 @@ export default function JobsPage() {
     }
   };
   return (
-    <section className="search">
-      <div className="search__container">
-        <div className="search__top">
-          <form onSubmit={handleFormSubmit} className="search__wrap">
-            <input
-              className="search__bar"
-              placeholder="SEARCH"
-              name="search"
-              onChange={handleInputChange}
-              value={searchContent}
-            ></input>
-            <button className="search__submit">Submit</button>
-          </form>
-        </div>
+    <section className="jobs">
+      <Search
+        handleInputChange={handleInputChange}
+        handleFormSubmit={handleFormSubmit}
+        searchContent={searchContent}
+      />
+      <div className="jobs__container">
+        <JobsList jobs={jobs} />
       </div>
-      <JobsList jobs={jobs} />
     </section>
   );
 }

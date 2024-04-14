@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import close from "../../assets/icons/close.svg";
-import higher from "../../assets/icons/logoteal.svg";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./JobDetailsModal.scss";
 import BulletPoints from "../BulletPoints/BulletPoints";
 import { motion, AnimatePresence } from "framer-motion";
+import UploadButton from "../UploadButton/UploadButton";
 
 export default function JobDetailsModal({
   modalIsOpen,
@@ -18,10 +18,16 @@ export default function JobDetailsModal({
   job_country,
   job_apply,
 }) {
+  const notify = () => {
+    toast("highered Successfully");
+    setTimeout(() => {
+      handleCloseModal();
+    }, 3000);
+  };
   const modalVariants = {
     hidden: {
       opacity: 0,
-      scale: 0.75, // Starts slightly smaller
+      scale: 0.75,
     },
     visible: {
       opacity: 1,
@@ -80,15 +86,21 @@ export default function JobDetailsModal({
                   </p>
                 </div>
                 <div className="details__link">
-                  <Link className="details__navigate" to={job_apply}>
+                  <a
+                    className="details__navigate"
+                    href={job_apply}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <button className="details__button">Easy Apply</button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
             <BulletPoints text={job_description} />
 
             <div className="details__cancel">
+              <UploadButton type="details__upload" notify={notify} />
               <button onClick={handleCloseModal} className="details__button">
                 Cancel
               </button>

@@ -1,0 +1,11 @@
+@use "../../styles//partials//variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.button {
+  @include primary-button;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  @include tablet {
+    width: 8rem;
+  }
+}

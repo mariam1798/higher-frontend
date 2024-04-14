@@ -36,12 +36,13 @@
     width: 100%;
     @include desktop {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
   }
   &__info {
     @include desktop {
-      width: 85%;
+      width: 60%;
+      padding: 1rem;
     }
   }
   &__wrap {
@@ -100,16 +101,11 @@
   &__navigate {
     width: 10rem;
     text-decoration: none;
-  }
-  &__description {
-    padding-left: 1rem;
-    overflow-y: auto;
-    max-height: 20rem;
-    @include tablet {
-      padding-top: 1rem;
-      max-height: 25rem;
+    @include desktop {
+      margin-right: 1rem;
     }
   }
+
   &__title {
     font-size: 0.9rem;
     text-align: center;
@@ -121,17 +117,7 @@
     justify-content: flex-end;
     align-items: center;
   }
-  &__text {
-    font-size: 1rem;
-    line-height: 1.8rem;
-    list-style-type: circle;
-    @include tablet {
-      line-height: 2.3rem;
-    }
-    @include desktop {
-      font-size: 0.9rem;
-    }
-  }
+
   &__cancel {
     @include tablet {
       display: flex;
@@ -145,5 +131,14 @@
   }
   &__close {
     width: 1.5rem;
+  }
+  &__upload {
+    @include tablet {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      gap: 1rem;
+      align-items: center;
+    }
   }
 }

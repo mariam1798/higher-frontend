@@ -52,7 +52,11 @@ export default function VideoCard({
         <Video url={url} />
         <div className="video__text">
           <div className="video__top">
-            <div className="video__profile">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="video__profile"
+            >
               <img
                 src={avatar}
                 alt="profile picture"
@@ -61,7 +65,7 @@ export default function VideoCard({
               <h2 onClick={handleChannelClick} className="video__name">
                 {channel}
               </h2>
-            </div>
+            </motion.div>
             <div className="video__increment">
               <motion.img
                 whileHover={{ scale: 1.1 }}

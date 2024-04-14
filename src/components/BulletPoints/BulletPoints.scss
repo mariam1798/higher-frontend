@@ -1,0 +1,23 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.info {
+  padding-left: 1rem;
+  overflow-y: auto;
+  max-height: 20rem;
+  @include tablet {
+    padding-top: 1rem;
+    max-height: 25rem;
+  }
+  &__text {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    list-style-type: circle;
+    @include tablet {
+      line-height: 2.3rem;
+    }
+    @include desktop {
+      font-size: 0.9rem;
+    }
+  }
+}

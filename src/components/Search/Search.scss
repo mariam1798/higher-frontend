@@ -1,0 +1,65 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.search {
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    border: $divider-line;
+    border-radius: $border-radius;
+    background-color: $secondary-bg-color;
+    @include box-shadow;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    @include background;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.2rem;
+    border-radius: $border-radius;
+  }
+  &__form {
+    width: 100%;
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @include desktop {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+  }
+
+  &__bar {
+    background-image: url("../../assets/icons/search.svg");
+    height: 2.3rem;
+    background-repeat: no-repeat;
+    background-position: -0.5rem;
+    background-size: 3rem;
+    text-indent: 2.3rem;
+    background-color: $primary-background-color;
+    border: none;
+    border-radius: $border-radius;
+    width: 100%;
+    color: white;
+    outline: 0;
+
+    &::placeholder {
+      font-size: 0.8rem;
+
+      @include tablet {
+        font-size: 0.9rem;
+        width: 100%;
+      }
+    }
+  }
+  &__bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

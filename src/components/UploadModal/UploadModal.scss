@@ -68,14 +68,12 @@
   }
   &__upload {
     @include primary-button;
-    margin-top: 2rem;
   }
   &__input {
     @include text-field;
     color: #84358e;
   }
   &__button {
-    margin-top: 1rem;
     @include primary-button;
   }
   &__navigate {

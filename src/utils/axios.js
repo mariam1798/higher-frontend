@@ -18,7 +18,7 @@ const getJobs = (data) => {
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "8f3af3d0ecmsh4195f394ab84783p15c6d8jsnfe8a676696de",
+      "X-RapidAPI-Key": "76116684a3msh0e5d0d6bca727d7p116071jsn89a88dd748ae",
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
@@ -35,7 +35,7 @@ const getSearchedJobs = async (searchQuery) => {
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "8f3af3d0ecmsh4195f394ab84783p15c6d8jsnfe8a676696de",
+      "X-RapidAPI-Key": "76116684a3msh0e5d0d6bca727d7p116071jsn89a88dd748ae",
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };

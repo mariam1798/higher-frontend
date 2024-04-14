@@ -5,6 +5,7 @@ import { getUser, getUsers, fetchVideos } from "../../utils/axios";
 import VideosList from "../../components/VideosList/VideosList";
 import { useAuth } from "../../components/UseContext/UseContext";
 import UserProfile from "../../components/UserProfile/UserProfile";
+import "./UsersPage.scss";
 
 export default function UsersPage() {
   const [users, setUsers] = useState(null);
@@ -65,10 +66,14 @@ export default function UsersPage() {
   return (
     <main className="users">
       <div className="users__container">
+        <h2 className="users__name">{profileUser.name}'s Profile</h2>
         <UserProfile
           avatar={`${process.env.REACT_APP_API_BASE_URL}/${profileUser.avatar}`}
           user={profileUser}
         />
+        <h2 className="users__name users__name--tablet">
+          {profileUser.name}'s Profile
+        </h2>
       </div>
       <VideosList setVideos={setVideos} videos={videos} />
     </main>

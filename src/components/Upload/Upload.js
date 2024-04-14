@@ -69,7 +69,7 @@ export default function Search({ user, id, setVideos }) {
       setTimeout(() => {
         handleCloseModal();
         navigate("/user");
-      }, 5000);
+      }, 3000);
       event.target.reset();
     } catch (error) {
       console.error("Error:", error);
@@ -79,16 +79,16 @@ export default function Search({ user, id, setVideos }) {
   };
 
   return (
-    <section className="search">
-      <div className="search__container">
-        <div className="search__wrap">
-          <button onClick={handleOpenModal} className="search__button">
+    <section className="upload">
+      <div className="upload__container">
+        <div className="upload__wrap">
+          <button onClick={handleOpenModal} className="upload__button">
             UPLOAD
           </button>
         </div>
         <Link to="/user"></Link>
-        <h3 className="search__name">
-          Welcome back, <span className="search__span"> {user.name}! </span>
+        <h3 className="upload__name">
+          Welcome back, <span className="upload__span"> {user.name}! </span>
         </h3>
       </div>
       <UploadModal

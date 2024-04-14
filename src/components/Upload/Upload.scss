@@ -1,7 +1,7 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.search {
+.upload {
   @include tablet {
     display: flex;
     flex-direction: row;
@@ -43,31 +43,6 @@
     padding: 0.2rem;
     border-radius: $border-radius;
     @include tablet {
-    }
-  }
-  &__bar {
-    background-image: url("../../assets/icons/search.svg");
-    height: 2.3rem;
-    background-repeat: no-repeat;
-    background-position: -0.5rem;
-    background-size: 3rem;
-    text-indent: 2.3rem;
-    background-color: $primary-background-color;
-    border: none;
-    border-radius: $border-radius;
-    width: 100%;
-    color: white;
-    outline: 0;
-
-    &::placeholder {
-      font-size: 0.8rem;
-
-      @include tablet {
-        font-size: 0.9rem;
-      }
-    }
-    @include tablet {
-      width: 10rem;
     }
   }
 

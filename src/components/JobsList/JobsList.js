@@ -4,27 +4,11 @@ import JobDetailsModal from "../JobDetailsModal/JobDetailsModal";
 
 export default function JobsList({ jobs }) {
   const [visibleJobs, setVisibleJobs] = useState(4);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(null);
 
-  const handleOpenModal = () => setModalIsOpen(true);
+  const handleOpenModal = (jobId) => setModalIsOpen(jobId);
 
   const handleCloseModal = () => setModalIsOpen(false);
-  const modalVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.75, // Starts slightly smaller
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        type: "spring",
-        damping: 25,
-        stiffness: 500,
-      },
-    },
-  };
 
   return (
     <section className="job">
@@ -36,7 +20,7 @@ export default function JobsList({ jobs }) {
               .slice(0, visibleJobs)
               .map((job) => (
                 <JobCard
-                  handleOpenModal={handleOpenModal}
+                  handleOpenModal={() => handleOpenModal(job.job_id)}
                   key={job.job_id}
                   employer={job.employer_name}
                   logo={job.employer_logo}
@@ -61,7 +45,7 @@ export default function JobsList({ jobs }) {
           .map((job) => (
             <JobDetailsModal
               handleOpenModal={handleOpenModal}
-              modalIsOpen={modalIsOpen}
+              modalIsOpen={modalIsOpen === job.job_id}
               handleCloseModal={handleCloseModal}
               key={job.job_id}
               employer={job.employer_name}

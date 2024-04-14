@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import "./Button.scss";
 
 export default function Button({ text, handle }) {
   return (
@@ -7,7 +8,7 @@ export default function Button({ text, handle }) {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="register__button"
+      className="button"
       onClick={handle}
     >
       {text}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./BulletPoints.scss";
 
 export default function BulletPoints({ text }) {
   const points = text
@@ -7,9 +8,9 @@ export default function BulletPoints({ text }) {
     .filter((point) => point.trim() !== "");
 
   return (
-    <ul className="details__description">
+    <ul className="info">
       {points.map((point, index) => (
-        <li className="details__text" key={index}>
+        <li className="info__text" key={index}>
           {point.trim()}
         </li>
       ))}

@@ -82,6 +82,10 @@
   &:hover {
     @include background;
   }
+  @include tablet {
+    border: $divider-line;
+    width: 8rem;
+  }
 }
 
 @mixin secondary-button {
