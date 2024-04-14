@@ -14,7 +14,7 @@ export default function JobsList({ jobs }) {
     <section className="jobs">
       <h3 className="jobs__title">Jobs Suggestions</h3>
       <div className="jobs__wrapper">
-        <div className="jobs__list">
+        <section className="jobs__list">
           {jobs &&
             jobs
               .slice(0, visibleJobs)
@@ -27,7 +27,7 @@ export default function JobsList({ jobs }) {
                   job_title={job.job_title}
                 />
               ))}
-        </div>
+        </section>
         <div className="jobs__display">
           {jobs && visibleJobs < jobs.length && (
             <button

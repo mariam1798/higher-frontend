@@ -33,7 +33,6 @@ export default function VideoCard({
   };
   const isLoggedInUser = userId === user?.id;
   const updateVideo = async (videoId) => {
-    console.log("Updating likes for video ID:", videoId);
     if (isLoggedInUser) {
       return;
     }

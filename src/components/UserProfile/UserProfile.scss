@@ -10,7 +10,6 @@
   border-radius: $border-radius;
   background-color: $secondary-bg-color;
   @include box-shadow;
-  margin: 1rem;
   width: 100%;
   @include tablet {
     width: 18rem;
@@ -48,7 +47,7 @@
 
   &__text {
     text-transform: capitalize;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 300;
     margin: 0;
     line-height: 1.5rem;

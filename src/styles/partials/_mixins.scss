@@ -82,9 +82,6 @@
   &:hover {
     @include background;
   }
-  @include tablet {
-    width: 8rem;
-  }
 }
 
 @mixin secondary-button {

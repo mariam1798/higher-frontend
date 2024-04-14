@@ -31,8 +31,9 @@ export default function UserPage() {
   if (failedAuth) {
     return (
       <main className="Profile">
-        <p>You must be logged in to see this page.</p>
-        <Link to="/login">Log in</Link>
+        <Link className="home__error" to={"/"}>
+          <p>Please Log in or Register</p>
+        </Link>
       </main>
     );
   }
