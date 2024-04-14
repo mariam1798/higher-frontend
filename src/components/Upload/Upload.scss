@@ -7,7 +7,11 @@
     flex-direction: row;
     border: $divider-line;
     border-radius: $border-radius;
+    background-color: $secondary-bg-color;
+    @include box-shadow;
     padding: 2rem;
+    height: 12.3rem;
+    width: 18rem;
   }
   &__span {
     color: $primary-accent-color;

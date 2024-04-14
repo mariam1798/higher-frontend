@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import userIcon from "../../assets/icons/user.svg";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../UseContext/UseContext";
+import ImageMotion from "../../Motion/ImageMotion";
 
 export default function DropDown() {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,10 +28,9 @@ export default function DropDown() {
   }, []);
   return (
     <section ref={dropdownRef} className="dropdown">
-      <img
-        onClick={dropdownClick}
+      <ImageMotion
+        handleClick={dropdownClick}
         src={userIcon}
-        alt="user image"
         className="dropdown__avatar "
       />
       {isVisible && (

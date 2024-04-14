@@ -3,6 +3,7 @@ import "./NavSide.scss";
 import DropDown from "../DropDown/DropDown";
 import home from "../../assets/icons/home.svg";
 import job from "../../assets/icons/work.svg";
+import ImageMotion from "../../Motion/ImageMotion";
 
 export default function NavSide() {
   return (
@@ -10,10 +11,10 @@ export default function NavSide() {
       <div className="side__container">
         <div className="side__nav">
           <Link className="side__icon" to="/jobs">
-            <img src={job} alt="" className="side__logo" />
+            <ImageMotion src={job} className="side__logo" />
           </Link>
           <Link className="side__home" to="/home">
-            <img src={home} alt="" className="side__logo" />
+            <ImageMotion src={home} className="side__logo" />
           </Link>
         </div>
 

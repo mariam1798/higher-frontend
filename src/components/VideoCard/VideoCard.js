@@ -63,7 +63,9 @@ export default function VideoCard({
               </h2>
             </div>
             <div className="video__increment">
-              <img
+              <motion.img
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
                 onClick={() => updateVideo(videoId)}
                 src={likeIcon}
                 alt=""

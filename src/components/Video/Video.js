@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import playIcon from "../../assets/icons/play.svg";
+import ImageMotion from "../../Motion/ImageMotion";
 
 export default function Video({ url }) {
   const [play, setPlay] = useState(false);
@@ -19,7 +20,7 @@ export default function Video({ url }) {
         <source src={url} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {!play && <img src={playIcon} alt="play" className="video__icon" />}
+      {!play && <ImageMotion src={playIcon} className="video__icon" />}
     </div>
   );
 }

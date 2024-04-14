@@ -2,6 +2,7 @@ import React from "react";
 import "./JobCard.scss";
 import upload from "../../assets/icons/upload.svg";
 import plus from "../../assets/icons/plus.svg";
+import ImageMotion from "../../Motion/ImageMotion";
 export default function JobCard({
   employer,
   logo,
@@ -17,10 +18,9 @@ export default function JobCard({
         <h4 className="job__employ">{job_title}</h4>
         <h4 className="job__name">{employer}</h4>
       </div>
-      <img
-        onClick={handleOpenModal}
+      <ImageMotion
+        handleClick={handleOpenModal}
         src={plus}
-        alt="plus"
         className="job__open"
       />
     </section>
