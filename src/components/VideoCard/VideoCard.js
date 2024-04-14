@@ -2,7 +2,7 @@ import "./VideoCard.scss";
 import likeIcon from "../../assets/icons/like.svg";
 import { editLikes } from "../../utils/axios";
 import Video from "../Video/Video";
-import { useAuth } from "../UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -48,7 +48,7 @@ export default function VideoCard({
 
   return (
     <>
-      <section className="video__card">
+      <section className="video">
         <Video url={url} />
         <div className="video__text">
           <div className="video__top">

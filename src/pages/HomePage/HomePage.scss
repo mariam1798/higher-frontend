@@ -6,4 +6,17 @@
     display: flex;
     justify-content: space-between;
   }
+  &__error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    text-decoration: none;
+    color: $primary-accent-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

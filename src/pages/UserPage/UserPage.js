@@ -3,7 +3,7 @@ import VideosList from "../../components/VideosList/VideosList";
 import "./UserPage.scss";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Upload from "../../components/Upload/Upload";
-import { useAuth } from "../../components/UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import { useEffect } from "react";
 import { fetchVideos } from "../../utils/axios";
 

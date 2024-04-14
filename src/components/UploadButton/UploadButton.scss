@@ -1,0 +1,18 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.submit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  @include tablet {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  &__upload,
+  &__button {
+    @include primary-button;
+  }
+}

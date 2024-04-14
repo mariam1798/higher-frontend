@@ -2,7 +2,7 @@ import "./DropDown.scss";
 import { Link } from "react-router-dom";
 import userIcon from "../../assets/icons/user.svg";
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "../UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import ImageMotion from "../../Motion/ImageMotion";
 import { motion } from "framer-motion";
 

@@ -13,14 +13,17 @@
     height: 12.3rem;
     width: 18rem;
   }
+
   &__span {
     color: $primary-accent-color;
   }
+
   &__name {
     text-transform: capitalize;
     text-align: center;
     line-height: 2rem;
   }
+
   &__container {
     @include tablet {
       display: flex;

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import VideoCard from "../../components/VideoCard/VideoCard";
+import "./VideoList.scss";
 
 export default function VideosList({ fetchAllVideos, setVideos, videos }) {
   const sortedVideos = videos.sort(
@@ -7,7 +8,7 @@ export default function VideosList({ fetchAllVideos, setVideos, videos }) {
   );
 
   return (
-    <section className="video">
+    <section className="videos">
       {videos &&
         videos.map((video) => (
           <VideoCard

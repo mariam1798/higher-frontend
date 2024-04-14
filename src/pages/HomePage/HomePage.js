@@ -3,13 +3,14 @@ import JobsList from "../../components/JobsList/JobsList";
 import React, { useEffect, useState } from "react";
 import VideosList from "../../components/VideosList/VideosList";
 import "./HomePage.scss";
-import { useAuth } from "../../components/UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import Loader from "../../Motion/Loader/Loader";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
   const [homeVideos, setHomeVideos] = useState(null);
-  const { authToken, setFailedAuth, failedAuth, setUser } = useAuth();
+  const { authToken, setFailedAuth, failedAuth } = useAuth();
 
   const fetchAllVideos = async () => {
     try {
@@ -54,7 +55,11 @@ export default function HomePage() {
   }, []);
 
   if (failedAuth) {
-    return <p>Failed to authenticate. Please log in again.</p>;
+    return (
+      <Link className="home__error" to={"/"}>
+        <p>Please Log in or Register</p>
+      </Link>
+    );
   }
 
   return (

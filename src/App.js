@@ -4,7 +4,7 @@ import UserPage from "./pages/UserPage/UserPage";
 import JobsPage from "./pages/JobsPage/JobsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import { AuthProvider } from "./components/UseContext/UseContext";
+import { AuthProvider } from "./Context/UseAuth";
 
 import "./App.scss";
 

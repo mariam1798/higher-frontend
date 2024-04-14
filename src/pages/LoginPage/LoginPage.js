@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import higher from "../../assets/icons/logoblack.svg";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.scss";
-import { useAuth } from "../../components/UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import { postLogin } from "../../utils/axios";
 
 export default function LoginPage() {

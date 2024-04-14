@@ -2,78 +2,52 @@
 @use "../../styles/partials/variables" as *;
 
 .video {
-  background-color: $primary-background-color;
-  margin-top: 1rem;
+  padding: 2rem 1rem;
+  border: $divider-line;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background-color: $secondary-bg-color;
+  @include tablet {
+    padding: 2rem;
+  }
   @include desktop {
-    border: $divider-line;
-    border-left: none;
-    width: 100%;
-    padding-top: 2rem;
-    margin-top: 0;
-    border-top-right-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
+    max-width: 50rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
   }
 
-  &__wrapper {
-    position: relative;
-  }
   &__top {
     display: flex;
     justify-content: space-between;
   }
-  &__card {
-    padding: 2rem 1rem;
-    border: $divider-line;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    background-color: $secondary-bg-color;
-    @include tablet {
-      padding: 2rem;
-    }
-    @include desktop {
-      max-width: 50rem;
-      margin: 0 auto;
-      margin-bottom: 2rem;
-    }
-  }
+
   &__side {
     display: flex;
     justify-content: flex-end;
   }
-  &__icon {
-    height: 5rem;
-    position: absolute;
-    top: 40%;
-    left: 35%;
-    @include tablet {
-      left: 45%;
-    }
-  }
+
   &__increment {
     display: flex;
   }
+
   &__like {
     width: 3rem;
     &--disabled {
       cursor: not-allowed;
     }
   }
+
   &__number {
     font-size: 0.7rem;
     color: #cac4d0;
   }
-  &__play {
-    border-radius: 4px;
-    width: 100%;
-    height: 35rem;
-    object-fit: cover;
-    @include box-shadow;
-  }
+
   &__title {
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: capitalize;
   }
+
   &__description {
     font-size: 0.9rem;
     font-weight: 400;
@@ -83,11 +57,13 @@
     text-transform: capitalize;
     @include box-shadow;
   }
+
   &__name {
     font-size: 1.2rem;
     text-transform: capitalize;
     color: $primary-accent-color;
   }
+
   &__text {
     display: flex;
     flex-direction: column;
@@ -98,20 +74,24 @@
     @include lr-padding(1, 1);
     @include box-shadow;
   }
+
   &__timestamp {
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
+
   &__date {
     font-size: 0.7rem;
     font-weight: 400;
     padding-right: 1rem;
     color: $secondary-text-color;
   }
+
   &__avatar {
     width: 3rem;
   }
+
   &__profile {
     display: flex;
   }

@@ -4,7 +4,7 @@ import UploadModal from "../UploadModal/UploadModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchVideos, postVideos } from "../../utils/axios";
-import { useAuth } from "../UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import { toast } from "react-toastify";
 
 export default function Search({ user, id, setVideos }) {

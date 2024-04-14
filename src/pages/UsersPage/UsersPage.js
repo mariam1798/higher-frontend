@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUser, getUsers, fetchVideos } from "../../utils/axios";
 import VideosList from "../../components/VideosList/VideosList";
-import { useAuth } from "../../components/UseContext/UseContext";
+import { useAuth } from "../../Context/UseAuth";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import "./UsersPage.scss";
 
