@@ -6,6 +6,9 @@ import "./HomePage.scss";
 import { useAuth } from "../../Context/UseAuth";
 import Loader from "../../Motion/Loader/Loader";
 import { Link } from "react-router-dom";
+import Video from "../../components/Video/Video";
+import url from "../../assets/video/why.mp4";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
@@ -56,9 +59,25 @@ export default function HomePage() {
 
   if (failedAuth) {
     return (
-      <Link className="home__error" to={"/"}>
-        <p>Please Log in or Register</p>
-      </Link>
+      <>
+        <main>
+          <section className="home__login">
+            <Link className="home__message" to={"/"}>
+              <p className="home__error">💜Please Register or login💜</p>
+            </Link>
+            <h2 className="home__title">Why Higher?</h2>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0, y: -100, scale: 1.1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              className="home__video"
+            >
+              <Video url={url} />
+            </motion.div>
+          </section>
+        </main>
+      </>
     );
   }
 

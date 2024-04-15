@@ -6,15 +6,38 @@
     display: flex;
     justify-content: space-between;
   }
+  &__message {
+    text-decoration: none;
+    @include tablet {
+      display: flex;
+      justify-content: center;
+    }
+  }
   &__error {
     @include flex-container(center, center);
-    height: 30rem;
-    text-decoration: none;
-    color: $primary-accent-color;
-    font-size: 1.5rem;
+    @include primary-button;
+    font-size: 1.4rem;
+    @include tb-margin(3, 20);
     cursor: pointer;
-    &:hover {
-      text-decoration: underline;
+
+    @include tablet {
+      width: 20rem;
+    }
+  }
+  &__login {
+    height: 20rem;
+    @include tablet {
+      height: 30rem;
+    }
+  }
+  &__title {
+    color: $primary-accent-color;
+    text-transform: uppercase;
+    font-size: 2.3rem;
+    display: flex;
+    justify-content: center;
+    @include tablet {
+      font-size: 3rem;
     }
   }
 }

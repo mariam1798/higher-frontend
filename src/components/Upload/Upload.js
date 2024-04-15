@@ -58,7 +58,6 @@ export default function Search({ user, id, setVideos }) {
         notify("Highered successfully! ⬆️💜");
         const { data } = await fetchVideos(id);
         setVideos(data);
-        notify("Upload failed❗️");
       }
 
       setTimeout(() => {

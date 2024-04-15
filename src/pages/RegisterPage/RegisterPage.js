@@ -143,17 +143,6 @@ export default function RegisterPage() {
     },
   ];
 
-  const handleStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-
-    setCurrentStep(currentStep + 1);
-    setErrorMessage("");
-  };
-
-  const handleBack = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
-  };
-
   const validateField = (name, value) => {
     let errors = { ...formErrors };
 
@@ -166,6 +155,16 @@ export default function RegisterPage() {
     }
 
     setFormErrors(errors);
+  };
+
+  const handleStep = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+
+    setErrorMessage("");
+  };
+
+  const handleBack = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
   };
 
   const handleChange = (e) => {

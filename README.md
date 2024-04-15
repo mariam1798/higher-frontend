@@ -2,6 +2,7 @@
 
 To install all the required packages for this project, open your terminal or command prompt, navigate to the project's root directory, and run the following command:
 npm install i
+check .env.sammple for example of .env
 
 ## Overview
 
