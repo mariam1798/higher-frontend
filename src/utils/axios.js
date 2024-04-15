@@ -82,6 +82,23 @@ const getUsers = () => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/users`);
 };
 
+const postComments = (authToken, videoId, newComment) => {
+  return axios.post(
+    `${process.env.REACT_APP_API_BASE_URL}/comments/${videoId}`,
+    newComment,
+
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+};
+
+const fetchComments = (videoId) => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/comments/${videoId}`);
+};
+
 export {
   editLikes,
   fetchVideos,
@@ -94,4 +111,6 @@ export {
   getSearchedJobs,
   getUser,
   getUsers,
+  postComments,
+  fetchComments,
 };

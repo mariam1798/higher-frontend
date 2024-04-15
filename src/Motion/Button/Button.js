@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./Button.scss";
 
-export default function Button({ text, handle }) {
+export default function Button({ disabled, text, handle, name }) {
   return (
     <motion.button
       whileHover={{ scale: 1.1 }}
@@ -10,6 +10,8 @@ export default function Button({ text, handle }) {
       transition={{ type: "spring", stiffness: 300 }}
       className="button"
       onClick={handle}
+      disabled={disabled}
+      data-name={name}
     >
       {text}
     </motion.button>

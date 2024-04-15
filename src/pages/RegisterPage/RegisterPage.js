@@ -157,9 +157,15 @@ export default function RegisterPage() {
     setFormErrors(errors);
   };
 
-  const handleStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
+  const handleStep = (e) => {
+    if (currentStep > 1 && !e.target.dataset.name === "avatar") {
+      if (!formData[e.target.dataset.name]) {
+        validateField(e.target.dataset.name, formData[e.target.dataset.name]);
+        return;
+      }
+    }
 
+    setCurrentStep((prevStep) => prevStep + 1);
     setErrorMessage("");
   };
 
@@ -186,9 +192,9 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const hasErrors = Object.values(formErrors).some((error) => error);
     if (hasErrors || Object.values(formData).some((value) => !value.trim())) {
-      setErrorMessage("You must fill in all the form fields");
       return;
     }
 
@@ -203,6 +209,8 @@ export default function RegisterPage() {
     uploadData.append("professional_status", formData.professional_status);
     uploadData.append("experience_years", formData.experience_years);
     uploadData.append("job_title", formData.job_title);
+
+    console.log("I'm HERE!!");
     try {
       await handleRegister(uploadData);
       navigate("/login");

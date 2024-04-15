@@ -5,6 +5,7 @@ import Video from "../Video/Video";
 import { useAuth } from "../../Context/UseAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Comments from "../Comments/Comments";
 
 export default function VideoCard({
   fetchAllVideos,
@@ -61,6 +62,7 @@ export default function VideoCard({
                 {channel}
               </h2>
             </motion.div>
+            <Comments videoId={videoId} fetchAllVideos={fetchAllVideos} />
             <div className="video__increment">
               <motion.img
                 whileHover={{ scale: 1.1 }}

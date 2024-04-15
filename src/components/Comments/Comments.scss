@@ -1,0 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.comments {
+	@include desktop {
+		width: 100%;
+		margin: auto;
+	}
+}

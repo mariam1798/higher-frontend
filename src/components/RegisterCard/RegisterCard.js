@@ -86,12 +86,11 @@ export default function RegisterCard({
       )}
 
       <div className="form__buttons">
-        <Button text="Back" handle={handleBack} />
-
-        {step.type === "password" ? (
+        <Button text="Back" handle={handleBack} />w
+        {step.name === "password" ? (
           <Button text="Submit" handle={handleSubmit} />
         ) : (
-          <Button text="Next" handle={handleStep} />
+          <Button text="Next" handle={handleStep} name={step.name} />
         )}
       </div>
       {errorMessage && <p className="form__error">{errorMessage}</p>}
