@@ -18,7 +18,14 @@ export default function RegisterPage() {
   const [index, setIndex] = useState(0);
 
   const navigate = useNavigate();
-  const options = useMemo(() => countryList().getData(), []);
+  const options = useMemo(() => {
+    return countryList()
+      .getData()
+      .map((country) => ({
+        label: country.label,
+        value: country.label,
+      }));
+  }, []);
 
   const texts = [
     "Higher",
