@@ -48,10 +48,10 @@ export default function Comments({ videoId }) {
             <Comment
               key={uuidv4()}
               id={comment.id}
+              getComments={getComments}
               name={comment.name}
               date={comment.timeStamp}
               comment={comment.comment}
-              getComments={getComments}
               avatar={`${process.env.REACT_APP_API_BASE_URL}/${comment.avatar}`}
             />
           ))}

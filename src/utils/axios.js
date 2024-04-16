@@ -98,6 +98,7 @@ const postComments = (authToken, videoId, newComment) => {
 const fetchComments = (videoId) => {
   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/comments/${videoId}`);
 };
+
 const deleteComments = (authToken, commentId) => {
   return axios.delete(
     `${process.env.REACT_APP_API_BASE_URL}/comments/${commentId}`,

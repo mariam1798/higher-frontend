@@ -17,7 +17,7 @@ export default function Comment({
   const deleteComment = async () => {
     try {
       await deleteComments(authToken, commentId);
-      getComments();
+      getComments(commentId);
     } catch (error) {
       console.log("Error while trying to remove the inventory", error);
     }
@@ -29,7 +29,7 @@ export default function Comment({
         <img
           onClick={() => deleteComment(commentId)}
           src={avatar}
-          alt=""
+          alt="avatar"
           className="comment__image"
         />
       </div>

@@ -15,7 +15,6 @@ export default function VideoCard({
   channel,
   title,
   userId,
-  index,
   description,
   timestamp,
   avatar,
@@ -62,7 +61,7 @@ export default function VideoCard({
                 {channel}
               </h2>
             </motion.div>
-            <Comments videoId={videoId} fetchAllVideos={fetchAllVideos} />
+            <Comments videoId={videoId} />
             <div className="video__increment">
               <motion.img
                 whileHover={{ scale: 1.1 }}

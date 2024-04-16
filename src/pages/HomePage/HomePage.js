@@ -55,6 +55,7 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchAllVideos();
+    console.log("loading videis");
   }, []);
 
   if (failedAuth) {
