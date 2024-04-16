@@ -2,16 +2,20 @@
 @use "../../styles/partials/mixins" as *;
 
 .users {
+  @include desktop {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    max-width: 786px;
+    flex-direction: column;
+  }
+
   &__container {
-    @include tablet {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    @include desktop {
-      justify-content: space-between;
-      max-width: 786px;
-    }
+    display: flex;
+    justify-content: center;
+    width: 50rem;
+    align-items: center;
+    flex-direction: column;
   }
   &__name {
     text-align: center;
@@ -29,5 +33,9 @@
         font-size: 2.5rem;
       }
     }
+  }
+
+  &__wrapper {
+    display: none;
   }
 }

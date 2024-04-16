@@ -69,8 +69,11 @@
     height: auto;
     resize: none;
     outline: 0;
+    color: $primary-accent-color;
+    font-weight: 600;
     border: $divider-line;
     @include tablet {
+      font-size: 1.3rem;
       height: 2.5rem;
       overflow-y: hidden;
     }
@@ -85,10 +88,8 @@
 
   &__button {
     @include primary-button;
-    // background-image: url("");
     margin-top: 1rem;
     @include tablet {
-      background-size: 1rem;
       width: 12rem;
       margin: 0;
     }

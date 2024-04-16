@@ -53,7 +53,9 @@ export default function UsersPage() {
   return (
     <main className="users">
       <div className="users__container">
-        <h2 className="users__name">{profileUser.name}'s Profile</h2>
+        <div className="users__wrapper">
+          <h2 className="users__name">{profileUser.name}'s Profile</h2>
+        </div>
         <UserProfile
           avatar={`${process.env.REACT_APP_API_BASE_URL}/${profileUser.avatar}`}
           user={profileUser}

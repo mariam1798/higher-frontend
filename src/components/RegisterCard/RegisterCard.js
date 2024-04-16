@@ -9,7 +9,6 @@ export default function RegisterCard({
   formData,
   handleChange,
   handleSelect,
-  handleSubmit,
   handleStep,
   handleBack,
   errorMessage,
@@ -88,7 +87,7 @@ export default function RegisterCard({
       <div className="registeration__buttons">
         <Button text="Back" handle={handleBack} />
         {step.name === "password" ? (
-          <Button text="Submit" handle={handleSubmit} />
+          <Button text="Submit" />
         ) : (
           <Button text="Next" handle={handleStep} name={step.name} />
         )}
