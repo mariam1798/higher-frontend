@@ -1,10 +1,37 @@
 import "./Comment.scss";
+import { useAuth } from "../../Context/UseAuth";
+import { deleteComments } from "../../utils/axios";
+export default function Comment({
+  id,
+  getComments,
+  avatar,
+  name,
+  comment,
+  date,
+}) {
+  const commentId = id;
+  console.log(commentId);
 
-export default function Comment({ name, comment, date }) {
+  const { authToken } = useAuth();
+
+  const deleteComment = async () => {
+    try {
+      await deleteComments(authToken, commentId);
+      getComments();
+    } catch (error) {
+      console.log("Error while trying to remove the inventory", error);
+    }
+  };
+
   return (
     <div className="comment__card">
       <div className="comment__Left">
-        <div className="comment__image"></div>
+        <img
+          onClick={() => deleteComment(commentId)}
+          src={avatar}
+          alt=""
+          className="comment__image"
+        />
       </div>
       <div className="comment__right">
         <div className="comment__top">

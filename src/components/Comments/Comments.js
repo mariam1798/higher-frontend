@@ -6,7 +6,7 @@ import CommentsForm from "../CommentsForm/CommentsForm";
 import "./Comments.scss";
 import { useAuth } from "../../Context/UseAuth";
 
-export default function Comments({ fetchAllVideos, videoId }) {
+export default function Comments({ videoId }) {
   const { authToken } = useAuth();
 
   const [comments, setComments] = useState([]);
@@ -42,14 +42,19 @@ export default function Comments({ fetchAllVideos, videoId }) {
         commentsLength={comments.length}
       />
       <div className="comment">
-        {comments.map((comment) => (
-          <Comment
-            key={uuidv4()}
-            name={comment.name}
-            date={comment.timeStamp}
-            comment={comment.comment}
-          />
-        ))}
+        {comments
+          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+          .map((comment) => (
+            <Comment
+              key={uuidv4()}
+              id={comment.id}
+              name={comment.name}
+              date={comment.timeStamp}
+              comment={comment.comment}
+              getComments={getComments}
+              avatar={`${process.env.REACT_APP_API_BASE_URL}/${comment.avatar}`}
+            />
+          ))}
       </div>
     </section>
   );

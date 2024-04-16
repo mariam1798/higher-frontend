@@ -2,11 +2,6 @@
 @use "../../styles/partials/variables" as *;
 
 .comment {
-  &__image {
-    // background-color: $form-field-outline-color;
-    // @include avatar;
-  }
-
   &__card {
     display: flex;
     gap: 1rem;
@@ -48,6 +43,11 @@
     @include tablet {
       font-size: 1rem;
     }
+  }
+  &__image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
   }
 
   &__date {

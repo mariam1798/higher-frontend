@@ -5,9 +5,8 @@ export default function CommentsForm({ commentsLength, PostComments }) {
     <section className="forms">
       <h3 className="forms__comments">{commentsLength} Comments</h3>
       <div className="forms__container">
-        <img src="" alt="image of mohan muruge" className="forms__avatar" />
         <form className="form" onSubmit={PostComments}>
-          <h2 className="form__title">JOIN THE CONVERSATION</h2>
+          <h2 className="form__title">COMMENT TO HIGHER!</h2>
           <div className="form__group">
             <textarea
               className="form__input"
