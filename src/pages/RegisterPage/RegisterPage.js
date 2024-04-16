@@ -45,7 +45,7 @@ export default function RegisterPage() {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [texts.length]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -210,7 +210,6 @@ export default function RegisterPage() {
     uploadData.append("experience_years", formData.experience_years);
     uploadData.append("job_title", formData.job_title);
 
-    console.log("I'm HERE!!");
     try {
       await handleRegister(uploadData);
       navigate("/login");

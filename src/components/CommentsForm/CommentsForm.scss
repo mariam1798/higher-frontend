@@ -85,7 +85,7 @@
 
   &__button {
     @include primary-button;
-    background-image: url("");
+    // background-image: url("");
     margin-top: 1rem;
     @include tablet {
       background-size: 1rem;

@@ -25,7 +25,7 @@ export default function UserPage() {
       };
       fetchVideosForUser();
     }
-  }, [user]);
+  }, [user, setVideos]);
 
   if (!user) {
     return (

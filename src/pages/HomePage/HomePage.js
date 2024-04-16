@@ -1,6 +1,6 @@
 import { getProfile, getJobs, getVideos } from "../../utils/axios";
 import JobsList from "../../components/JobsList/JobsList";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import VideosList from "../../components/VideosList/VideosList";
 import "./HomePage.scss";
 import { useAuth } from "../../Context/UseAuth";
@@ -24,6 +24,23 @@ export default function HomePage() {
       setHomeVideos([]);
     }
   };
+  const loadData = useCallback(async () => {
+    try {
+      const storedJobs = localStorage.getItem("jobsData");
+      if (storedJobs) {
+        setJobs(JSON.parse(storedJobs));
+      } else {
+        const profileData = await getProfile(authToken);
+        const jobData = await getJobs(profileData.data);
+        localStorage.setItem("jobsData", JSON.stringify(jobData.data.data));
+        setJobs(jobData.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+      setFailedAuth(true);
+      setJobs([]);
+    }
+  }, [authToken, setFailedAuth]);
 
   useEffect(() => {
     if (!authToken) {
@@ -31,31 +48,11 @@ export default function HomePage() {
       setJobs([]);
       return;
     }
-
-    const loadData = async () => {
-      try {
-        const storedJobs = localStorage.getItem("jobsData");
-        if (storedJobs) {
-          setJobs(JSON.parse(storedJobs));
-        } else {
-          const profileData = await getProfile(authToken);
-          const jobData = await getJobs(profileData.data);
-          localStorage.setItem("jobsData", JSON.stringify(jobData.data.data));
-          setJobs(jobData.data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-        setFailedAuth(true);
-        setJobs([]);
-      }
-    };
-
     loadData();
-  }, [authToken]);
+  }, [authToken, loadData, setFailedAuth]);
 
   useEffect(() => {
     fetchAllVideos();
-    console.log("loading videis");
   }, []);
 
   if (failedAuth) {
