@@ -22,7 +22,7 @@ export default function RegisterCard({
 
   return (
     <motion.section
-      className="form__content"
+      className="registeration__content"
       key="step1"
       variants={variants}
       initial="hidden"
@@ -30,25 +30,25 @@ export default function RegisterCard({
       exit="hidden"
       transition={{ duration: 2.5 }}
     >
-      <label className="form__label">{step.label}</label>
+      <label className="registeration__label">{step.label}</label>
       {step.inputType === "input" && (
         <>
           <input
-            className="form__input"
+            className="registeration__input"
             name={step.name}
             type={step.type || "text"}
             value={formData[step.name]}
             onChange={handleChange}
           />
           {formErrors[step.name] && (
-            <p className="form__error">{formErrors[step.name]}</p>
+            <p className="registeration__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
       {step.inputType === "select" && (
         <>
           <Select
-            className="form__select"
+            className="registeration__select"
             options={step.options}
             value={step.options.find(
               (option) => option.value === formData[step.name]
@@ -59,7 +59,7 @@ export default function RegisterCard({
             required
           />
           {formErrors[step.name] && (
-            <p className="form__error">{formErrors[step.name]}</p>
+            <p className="registeration__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
@@ -74,26 +74,26 @@ export default function RegisterCard({
             id="fileInput"
             required
           />
-          <div className="form__upload">
+          <div className="registeration__upload">
             <label htmlFor="fileInput" className="modal__upload">
               Upload
             </label>
           </div>
           {formErrors[step.name] && (
-            <p className="form__error">{formErrors[step.name]}</p>
+            <p className="registeration__error">{formErrors[step.name]}</p>
           )}
         </>
       )}
 
-      <div className="form__buttons">
-        <Button text="Back" handle={handleBack} />w
+      <div className="registeration__buttons">
+        <Button text="Back" handle={handleBack} />
         {step.name === "password" ? (
           <Button text="Submit" handle={handleSubmit} />
         ) : (
           <Button text="Next" handle={handleStep} name={step.name} />
         )}
       </div>
-      {errorMessage && <p className="form__error">{errorMessage}</p>}
+      {errorMessage && <p className="registeration__error">{errorMessage}</p>}
     </motion.section>
   );
 }

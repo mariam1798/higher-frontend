@@ -61,7 +61,6 @@ export default function VideoCard({
                 {channel}
               </h2>
             </motion.div>
-            <Comments videoId={videoId} />
             <div className="video__increment">
               <motion.img
                 whileHover={{ scale: 1.1 }}
@@ -80,6 +79,7 @@ export default function VideoCard({
             <h2 className="video__title">{title}</h2>
             <h3 className="video__description">{description}</h3>
           </div>
+          <Comments videoId={videoId} />
           <div className="video__timestamp">
             <h3 className="video__date">{date}</h3>
           </div>

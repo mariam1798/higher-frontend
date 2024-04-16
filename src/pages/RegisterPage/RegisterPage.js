@@ -260,11 +260,11 @@ export default function RegisterPage() {
             </>
           )}
           {currentStep === 1 && (
-            <div className="form form--buttons">
+            <div className="registeration">
               <Link to="/login">
                 <Button text="Log In" />
               </Link>
-              <button className="form__button" onClick={handleStep}>
+              <button className="registeration__button" onClick={handleStep}>
                 Register
               </button>
             </div>
