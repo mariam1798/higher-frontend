@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUser, getUsers, fetchVideos } from "../../utils/axios";
+import { getUser, fetchVideos } from "../../utils/axios";
 import VideosList from "../../components/VideosList/VideosList";
 import { useAuth } from "../../Context/UseAuth";
 import UserProfile from "../../components/UserProfile/UserProfile";
@@ -40,7 +40,7 @@ export default function UsersPage() {
       };
       fetchVideosForUser();
     }
-  }, [profileUser]);
+  }, [profileUser, setVideos]);
 
   if (!profileUser) {
     return <p>Loading...</p>;
