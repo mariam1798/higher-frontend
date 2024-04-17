@@ -40,4 +40,17 @@
       font-size: 3rem;
     }
   }
+  &__navigate {
+    @include background;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+    margin: 1rem;
+    margin-bottom: 10rem;
+    @include tablet {
+      width: 30rem;
+    }
+  }
 }

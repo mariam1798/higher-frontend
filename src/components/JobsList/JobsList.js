@@ -2,6 +2,7 @@ import { useState } from "react";
 import JobCard from "../JobCard/JobCard";
 import JobDetailsModal from "../JobDetailsModal/JobDetailsModal";
 import "./JobList.scss";
+import { BeatLoader } from "react-spinners";
 
 export default function JobsList({ jobs }) {
   const [visibleJobs, setVisibleJobs] = useState(4);
@@ -9,6 +10,19 @@ export default function JobsList({ jobs }) {
 
   const handleOpenModal = (jobId) => setModalIsOpen(jobId);
   const handleCloseModal = () => setModalIsOpen(false);
+
+  if (!jobs) {
+    return (
+      <div className="jobs__loader">
+        <BeatLoader
+          color="#896dd5"
+          size={30}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <section className="jobs">

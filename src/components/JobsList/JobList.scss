@@ -69,4 +69,16 @@
     width: 100%;
     justify-content: center;
   }
+  &__loader {
+    display: flex;
+    margin: 0 auto;
+    position: absolute;
+    left: 37%;
+
+    z-index: 10000;
+    @include desktop {
+      left: 7%;
+      bottom: 20%;
+    }
+  }
 }

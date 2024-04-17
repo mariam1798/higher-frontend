@@ -9,7 +9,7 @@ export default function Nav({ failedAuth, handleLogout }) {
   return (
     <nav className="nav">
       <div className="nav__container">
-        <Link to="/" className="nav__watermark">
+        <Link to="/home" className="nav__watermark">
           <ImageMotion src={logo} className="nav__logo" />
           <ImageMotion src={higher} className="nav__logo--tablet" />
         </Link>

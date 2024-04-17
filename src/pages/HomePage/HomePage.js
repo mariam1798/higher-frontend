@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import VideosList from "../../components/VideosList/VideosList";
 import "./HomePage.scss";
 import { useAuth } from "../../Context/UseAuth";
-import Loader from "../../Motion/Loader/Loader";
+import Button from "../../Motion/Button/Button";
 import { Link } from "react-router-dom";
 import Video from "../../components/Video/Video";
 import url from "../../assets/video/why.mp4";
@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 export default function HomePage() {
   const [jobs, setJobs] = useState(undefined);
   const [homeVideos, setHomeVideos] = useState(null);
-  const { authToken, setFailedAuth, failedAuth } = useAuth();
+  const { user, authToken, setFailedAuth, failedAuth } = useAuth();
 
   const fetchAllVideos = async () => {
     try {
@@ -24,14 +24,14 @@ export default function HomePage() {
       setHomeVideos([]);
     }
   };
+
   const loadData = useCallback(async () => {
     try {
       const storedJobs = localStorage.getItem("jobsData");
       if (storedJobs) {
         setJobs(JSON.parse(storedJobs));
       } else {
-        const profileData = await getProfile(authToken);
-        const jobData = await getJobs(profileData.data);
+        const jobData = await getJobs(user);
         localStorage.setItem("jobsData", JSON.stringify(jobData.data.data));
         setJobs(jobData.data.data);
       }
@@ -60,9 +60,11 @@ export default function HomePage() {
       <>
         <main>
           <section className="home__login">
-            <Link className="home__message" to={"/"}>
-              <p className="home__error">💜Please Register or login💜</p>
-            </Link>
+            <div className="home__navigate">
+              <Link className="home__message" to={"/"}>
+                <Button text="Register / Login" />
+              </Link>
+            </div>
             <h2 className="home__title">Why Higher?</h2>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -82,20 +84,9 @@ export default function HomePage() {
   return (
     <>
       <main className="home">
-        {jobs === undefined ? (
-          <Loader />
-        ) : jobs.length === 0 ? (
-          ""
-        ) : (
-          <JobsList jobs={jobs} />
-        )}
-        {homeVideos === null ? (
-          <Loader />
-        ) : homeVideos.length === 0 ? (
-          <Loader />
-        ) : (
-          <VideosList fetchAllVideos={fetchAllVideos} videos={homeVideos} />
-        )}
+        <JobsList jobs={jobs} />
+
+        <VideosList fetchAllVideos={fetchAllVideos} videos={homeVideos} />
       </main>
     </>
   );

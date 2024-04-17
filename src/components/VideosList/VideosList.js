@@ -1,8 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 import VideoCard from "../../components/VideoCard/VideoCard";
 import "./VideoList.scss";
+import { PropagateLoader } from "react-spinners";
 
 export default function VideosList({ fetchAllVideos, setVideos, videos }) {
+  if (!videos) {
+    return <PropagateLoader />;
+  }
   return (
     <section className="videos">
       {videos &&
