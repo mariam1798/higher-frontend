@@ -62,7 +62,7 @@ export default function HomePage() {
           <section className="home__login">
             <div className="home__navigate">
               <Link className="home__message" to={"/"}>
-                <Button text="Register / Login" />
+                <Button text="Higher Me" />
               </Link>
             </div>
             <h2 className="home__title">Why Higher?</h2>

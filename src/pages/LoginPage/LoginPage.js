@@ -30,7 +30,7 @@ export default function LoginPage() {
       const { data } = await postLogin(formData);
 
       handleLogin(data.token);
-      navigate("/home");
+      navigate("/user");
     } catch (error) {
       const message =
         error.response && error.response.data && error.response.data.message

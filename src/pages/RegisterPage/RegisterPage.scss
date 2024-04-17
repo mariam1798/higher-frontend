@@ -23,6 +23,7 @@
     }
     @include desktop {
       margin-bottom: 2rem;
+      height: 30rem;
     }
   }
 
@@ -45,7 +46,7 @@
       font-size: 1.7rem;
       bottom: 57%;
       @include tablet {
-        top: 22%;
+        top: 31%;
         font-size: 2rem;
       }
     }
