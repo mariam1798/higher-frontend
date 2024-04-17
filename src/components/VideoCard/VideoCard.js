@@ -1,15 +1,13 @@
 import "./VideoCard.scss";
 import likeIcon from "../../assets/icons/like.svg";
-import { editLikes } from "../../utils/axios";
 import Video from "../Video/Video";
 import { useAuth } from "../../Context/UseAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Comments from "../Comments/Comments";
+import { useState } from "react";
 
 export default function VideoCard({
-  fetchAllVideos,
-  likes,
   videoId,
   url,
   channel,
@@ -19,6 +17,8 @@ export default function VideoCard({
   timestamp,
   avatar,
 }) {
+  const [videoLikes, setVideoLikes] = useState(0);
+
   const date = new Date(timestamp).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "2-digit",
@@ -32,17 +32,12 @@ export default function VideoCard({
     }
   };
   const isLoggedInUser = userId === user?.id;
-  const updateVideo = async (videoId) => {
+
+  const getLikes = () => {
     if (isLoggedInUser) {
       return;
     }
-
-    try {
-      await editLikes(videoId);
-      await fetchAllVideos();
-    } catch (error) {
-      console.error("Error updating video:", error);
-    }
+    setVideoLikes((prevVideoLikes) => prevVideoLikes + 1);
   };
 
   return (
@@ -65,14 +60,14 @@ export default function VideoCard({
               <motion.img
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                onClick={() => updateVideo(videoId)}
+                onClick={getLikes}
                 src={likeIcon}
                 alt=""
                 className={`video__like ${
                   isLoggedInUser ? "video__like--disabled" : ""
                 }`}
               />
-              <h3 className="video__number">{likes}</h3>
+              <h3 className="video__number">{videoLikes}</h3>
             </div>
           </div>
           <div className="video__info">

@@ -9,6 +9,7 @@ import { fetchVideos } from "../../utils/axios";
 import Video from "../../components/Video/Video";
 import url from "../../assets/video/why.mp4";
 import { motion } from "framer-motion";
+import Button from "../../Motion/Button/Button";
 
 export default function UserPage() {
   const { user, videos, failedAuth, setVideos } = useAuth();
@@ -29,23 +30,27 @@ export default function UserPage() {
 
   if (!user) {
     return (
-      <main>
-        <section className="home__login">
-          <Link className="home__message" to={"/"}>
-            <p className="home__error">💜Please Register or login💜</p>
-          </Link>
-          <h2 className="home__title">Why Higher?</h2>
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0, y: -100, scale: 1.1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: false, amount: 0.5 }}
-            className="home__video"
-          >
-            <Video url={url} />
-          </motion.div>
-        </section>
-      </main>
+      <>
+        <main>
+          <section className="home__login">
+            <div className="home__navigate">
+              <Link className="home__message" to={"/"}>
+                <Button text="Higher Me" />
+              </Link>
+            </div>
+            <h2 className="home__title">Why Higher?</h2>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0, y: -100, scale: 1.1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              className="home__video"
+            >
+              <Video url={url} />
+            </motion.div>
+          </section>
+        </main>
+      </>
     );
   }
 
