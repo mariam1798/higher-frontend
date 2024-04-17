@@ -1,4 +1,4 @@
-import { getProfile, getJobs, getVideos } from "../../utils/axios";
+import { getJobs, getVideos } from "../../utils/axios";
 import JobsList from "../../components/JobsList/JobsList";
 import React, { useEffect, useState, useCallback } from "react";
 import VideosList from "../../components/VideosList/VideosList";
@@ -40,7 +40,7 @@ export default function HomePage() {
       setFailedAuth(true);
       setJobs([]);
     }
-  }, [authToken, setFailedAuth]);
+  }, [user, setFailedAuth]);
 
   useEffect(() => {
     if (!authToken) {
