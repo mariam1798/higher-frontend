@@ -69,11 +69,11 @@
     height: auto;
     resize: none;
     outline: 0;
-    color: $primary-accent-color;
+    color: #a27cf9;
     font-weight: 600;
     border: $divider-line;
     @include tablet {
-      font-size: 1.3rem;
+      font-size: 1rem;
       height: 2.5rem;
       overflow-y: hidden;
     }

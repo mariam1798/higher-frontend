@@ -13,12 +13,12 @@ const getJobs = (data) => {
     method: "GET",
     url: "https://jsearch.p.rapidapi.com/search",
     params: {
-      query: `${data.job_title}, ${data.experience_years} ${data.location}`,
+      query: `${data.job_title}, ${data.location}`,
       page: "1",
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "d6b6d74543mshe87ae6fb9fdd64cp1259a3jsn1af57f23fa1f",
+      "X-RapidAPI-Key": `${process.env.REACT_APP_API_KEY}`,
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
@@ -35,7 +35,7 @@ const getSearchedJobs = async (searchQuery) => {
       num_pages: "1",
     },
     headers: {
-      "X-RapidAPI-Key": "d6b6d74543mshe87ae6fb9fdd64cp1259a3jsn1af57f23fa1f",
+      "X-RapidAPI-Key": `${process.env.REACT_APP_API_KEY}`,
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };

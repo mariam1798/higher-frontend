@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import close from "../../assets/icons/close.svg";
 import { toast } from "react-toastify";
+import upload from "../../assets/icons/upload.svg";
 import "./JobDetailsModal.scss";
 import BulletPoints from "../BulletPoints/BulletPoints";
 import { motion, AnimatePresence } from "framer-motion";
@@ -75,7 +76,7 @@ export default function JobDetailsModal({
             <div className="details__wrap">
               <div className="details__wrapper">
                 <img
-                  src={logo}
+                  src={logo || upload}
                   alt={job_employment}
                   className="details__company"
                 />

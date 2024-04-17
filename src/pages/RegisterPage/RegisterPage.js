@@ -121,7 +121,7 @@ export default function RegisterPage() {
       options: professionalStatusOptions,
     },
     {
-      label: "What is your current job title?",
+      label: "What is your current job field?",
       inputType: "select",
       name: "job_title",
       options: jobOptions,
