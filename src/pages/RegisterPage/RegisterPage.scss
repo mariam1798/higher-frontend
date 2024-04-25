@@ -46,6 +46,9 @@
       font-size: 1.7rem;
       bottom: 57%;
       @include tablet {
+        top: 23%;
+      }
+      @include desktop {
         top: 31%;
         font-size: 2rem;
       }

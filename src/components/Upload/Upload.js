@@ -76,7 +76,7 @@ export default function Search({ user, id, setVideos }) {
       <div className="upload__container">
         <div className="upload__wrap">
           <button onClick={handleOpenModal} className="upload__button">
-            UPLOAD
+            UPLOAD VIDEO
           </button>
         </div>
         <Link to="/user"></Link>

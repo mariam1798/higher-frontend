@@ -20,6 +20,7 @@ export default function Video({ url }) {
     <section onClick={onVideoPress} className="player">
       <video className="player__play" loop ref={videoRef}>
         <source src={url} type="video/mp4" />
+        <source src={url} type="video/quicktime" />
         Your browser does not support the video tag.
       </video>
       {!play && <ImageMotion src={playIcon} className="player__icon" />}

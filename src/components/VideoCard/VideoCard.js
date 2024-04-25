@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Comments from "../Comments/Comments";
 import { useState } from "react";
+import { deleteVideos } from "../../utils/axios";
+import deleteIcon from "../../assets/icons/delete.svg";
 
 export default function VideoCard({
   videoId,
@@ -16,6 +18,7 @@ export default function VideoCard({
   description,
   timestamp,
   avatar,
+  fetchAllVideos,
 }) {
   const [videoLikes, setVideoLikes] = useState(0);
 
@@ -38,6 +41,15 @@ export default function VideoCard({
       return;
     }
     setVideoLikes((prevVideoLikes) => prevVideoLikes + 1);
+  };
+
+  const deleteVid = async () => {
+    try {
+      await deleteVideos(videoId);
+      fetchAllVideos();
+    } catch (error) {
+      console.log("Error while trying to remove the video", error);
+    }
   };
 
   return (
@@ -77,6 +89,16 @@ export default function VideoCard({
           <Comments videoId={videoId} />
           <div className="video__timestamp">
             <h3 className="video__date">{date}</h3>
+            {isLoggedInUser && (
+              <motion.img
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                onClick={deleteVid}
+                src={deleteIcon}
+                alt="delete "
+                className="video__delete"
+              />
+            )}
           </div>
         </div>
       </section>

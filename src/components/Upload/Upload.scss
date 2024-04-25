@@ -46,6 +46,7 @@
     padding: 0.2rem;
     border-radius: $border-radius;
     @include tablet {
+      padding: 0;
     }
   }
 
@@ -58,5 +59,9 @@
     background-size: 3.1rem;
     background-position: -5px;
     padding: 0.3rem;
+    &:hover {
+      background-size: 100%;
+      background-position: 0;
+    }
   }
 }

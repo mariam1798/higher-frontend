@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./JobCard.scss";
 import upload from "../../assets/icons/upload.svg";
 import plus from "../../assets/icons/plus.svg";
@@ -10,10 +10,21 @@ export default function JobCard({
   job_title,
   handleOpenModal,
 }) {
+  const [imageSrc, setImageSrc] = useState(logo || upload);
+
+  const handleError = () => {
+    setImageSrc(upload);
+  };
+
   return (
     <section onClick={handleOpenModal} className="card">
       <div className="card__left">
-        <img src={logo || upload} alt="company logo" className="card__image" />
+        <img
+          src={imageSrc}
+          onError={handleError}
+          alt="company logo"
+          className="card__image"
+        />
       </div>
       <div className="card__right">
         <h4 className="card__employ">{job_title}</h4>

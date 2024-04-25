@@ -109,6 +109,11 @@ const deleteComments = (authToken, commentId) => {
     }
   );
 };
+const deleteVideos = (videoId) => {
+  return axios.delete(
+    `${process.env.REACT_APP_API_BASE_URL}/videos/${videoId}`
+  );
+};
 
 export {
   editLikes,
@@ -125,4 +130,5 @@ export {
   postComments,
   fetchComments,
   deleteComments,
+  deleteVideos,
 };

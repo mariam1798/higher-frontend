@@ -109,7 +109,7 @@ export default function RegisterPage() {
   const stepsConfig = [
     { label: "What's your name?", inputType: "input", name: "name" },
     {
-      label: "Where are you currently based?",
+      label: "What country are you located in?",
       inputType: "select",
       name: "location",
       options: options,
