@@ -28,7 +28,7 @@ export default function UserPage() {
     }
   }, [user, setVideos]);
 
-  if (!user) {
+  if (!user || failedAuth) {
     return (
       <>
         <main>
@@ -54,53 +54,17 @@ export default function UserPage() {
     );
   }
 
-  if (failedAuth) {
-    return (
-      <main>
-        <section className="home__login">
-          <Link className="home__message" to={"/"}>
-            <p className="home__error">💜Please Register or login💜</p>
-          </Link>
-          <h2 className="home__title">Why Higher?</h2>
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0, y: -100, scale: 1.1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: false, amount: 0.5 }}
-            className="home__video"
-          >
-            <Video url={url} />
-          </motion.div>
-        </section>
-      </main>
-    );
-  }
-
-  if (!user) {
-    return (
-      <main className="user">
-        <p>Loading...</p>
-      </main>
-    );
-  }
-  if (!videos) {
-    return <p>LOading..</p>;
-  }
-
   return (
     <>
       <main className="user">
         <div className="user__container">
           <Upload
-            avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
+            avatar={`${user.avatar}`}
             id={user.id}
             setVideos={setVideos}
             user={user}
           />
-          <UserProfile
-            avatar={`${process.env.REACT_APP_API_BASE_URL}/${user.avatar}`}
-            user={user}
-          />
+          <UserProfile avatar={`${user.avatar}`} user={user} />
         </div>
         <VideosList setVideos={setVideos} videos={videos} />
       </main>
