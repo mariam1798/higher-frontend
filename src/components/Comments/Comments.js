@@ -55,7 +55,7 @@ export default function Comments({ videoId }) {
                 name={comment.name}
                 date={comment.timeStamp}
                 comment={comment.comment}
-                avatar={`${process.env.REACT_APP_API_BASE_URL}/${comment.avatar}`}
+                avatar={comment.avatar}
                 userId={comment.user_id}
               />
             ))}

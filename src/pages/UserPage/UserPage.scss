@@ -30,6 +30,19 @@
       border: $divider-line;
     }
   }
+
+  &__message {
+    display: flex;
+    justify-content: center;
+    color: $secondary-accent-color;
+    margin: 1rem;
+
+    @include desktop {
+      font-size: 1.3rem;
+      margin: 3rem;
+    }
+  }
+
   &__logout {
     @include primary-button;
     @include tablet {

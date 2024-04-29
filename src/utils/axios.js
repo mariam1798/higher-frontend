@@ -114,12 +114,16 @@ const deleteVideos = (videoId) => {
     `${process.env.REACT_APP_API_BASE_URL}/videos/${videoId}`
   );
 };
+const getVideo = (videoId) => {
+  return axios.get(`${process.env.REACT_APP_API_BASE_URL}/videos/${videoId}`);
+};
 
 export {
   editLikes,
   fetchVideos,
   getProfile,
   getJobs,
+  getVideo,
   getVideos,
   handleRegister,
   postLogin,

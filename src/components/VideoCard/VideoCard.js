@@ -5,8 +5,11 @@ import { useAuth } from "../../Context/UseAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Comments from "../Comments/Comments";
-import { useState } from "react";
-import { deleteVideos } from "../../utils/axios";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { useCallback, useEffect, useState } from "react";
+import { deleteVideos, editLikes, getVideo } from "../../utils/axios";
 import deleteIcon from "../../assets/icons/delete.svg";
 
 export default function VideoCard({
@@ -20,7 +23,29 @@ export default function VideoCard({
   avatar,
   fetchAllVideos,
 }) {
+  const notify = (message) => {
+    toast(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   const [videoLikes, setVideoLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const checkIsLiked = () => {
+    const likedVideos = JSON.parse(localStorage.getItem("likedVideos")) || [];
+    return likedVideos.includes(videoId);
+  };
+
+  useEffect(() => {
+    setIsLiked(checkIsLiked());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const date = new Date(timestamp).toLocaleDateString("en-GB", {
     year: "numeric",
@@ -36,11 +61,50 @@ export default function VideoCard({
   };
   const isLoggedInUser = userId === user?.id;
 
-  const getLikes = () => {
-    if (isLoggedInUser) {
+  const fetchLikes = useCallback(async () => {
+    try {
+      const { data } = await getVideo(videoId);
+      setVideoLikes(data.likes);
+    } catch (error) {
+      console.error("Error fetching likes:", error);
+    }
+  }, [videoId]);
+
+  useEffect(() => {
+    fetchLikes();
+  }, [fetchLikes]);
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      try {
+        const { data } = await getVideo(videoId);
+        setVideoLikes(data.likes);
+      } catch (error) {
+        console.error("Error fetching likes:", error);
+      }
+    };
+
+    fetchLikes();
+  }, [videoId]);
+
+  const handleLike = async () => {
+    if (isLoggedInUser || isLiked) {
+      notify("You have already liked this video");
       return;
     }
-    setVideoLikes((prevVideoLikes) => prevVideoLikes + 1);
+    try {
+      await editLikes(videoId);
+      setVideoLikes((prevLikes) => prevLikes + 1);
+      setIsLiked(true);
+
+      const likedVideos = JSON.parse(localStorage.getItem("likedVideos")) || [];
+      localStorage.setItem(
+        "likedVideos",
+        JSON.stringify([...likedVideos, videoId])
+      );
+    } catch (error) {
+      console.error("Can't update likes:", error);
+    }
   };
 
   const deleteVid = async () => {
@@ -72,7 +136,7 @@ export default function VideoCard({
               <motion.img
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                onClick={getLikes}
+                onClick={handleLike}
                 src={likeIcon}
                 alt=""
                 className={`video__like ${
@@ -80,6 +144,7 @@ export default function VideoCard({
                 }`}
               />
               <h3 className="video__number">{videoLikes}</h3>
+              <ToastContainer />
             </div>
           </div>
           <div className="video__info">

@@ -19,6 +19,7 @@
 
   &__icon {
     width: 8rem;
+    height: 100%;
     border-radius: $border-radius;
     background-color: $primary-text-color;
     @include box-shadow;
@@ -26,16 +27,15 @@
 
   &__avatar {
     height: 10rem;
-    width: 100%;
+    display: flex;
+    align-items: center;
   }
-
   &__span {
     color: $primary-accent-color;
   }
   &__details {
     display: flex;
     height: 100%;
-    width: 100%;
     flex-direction: column;
     justify-content: center;
     padding: 1rem;

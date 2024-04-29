@@ -33,7 +33,14 @@ export default function Search({ user, id, setVideos }) {
 
   const handleChange = (e) => {
     if (e.target.name === "file") {
-      setSelectedFile(e.target.files[0]);
+      const file = e.target.files[0];
+      const maxFileSize = 10 * 1024 * 1024;
+      if (file && file.size > maxFileSize) {
+        notify("File size exceeds the limit of 10MB.");
+        e.target.value = "";
+        return;
+      }
+      setSelectedFile(file);
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -41,6 +48,12 @@ export default function Search({ user, id, setVideos }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const maxFileSize = 10 * 1024 * 1024;
+    if (selectedFile.size > maxFileSize) {
+      notify("File size exceeds the limit of 10MB.");
+      return;
+    }
 
     if (!formData.title || !formData.description || !selectedFile) {
       notify("You must fill in all the form fields ⛔️");
@@ -53,7 +66,7 @@ export default function Search({ user, id, setVideos }) {
 
     try {
       const response = await postVideos(uploadData, authToken);
-
+      notify("Highering! ⬆️💜");
       if (response.status === 200) {
         notify("Highered successfully! ⬆️💜");
         const { data } = await fetchVideos(id);

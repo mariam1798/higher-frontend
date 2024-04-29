@@ -41,8 +41,8 @@
   }
 
   &__wrap {
-    width: 100%;
     @include background;
+    margin: 1rem;
     padding: 0.2rem;
     border-radius: $border-radius;
     @include tablet {
@@ -58,7 +58,9 @@
     border: none;
     background-size: 3.1rem;
     background-position: -5px;
-    padding: 0.3rem;
+    @include tablet {
+      width: 12rem;
+    }
     &:hover {
       background-size: 100%;
       background-position: 0;

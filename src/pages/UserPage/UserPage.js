@@ -66,7 +66,16 @@ export default function UserPage() {
           />
           <UserProfile avatar={`${user.avatar}`} user={user} />
         </div>
-        <VideosList setVideos={setVideos} videos={videos} />
+        {videos.length === 0 ? (
+          <>
+            <p className="user__message">
+              No videos to be seen, upload your first video by clicking on
+              Upload Video
+            </p>
+          </>
+        ) : (
+          <VideosList setVideos={setVideos} videos={videos} />
+        )}
       </main>
     </>
   );
