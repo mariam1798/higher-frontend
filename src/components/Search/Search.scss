@@ -21,6 +21,7 @@
     gap: 1rem;
     padding: 0.2rem;
     border-radius: $border-radius;
+    margin: 0 1rem;
   }
   &__form {
     width: 100%;
@@ -61,5 +62,6 @@
   &__bottom {
     display: flex;
     justify-content: flex-end;
+    margin: 0 2rem;
   }
 }
