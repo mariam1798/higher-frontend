@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Comments from "../Comments/Comments";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 import { deleteVideos, editLikes, getVideo } from "../../utils/axios";
 import deleteIcon from "../../assets/icons/delete.svg";
@@ -22,20 +20,11 @@ export default function VideoCard({
   timestamp,
   avatar,
   fetchAllVideos,
+  fetchVideosForUser,
 }) {
-  const notify = (message) => {
-    toast(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
   const [videoLikes, setVideoLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const checkIsLiked = () => {
     const likedVideos = JSON.parse(localStorage.getItem("likedVideos")) || [];
@@ -89,7 +78,8 @@ export default function VideoCard({
 
   const handleLike = async () => {
     if (isLoggedInUser || isLiked) {
-      notify("You have already liked this video");
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
       return;
     }
     try {
@@ -120,6 +110,9 @@ export default function VideoCard({
     <>
       <section className="video">
         <Video url={url} />
+        {showAlert && (
+          <div className="video__alert">You have already liked this video</div>
+        )}
         <div className="video__text">
           <div className="video__top">
             <motion.div
@@ -144,7 +137,6 @@ export default function VideoCard({
                 }`}
               />
               <h3 className="video__number">{videoLikes}</h3>
-              <ToastContainer />
             </div>
           </div>
           <div className="video__info">

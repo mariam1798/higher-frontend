@@ -66,7 +66,6 @@ export default function Search({ user, id, setVideos }) {
 
     try {
       const response = await postVideos(uploadData, authToken);
-      notify("Highering! ⬆️💜");
       if (response.status === 200) {
         notify("Highered successfully! ⬆️💜");
         const { data } = await fetchVideos(id);

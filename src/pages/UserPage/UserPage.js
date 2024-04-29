@@ -4,7 +4,7 @@ import "./UserPage.scss";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Upload from "../../components/Upload/Upload";
 import { useAuth } from "../../Context/UseAuth";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { fetchVideos } from "../../utils/axios";
 import Video from "../../components/Video/Video";
 import url from "../../assets/video/why.mp4";
@@ -14,19 +14,20 @@ import Button from "../../Motion/Button/Button";
 export default function UserPage() {
   const { user, videos, failedAuth, setVideos } = useAuth();
 
-  useEffect(() => {
+  const fetchVideosForUser = useCallback(async () => {
     if (user && user.id) {
-      const fetchVideosForUser = async () => {
-        try {
-          const videosData = await fetchVideos(user.id);
-          setVideos(videosData.data);
-        } catch (error) {
-          console.error("Failed to fetch videos:", error);
-        }
-      };
-      fetchVideosForUser();
+      try {
+        const videosData = await fetchVideos(user.id);
+        setVideos(videosData.data);
+      } catch (error) {
+        console.error("Failed to fetch videos:", error);
+      }
     }
   }, [user, setVideos]);
+
+  useEffect(() => {
+    fetchVideosForUser();
+  }, [fetchVideosForUser]);
 
   if (!user || failedAuth) {
     return (
@@ -70,11 +71,15 @@ export default function UserPage() {
           <>
             <p className="user__message">
               No videos to be seen, upload your first video by clicking on
-              Upload Video
+              Upload Video.
             </p>
           </>
         ) : (
-          <VideosList setVideos={setVideos} videos={videos} />
+          <VideosList
+            fetchAllVideos={fetchVideosForUser}
+            setVideos={setVideos}
+            videos={videos}
+          />
         )}
       </main>
     </>

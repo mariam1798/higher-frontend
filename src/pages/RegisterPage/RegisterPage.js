@@ -165,19 +165,29 @@ export default function RegisterPage() {
   };
 
   const handleStep = (e) => {
-    if (currentStep > 1 && !e.target.dataset.name === "avatar") {
-      if (!formData[e.target.dataset.name]) {
-        validateField(e.target.dataset.name, formData[e.target.dataset.name]);
-        return;
+    e.preventDefault();
+    if (currentStep < 2) {
+      setCurrentStep((prevStep) => prevStep + 1);
+      setErrorMessage("");
+    } else {
+      const currentStepData = stepsConfig[currentStep - 2];
+      const { name } = currentStepData;
+
+      if (!formErrors[name] && formData[name]?.trim() !== "") {
+        setCurrentStep((prevStep) => prevStep + 1);
+        setErrorMessage("");
+      } else {
+        const stepName = currentStepData.name.replace(/_/g, " ");
+        const capitalizedStepName =
+          stepName.charAt(0).toUpperCase() + stepName.slice(1);
+        setErrorMessage(`Please fill in your ${capitalizedStepName}.`);
       }
     }
-
-    setCurrentStep((prevStep) => prevStep + 1);
-    setErrorMessage("");
   };
 
   const handleBack = () => {
     setCurrentStep((prevStep) => prevStep - 1);
+    setErrorMessage("");
   };
 
   const handleChange = (e) => {
