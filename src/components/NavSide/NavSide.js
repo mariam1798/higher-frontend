@@ -10,11 +10,11 @@ export default function NavSide() {
     <section className="side">
       <div className="side__container">
         <div className="side__nav">
-          <Link className="side__icon" to="/jobs">
-            <ImageMotion src={job} className="side__logo" />
+          <Link className="side__job" to="/jobs">
+            <ImageMotion alt="jobs logo" src={job} className="side__logo" />
           </Link>
           <Link className="side__home" to="/home">
-            <ImageMotion src={home} className="side__logo" />
+            <ImageMotion alt="home logo" src={home} className="side__logo" />
           </Link>
         </div>
 

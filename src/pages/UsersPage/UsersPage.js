@@ -42,14 +42,6 @@ export default function UsersPage() {
     }
   }, [profileUser, setVideos]);
 
-  if (!profileUser) {
-    return <p>Loading...</p>;
-  }
-
-  if (!videos) {
-    return <p>LOading..</p>;
-  }
-
   return (
     <main className="users">
       <div className="users__container">

@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     if (!authToken) {
       setFailedAuth(true);
     } else {
-      console.log("useffect in useauth.js ran!");
       const loadData = async () => {
         try {
           const profileData = await getProfile(authToken);

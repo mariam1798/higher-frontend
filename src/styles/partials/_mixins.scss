@@ -114,6 +114,21 @@
     @include lr-padding(2, 0);
   }
 }
+@mixin label($content) {
+  position: relative;
+  &:hover::after {
+    content: $content;
+    background-color: $secondary-bg-color;
+    border: $divider-line;
+    color: $primary-accent-color;
+    padding: 0.7rem;
+    text-decoration: none;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    border-radius: $border-radius;
+  }
+}
 
 @mixin background {
   background-image: linear-gradient(

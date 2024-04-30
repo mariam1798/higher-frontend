@@ -18,15 +18,15 @@
   }
 
   &__icon {
-    width: 8rem;
-    height: 100%;
+    width: 100%;
+    height: auto;
     border-radius: $border-radius;
     background-color: $primary-text-color;
     @include box-shadow;
   }
 
   &__avatar {
-    height: 10rem;
+    width: 15rem;
     display: flex;
     align-items: center;
   }

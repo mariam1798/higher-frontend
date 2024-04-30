@@ -10,8 +10,16 @@ export default function Nav({ failedAuth, handleLogout }) {
     <nav className="nav">
       <div className="nav__container">
         <Link to="/home" className="nav__watermark">
-          <ImageMotion src={logo} className="nav__logo" />
-          <ImageMotion src={higher} className="nav__logo--tablet" />
+          <ImageMotion
+            alt="higher arrow logo"
+            src={logo}
+            className="nav__logo"
+          />
+          <ImageMotion
+            alt="higher arrow logo"
+            src={higher}
+            className="nav__logo--tablet"
+          />
         </Link>
         <NavSide failedAuth={failedAuth} handleLogout={handleLogout} />
       </div>

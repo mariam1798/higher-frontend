@@ -328,7 +328,10 @@ export default function RegisterPage() {
           viewport={{ once: false, amount: 0.5 }}
           className="register__video"
         >
-          <Video url={url} />
+          <Video
+            title="AI actors speaking about theit eperience with higher"
+            url={url}
+          />
         </motion.div>
       </main>
     </>

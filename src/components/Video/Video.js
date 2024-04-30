@@ -3,7 +3,7 @@ import playIcon from "../../assets/icons/play.svg";
 import ImageMotion from "../../Motion/ImageMotion";
 import "./Video.scss";
 
-export default function Video({ url }) {
+export default function Video({ url, title }) {
   const [play, setPlay] = useState(false);
   const videoRef = useRef(null);
 
@@ -22,8 +22,11 @@ export default function Video({ url }) {
         <source src={url} type="video/mp4" />
         <source src={url} type="video/quicktime" />
         Your browser does not support the video tag.
+        <track kind="metadata" label={title} srcLang="en" />
       </video>
-      {!play && <ImageMotion src={playIcon} className="player__icon" />}
+      {!play && (
+        <ImageMotion alt="play icon" src={playIcon} className="player__icon" />
+      )}
     </section>
   );
 }

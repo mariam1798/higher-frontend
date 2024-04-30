@@ -109,7 +109,7 @@ export default function VideoCard({
   return (
     <>
       <section className="video">
-        <Video url={url} />
+        <Video title={title} url={url} />
         {showAlert && (
           <div className="video__alert">You have already liked this video</div>
         )}
@@ -131,7 +131,7 @@ export default function VideoCard({
                 transition={{ duration: 0.2, ease: "easeInOut" }}
                 onClick={handleLike}
                 src={likeIcon}
-                alt=""
+                alt="like icon"
                 className={`video__like ${
                   isLoggedInUser ? "video__like--disabled" : ""
                 }`}

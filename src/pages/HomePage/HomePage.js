@@ -73,7 +73,10 @@ export default function HomePage() {
               viewport={{ once: false, amount: 0.5 }}
               className="home__video"
             >
-              <Video url={url} />
+              <Video
+                title="AI actors speaking about theit eperience with higher"
+                url={url}
+              />
             </motion.div>
           </section>
         </main>

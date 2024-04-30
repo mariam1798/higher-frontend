@@ -48,6 +48,7 @@ export default function DropDown() {
   return (
     <section ref={dropdownRef} className="dropdown">
       <ImageMotion
+        alt="user__logo"
         handleClick={dropdownClick}
         src={userIcon}
         className="dropdown__avatar "

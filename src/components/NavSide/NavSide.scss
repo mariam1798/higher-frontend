@@ -29,6 +29,13 @@
     cursor: pointer;
   }
 
+  &__home {
+    @include label("Home");
+  }
+  &__job {
+    @include label("Jobs");
+  }
+
   &__navigate {
     text-decoration: none;
     color: white;
