@@ -33,8 +33,8 @@ export default function LoginPage() {
       navigate("/user");
     } catch (error) {
       const message =
-        error.response && error.response.data && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data && error.response.data.error
+          ? error.response.data.error
           : "An error occurred. Please try again later.";
       setErrorMessage(message);
     }

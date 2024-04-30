@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("jobsData");
+    localStorage.removeItem("likedVideos");
     setUser(null);
     setAuthToken(null);
     setFailedAuth(true);

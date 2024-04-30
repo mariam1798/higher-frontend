@@ -3,7 +3,6 @@
 
 .dropdown {
   position: relative;
-  @include label("User");
   &__label {
     border: $divider-line;
     right: 0%;

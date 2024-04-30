@@ -34,12 +34,6 @@ export default function Search({ user, id, setVideos }) {
   const handleChange = (e) => {
     if (e.target.name === "file") {
       const file = e.target.files[0];
-      const maxFileSize = 10 * 1024 * 1024;
-      if (file && file.size > maxFileSize) {
-        notify("File size exceeds the limit of 10MB.");
-        e.target.value = "";
-        return;
-      }
       setSelectedFile(file);
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -49,9 +43,9 @@ export default function Search({ user, id, setVideos }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const maxFileSize = 10 * 1024 * 1024;
+    const maxFileSize = 20 * 1024 * 1024;
     if (selectedFile.size > maxFileSize) {
-      notify("File size exceeds the limit of 10MB.");
+      notify("File size exceeds the limit of 20MB.");
       return;
     }
 
