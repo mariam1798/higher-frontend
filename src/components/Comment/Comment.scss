@@ -79,5 +79,9 @@
   }
   &__icon {
     width: 2rem;
+    cursor: pointer;
+  }
+  &__delete {
+    @include label("Delete Comment");
   }
 }

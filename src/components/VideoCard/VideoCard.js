@@ -147,14 +147,16 @@ export default function VideoCard({
           <div className="video__timestamp">
             <h3 className="video__date">{date}</h3>
             {isLoggedInUser && (
-              <motion.img
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-                onClick={deleteVid}
-                src={deleteIcon}
-                alt="delete "
-                className="video__delete"
-              />
+              <div className="video__remove">
+                <motion.img
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  onClick={deleteVid}
+                  src={deleteIcon}
+                  alt="delete "
+                  className="video__delete"
+                />
+              </div>
             )}
           </div>
         </div>

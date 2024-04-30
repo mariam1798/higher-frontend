@@ -105,9 +105,16 @@
   &__profile {
     display: flex;
   }
+
   &__delete {
     width: 2rem;
+    height: auto;
+    cursor: pointer;
   }
+  &__remove {
+    @include label("Delete Video");
+  }
+
   &__alert {
     padding: 1rem;
     @include background;

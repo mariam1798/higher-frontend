@@ -2,6 +2,8 @@ import "./Comment.scss";
 import { useAuth } from "../../Context/UseAuth";
 import { deleteComments } from "../../utils/axios";
 import deleteIcon from "../../assets/icons/delete.svg";
+import { motion } from "framer-motion";
+
 export default function Comment({
   id,
   getComments,
@@ -39,7 +41,13 @@ export default function Comment({
       </div>
       {isLoggedInUser && (
         <div className="comment__delete" onClick={deleteComment}>
-          <img src={deleteIcon} alt="delete" className="comment__icon" />
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            src={deleteIcon}
+            alt="delete "
+            className="comment__icon"
+          />
         </div>
       )}
     </div>
