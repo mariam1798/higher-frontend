@@ -63,6 +63,15 @@ export default function Search({ user, id, setVideos }) {
       setUploading(false);
       return;
     }
+    const allowedFileTypes = ["mov", "mp4"];
+    const fileType = selectedFile.name.split(".").pop().toLowerCase();
+    if (!allowedFileTypes.includes(fileType)) {
+      notify(
+        "Unsupported file type. Only 'mov' and 'mp4' formats are allowed."
+      );
+      setUploading(false);
+      return;
+    }
 
     setLoading(true);
     const uploadData = new FormData();
@@ -88,13 +97,7 @@ export default function Search({ user, id, setVideos }) {
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
 
-        const startIndex = errorMessage.indexOf("Error:");
-        const endIndex = errorMessage.indexOf("<br>");
-        const trimmedErrorMessage = errorMessage
-          .substring(startIndex, endIndex)
-          .trim();
-
-        notify(trimmedErrorMessage);
+        notify(errorMessage);
       } else {
         notify("Upload error!");
       }
