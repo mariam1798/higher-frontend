@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import higher from "../../assets/icons/higherwhite.svg";
 import "react-toastify/dist/ReactToastify.css";
 import UploadButton from "../UploadButton/UploadButton";
+import { BeatLoader } from "react-spinners";
 
 export default function UploadModal({
   modalIsOpen,
@@ -12,6 +13,7 @@ export default function UploadModal({
   handleChange,
   handleSubmit,
   notify,
+  loading,
 }) {
   return (
     <Modal
@@ -22,6 +24,17 @@ export default function UploadModal({
       className="modal"
       overlayClassName="Overlay"
     >
+      {loading && (
+        <div className="modal__loading">
+          <BeatLoader
+            color="#cac4d0"
+            size={30}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
+
       <div className="modal__icon">
         <img
           onClick={handleCloseModal}

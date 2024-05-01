@@ -25,7 +25,10 @@
       height: 45rem;
     }
   }
-
+  &__loading {
+    display: flex;
+    justify-content: center;
+  }
   &__wrap {
     display: flex;
     align-items: center;

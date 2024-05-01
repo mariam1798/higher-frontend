@@ -19,6 +19,10 @@ export default function Search({ user, id, setVideos }) {
       progress: undefined,
     });
   };
+
+  const [uploading, setUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { authToken } = useAuth();
@@ -42,17 +46,25 @@ export default function Search({ user, id, setVideos }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (uploading) {
+      return;
+    }
+    setUploading(true);
 
     const maxFileSize = 20 * 1024 * 1024;
     if (selectedFile.size > maxFileSize) {
       notify("File size exceeds the limit of 20MB.");
+      setUploading(false);
       return;
     }
 
     if (!formData.title || !formData.description || !selectedFile) {
       notify("You must fill in all the form fields ⛔️");
+      setUploading(false);
       return;
     }
+
+    setLoading(true);
     const uploadData = new FormData();
     uploadData.append("file", selectedFile);
     uploadData.append("title", formData.title);
@@ -73,7 +85,22 @@ export default function Search({ user, id, setVideos }) {
       event.target.reset();
     } catch (error) {
       console.error("Error:", error);
-      notify("Upload error!❌");
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data;
+
+        const startIndex = errorMessage.indexOf("Error:");
+        const endIndex = errorMessage.indexOf("<br>");
+        const trimmedErrorMessage = errorMessage
+          .substring(startIndex, endIndex)
+          .trim();
+
+        notify(trimmedErrorMessage);
+      } else {
+        notify("Upload error!");
+      }
+    } finally {
+      setUploading(false);
+      setLoading(false);
     }
   };
 
@@ -97,6 +124,7 @@ export default function Search({ user, id, setVideos }) {
         modalIsOpen={modalIsOpen}
         handleCloseModal={handleCloseModal}
         notify={notify}
+        loading={loading}
       />
     </section>
   );
