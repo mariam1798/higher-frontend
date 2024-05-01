@@ -1,8 +1,48 @@
 # Higher
 
-To install all the required packages for this project, open your terminal or command prompt, navigate to the project's root directory, and run the following command:
-npm install i
-check .env.sammple for example of .env
+**How to Download and Launch the Application**
+
+1. Clone Repositories
+
+- Clone the GitHub repositories for both the client and server components of Higher:
+- Client: git clone <client_repository_url>
+- Server: git clone <server_repository_url>
+
+2. Install Dependencies
+
+- Navigate into each cloned repository directory (client and server) and install NPM packages:
+
+**npm install**
+
+3. Set Up Database
+
+- Create a database in MySQL for the Higher application.
+- In the server directory, run database migrations and seed data:
+  **npx knex migrate:latest**
+  **npx knex seed:run**
+
+4. Configure Cloudinary Credentials
+
+- Sign up for a Cloudinary account if you haven't already.
+- Obtain your Cloudinary credentials (Cloud Name, API Key, and API Secret).
+- In both the client and server directories, create a .env file using the provided .env.example file as a guide. Add your Cloudinary credentials to the server .env file:
+
+  **CLOUD_NAME=your_cloud_name**
+  ** API_KEY=your_api_key**
+  **API_SECRET=your_api_secret**
+
+5. Set Up Multer Uploads
+
+- In the server directory, create an uploads folder inside the public directory:
+
+6. Launch the Application
+
+- Start the client and server components:
+  **npm start**
+
+7. Access the Application
+
+- Once both components are running, you can access the Higher application in your web browser.
 
 ## Overview
 
